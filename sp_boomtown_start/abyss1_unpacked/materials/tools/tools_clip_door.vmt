@@ -1,0 +1,11 @@
+"Basic"
+{
+	"$basetexture" "tools/tools_clip_door"
+	"$translucent" 1
+	"%compileBlockLOS" 1
+	"%compileNodraw" 1
+	"%compileDetail" 1
+	"%compileclip" 1
+	"$surfaceprop" "default_silent"
+	"%keywords" "tools"
+}

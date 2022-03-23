@@ -1,0 +1,58 @@
+"UnlitTwoTexture"
+{
+	"$surfaceprop" "glass"
+	//"$basetexture" "models\titans\titan_ar_marker\titan_ar_marker_col"
+	//$basetexture "dev\noise_post"
+	//"$basetexture" "effects\tvscreen_noise001b"
+	"$basetexture" "effects\dev_scanline_small"
+	//"$basetexture" "effects\white"
+	//"$basetexture" "effects\electric_anim"
+	"$texture2" "models\mendoko\interior\mendoko_ui_decals\mendoko_ui_decals_col"
+
+
+
+
+	$translucent 1
+	$screenblend 1
+
+	$screenspacecoordssquare1 0
+	//$screenspacecoordssquare2 1
+
+	$layercolor1 "[0.1 0.3 1.5]"
+	$layeralpha1 "0.08"
+	$layercolor2 "[2 2 2]"
+	$layeralpha2 "1"
+	$addlayers 1
+
+	$fresnel 0
+	$fresnelsharpness1 5
+	$fresnelouterstrength1 0
+	$fresnelinnerstrength1 3
+
+	$fresnel2 0
+	$fresnelsharpness2 5
+	$fresnelouterstrength2 0
+	$fresnelinnerstrength2 3
+
+
+
+	Proxies
+	{
+		"TextureScroll"
+		{
+			"texturescrollvar" "$basetexturetransform"
+			"texturescrollrate" .25
+			"texturescrollangle" -90
+			"texturescale"	6
+		}
+
+		"AnimatedTexture"
+		{
+			"animatedtexturevar" "$basetexture"
+			"animatedtextureframenumvar" "$frame"
+			"animatedtextureframerate" 30 
+		}
+		
+	}
+}
+

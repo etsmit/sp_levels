@@ -1,0 +1,83 @@
+#base "mp_weapon_smr.txt"
+
+WeaponData
+{
+	weaponSubClass									"rocket"
+	weaponType										"inventory"
+	fire_mode   									"semi-auto"
+	projectile_adjust_to_gun_barrel					0
+
+	OnWeaponPrimaryAttack							"OnWeaponPrimaryAttack_swarm_rockets_s2s"
+	OnWeaponNpcPrimaryAttack						"OnWeaponNPCPrimaryAttack_swarm_rockets_s2s"
+
+	projectile_drift_windiness						7
+	projectile_drift_intensity						0.96
+	projectile_straight_time_min					0.6
+	projectile_straight_time_max					0.9
+	projectile_straight_radius_min					0
+	projectile_straight_radius_max					1
+	projectile_launch_speed							1
+
+	impact_effect_table 							"exp_flak_s2s"
+	projectile_trail_effect_0 						"P_swarm_rocket_s2s"
+	projectilemodel 								"models/weapons/bullets/projectile_rocket_large.mdl"
+
+	"damage_type" 									"burn"
+
+	fire_rate   									12
+	burst_fire_count								12
+	allow_headshots 								0
+	npc_explosion_damage							100
+	npc_explosion_damage_heavy_armor				200
+	explosionradius 								200
+	impulse_force   								1
+
+	proficiency_poor_spreadscale					5.0
+	proficiency_poor_bias   						0.75
+	proficiency_average_spreadscale 				5.0
+	proficiency_average_bias						0.75
+	proficiency_good_spreadscale					5.0
+	proficiency_good_bias   						0.75
+	proficiency_very_good_spreadscale   			5.0
+	proficiency_very_good_bias  					0.75
+	proficiency_perfect_spreadscale 				5.0
+	proficiency_perfect_bias						0.75
+
+	SP_BASE
+	{
+		npc_damage_near_distance						800
+		npc_damage_far_distance 						1200
+		npc_damage_near_value   						250
+		npc_damage_far_value							250
+
+		npc_min_range   								300
+		npc_max_range   								20000
+		npc_min_burst   								1
+		npc_max_burst   								1
+		npc_rest_time_between_bursts_min				3.0
+		npc_rest_time_between_bursts_max				7.0
+
+		"npc_min_engage_range"							"500"
+		"npc_max_engage_range"							"15000"
+		"npc_min_engage_range_heavy_armor"				"500"
+		"npc_max_engage_range_heavy_armor"				"15000"
+	}
+
+	Mods
+	{
+		AccurateMissiles
+		{
+
+		}
+
+		HomingMissiles
+		{
+			npc_rest_time_between_bursts_min				3.0
+			npc_rest_time_between_bursts_max				5.0
+			"npc_explosion_damage"							"1000"
+			"npc_explosion_damage_heavy_armor"				"1000"
+			"npc_damage_near_value_titanarmor"				"1000"
+			"npc_damage_far_value_titanarmor" 				"1000"
+		}
+	}
+}

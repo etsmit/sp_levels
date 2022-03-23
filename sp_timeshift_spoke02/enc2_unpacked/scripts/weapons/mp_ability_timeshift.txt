@@ -1,0 +1,67 @@
+////////////////////////////////////////////////////////
+//
+//	Only works in supported levels
+//
+//
+/////////////////////////////////////////////////////////
+
+WeaponData
+{
+	// General
+	"printname"   									"TimeShift"
+	"shortprintname"   								"TimeShift"
+	"description" 									"TimeShift ability"
+	"longdesc"										"TimeShift ability"
+	"weaponClass" 									"human"
+	"weaponSubClass"								"sidearm"
+	"body_type"										"close_quarters"
+	"fire_mode"   									"offhand"
+
+	"menu_icon"										"rui/hud/timeshift/timeshift_icon"
+	"hud_icon"										"rui/hud/timeshift/timeshift_icon"
+
+	"instant_swap_to"								"1"
+
+	"damage_type" 									"none"
+
+	"OnWeaponPrimaryAttack"							"OnWeaponPrimaryAttack_TimeShift"
+	//"OnWeaponAttemptOffhandSwitch"				"OnWeaponAttemptOffhandSwitch_ability_timeshift"
+
+	// Models
+	"viewmodel"   									"models/weapons/empty_handed/ptpov_timeshift_device.mdl"
+	"playermodel" 									"models/weapons/empty_handed/w_empty_handed_human.mdl"
+
+	// Ammo
+	"ammo_stockpile_max"							"200"
+	"ammo_clip_size"   								"200"
+	"ammo_default_total"							"200"
+	"ammo_no_remove_from_clip"						"1"
+	"regen_ammo_refill_rate"						"100"
+
+	// Behavior
+	"fire_rate"   									"5" //cooldown for the ability
+	"fire_duration"									"0.2"
+	"breaks_cloak"									"0"
+	"zoom_time_in"									"0.3"
+	"zoom_time_out"   								"0.3"
+	"zoom_fov"										"70"
+	"holster_time"									"0.0"
+	"deploy_time" 									"0.0"
+	"lower_time"  									"0.0"
+	"raise_time"  									"0.0"
+	"vortex_refire_behavior"  						"bullet"
+	"allow_empty_fire"								"0"
+	"reload_enabled"  								"1"
+	"allow_empty_click"   							"1"
+	"empty_reload_only"   							"0"
+	"trigger_snipercam"   							"1"
+	"allow_headshots" 								"1"
+	"headshot_distance" 							"5000"
+	"damage_headshot_scale"							"1.5"
+	"critical_hit"									"1"
+
+	// Crosshair
+	"enable_hud_alert"								"0"
+
+	"enable_highlight_networking_on_creation"		"1"
+}

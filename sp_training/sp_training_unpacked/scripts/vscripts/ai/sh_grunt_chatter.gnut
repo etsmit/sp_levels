@@ -1,0 +1,153 @@
+// sh_grunt_chatter.gnut
+global function GruntChatter_SharedInit
+
+void function GruntChatter_SharedInit()
+{
+	Assert( IsSingleplayer(), "Grunt chatter is only set up for SP." )
+
+	GruntChatter_InitTimers()
+	GruntChatter_InitCategoriesAndConversations()
+
+	#if CLIENT
+	GruntChatter_AddConversationDialogue()
+	#endif
+}
+
+struct
+{
+	table<string, float> categoryDebounceTimers
+} file
+
+void function GruntChatter_InitTimers()
+{
+	var timerData = GetDataTable( $"datatable/grunt_chatter_timers.rpak" )
+	for ( int row = 0; row < GetDatatableRowCount( timerData ); row++ )
+	{
+		string timerAlias 	= GetDataTableString( timerData, row, GetDataTableColumnByName( timerData, "timerAlias" ) )
+		float timerSecs 	= GetDataTableFloat( timerData, row, GetDataTableColumnByName( timerData, "timerSecs" ) )
+
+		#if SERVER
+		TimerInit( timerAlias, timerSecs )
+		#endif
+
+		file.categoryDebounceTimers[ timerAlias ] <- timerSecs
+	}
+}
+
+void function GruntChatter_InitCategoriesAndConversations()
+{
+	var categoryData = GetDataTable( $"datatable/grunt_chatter_categories.rpak" )
+	for ( int row = 0; row < GetDatatableRowCount( categoryData ); row++ )
+	{
+		int priority 				= GetDataTableInt( categoryData, row, GetDataTableColumnByName( categoryData, "priority" ) )
+		string chatterAlias 		= GetDataTableString( categoryData, row, GetDataTableColumnByName( categoryData, "chatterAlias" ) )
+		string timerAlias 			= GetDataTableString( categoryData, row, GetDataTableColumnByName( categoryData, "timerAlias" ) )
+
+		#if SERVER
+		string secondaryTimerAlias 	= GetDataTableString( categoryData, row, GetDataTableColumnByName( categoryData, "secondaryTimerAlias" ) )
+		bool trackEventTarget 		= GetDataTableBool( categoryData, row, GetDataTableColumnByName( categoryData, "trackEventTarget" ) )
+		bool resetTargetKillChain 	= GetDataTableBool( categoryData, row, GetDataTableColumnByName( categoryData, "resetTargetKillChain" ) )
+
+		GruntChatter_AddCategory( chatterAlias, priority, timerAlias, secondaryTimerAlias, trackEventTarget, resetTargetKillChain )
+		#endif //SERVER
+
+		Assert( timerAlias in file.categoryDebounceTimers, "Couldn't find timer alias named " + timerAlias )
+		float debounceTime = file.categoryDebounceTimers[ timerAlias ]
+
+		RegisterConversation( chatterAlias, priority, debounceTime )
+	}
+}
+
+#if CLIENT
+struct ChatterDialogueLine
+{
+	int dataRow
+	string chatterAlias
+	int variantID
+	int speakerIndex
+	string dialogueAlias
+}
+
+void function GruntChatter_AddConversationDialogue()
+{
+	array<int> actorsABCDEF = [ 1, 1, 1, 1, 1, 1 ]
+	GruntChatter_AddConversationDialogueLines( actorsABCDEF, TEAM_IMC )
+}
+
+void function GruntChatter_AddConversationDialogueLines( array<int> actors, int team )
+{
+	table<int, ChatterDialogueLine> chatterDialogueLines  // use a table because we care about the order
+
+	// READ IN THE DATA
+	var categoryData = GetDataTable( $"datatable/grunt_chatter_dialogue.rpak" )
+	for ( int row = 0; row < GetDatatableRowCount( categoryData ); row++ )
+	{
+		int 	dataRow 		= row + 2  // first two rows define the headers and data types
+		string 	chatterAlias 	= GetDataTableString( categoryData, row, GetDataTableColumnByName( categoryData, "chatterAlias" ) )
+		int 	variantID 		= GetDataTableInt( categoryData, row, GetDataTableColumnByName( categoryData, "variantID" ) )
+		int 	speakerIndex 	= GetDataTableInt( categoryData, row, GetDataTableColumnByName( categoryData, "speakerIndex" ) )
+		string 	dialogueAlias 	= GetDataTableString( categoryData, row, GetDataTableColumnByName( categoryData, "dialogueAlias" ) )
+
+		// allow comments for sanity
+		if ( chatterAlias.slice( 0, 2 ) == "//" )
+			continue
+
+		ChatterDialogueLine dialogueLine
+
+		// basic error checking: make sure there are no dupes
+		foreach ( ChatterDialogueLine line in chatterDialogueLines )
+		{
+			if ( line.chatterAlias == chatterAlias
+					&& line.variantID == variantID
+					&& line.speakerIndex == speakerIndex
+					&& line.dialogueAlias == dialogueAlias )
+			{
+				Assert( false, "Grunt Chatter: duplicate line setup on row " + dataRow + " of grunt_chatter_dialogue.csv" )
+			}
+		}
+
+		dialogueLine.dataRow 		= dataRow
+		dialogueLine.chatterAlias 	= chatterAlias
+		dialogueLine.variantID 		= variantID
+		dialogueLine.speakerIndex 	= speakerIndex
+		dialogueLine.dialogueAlias 	= dialogueAlias
+		chatterDialogueLines[ chatterDialogueLines.len() ] <- dialogueLine
+	}
+
+
+	// CREATE CONVERSATIONS FROM DATA AND ADD THEM
+	table< int, ChatterDialogueLine > variantLines  // use a table because we care about the order
+	string activeChatterAlias = "default"
+	int activeVariantID = -1
+	foreach ( ChatterDialogueLine line in chatterDialogueLines )
+	{
+		string chatterAlias = line.chatterAlias
+		int variantID = line.variantID
+
+		if ( activeChatterAlias == chatterAlias && activeVariantID == variantID )
+		{
+			Assert( variantLines[ variantLines.len() - 1 ].speakerIndex != line.speakerIndex, "Can't have two of the same speakerIndex back to back (row " + line.dataRow + ")" )
+			variantLines[ variantLines.len() ] <- line
+		}
+		else
+		{
+			// add the active conversation if it doesn't have more lines for this variant
+			if ( activeChatterAlias != "default" )
+			{
+				array convoSystemLines  // holds AddConversation style tables
+				foreach ( variantLine in variantLines )
+				{
+					convoSystemLines.append( { dialogType = "speech", speakerIndex = variantLine.speakerIndex, choices = [ Voices( team, variantLine.dialogueAlias, actors ) ] } )
+				}
+
+				AddConversation( activeChatterAlias, team, convoSystemLines )
+			}
+
+			variantLines = {}
+			activeChatterAlias = chatterAlias
+			activeVariantID = variantID
+			variantLines[ variantLines.len() ] <- line
+		}
+	}
+}
+#endif // CLIENT

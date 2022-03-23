@@ -1,0 +1,38 @@
+"UnlitTwoTexture"
+{
+	"$surfaceprop" "glass"
+	//"$basetexture" "models\titans\titan_ar_marker\titan_ar_marker_col"
+	//$basetexture "dev\noise_post"
+	//"$basetexture" "effects\tvscreen_noise001b"
+	"$basetexture" "effects\dev_scanline_small"
+	//"$basetexture" "effects\white"
+	//"$basetexture" "effects\electric_anim"
+	//"$texture2" "models\kodai\kodai_fake_sky_01_col"
+	"$texture2" "skies\boomtownCubemap_white_"
+
+	//$decal 1
+	//$translucent 1
+	//$screenblend 1
+
+	$boomtownScrolling 1
+
+	//$screenspacecoordssquare1 1
+	//$screenspacecoordssquare2 1
+
+	$layercolor1 "[0.2 0.5 1.2]"
+	$layeralpha1 "0.9"
+	$layercolor2 "[1.2 1.2 1.2]"
+	//$layeralpha2 "1"
+	$addlayers 1
+
+	$fresnel 1
+	$fresnelsharpness1 .3
+	$fresnelouterstrength1 0
+	$fresnelinnerstrength1 2
+
+	$fresnel2 1
+	$fresnelsharpness2 5
+	$fresnelouterstrength2 1
+	$fresnelinnerstrength2 0
+}
+

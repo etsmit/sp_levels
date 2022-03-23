@@ -1,0 +1,24 @@
+
+IsTestMap: false
+
+When: "SERVER"
+Scripts:
+[
+	sp/sp_sewers1.nut
+	sp/sp_sewer_common.nut
+]
+
+When: "SERVER || CLIENT"
+Scripts:
+[
+	sp/sp_sewers1_vo.nut
+	sp/autoprecache/sp_sewers1_autoprecache.nut
+	sp/sh_sp_sewers.nut
+]
+
+When: "CLIENT"
+Scripts:
+[
+	sp/cl_sp_sewers1.nut
+    client/cl_carrier.gnut
+]

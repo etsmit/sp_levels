@@ -1,0 +1,47 @@
+#base "mp_titanweapon_flightcore_rockets.txt"
+
+WeaponData
+{
+	weaponType										"shoulder"
+	fire_mode   									"offhand_instant"
+
+	OnWeaponPrimaryAttack							"ScriptOnlyWeapon"
+	OnWeaponNpcPrimaryAttack						"NPCScriptOnlyWeapon"
+
+	projectile_adjust_to_gun_barrel					0
+
+	projectile_trail_effect_0 						"Rocket_Smoke_Large"
+	impact_effect_table 							"exp_flak_s2s"
+
+	"explosion_shake_radius"						"500"
+	"explosion_shake_frequency"						"100"
+
+	// need to split because base weapon has it split
+	MP_BASE
+	{
+		"explosion_damage"								"100"
+		"explosion_damage_heavy_armor"					"100"
+
+		"explosion_inner_radius"						"250"
+		"explosionradius" 								"600"
+		"projectile_launch_speed"						"2000"
+	}
+	SP_BASE
+	{
+		"explosion_damage"								"100"
+		"explosion_damage_heavy_armor"					"100"
+
+		"explosion_inner_radius"						"250"
+		"explosionradius" 								"600"
+		"projectile_launch_speed"						"2000"
+	}
+
+	Mods
+	{
+		DarkMissiles
+		{
+			projectile_trail_effect_0 						"P_FlightCore_trail_s2s"
+			impact_effect_table 							"exp_flak_s2s_light"
+		}
+	}
+}

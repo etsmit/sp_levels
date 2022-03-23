@@ -1,0 +1,22 @@
+
+When: "SERVER || CLIENT"
+Scripts:
+[
+	sp/hubs/sh_sp_timeshift.gnut
+	sp/sh_sp_timeshift_spoke02.nut
+	sp/autoprecache/sp_timeshift_spoke02_autoprecache.nut
+]
+
+When: "SERVER"
+Scripts:
+[
+	sp/hubs/sp_timeshift_spoke02.nut
+	sp/hubs/sp_timeshift_utility.nut
+]
+
+When: "CLIENT"
+Scripts:
+[
+	sp/hubs/cl_sp_timeshift_utility.nut
+	sp/cl_sp_timeshift_spoke02.nut
+]

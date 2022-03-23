@@ -1,0 +1,190 @@
+global function CLHud_Init
+global function DamageFlyout
+
+const int HIT_NORMAL = 0
+const int HIT_CRIT = 1
+const int HIT_INEFFECTIVE = 2
+const int HIT_MID_RANGE = 3
+
+const bool RUI_ENABLED = true
+
+/*
+		https://docs.google.com/document/d/1ci44pK9DaJpcfJoDbH4vdwG3fB-JQhkbyWk1Q6HQJYE/
+
+        ==== SCRIPT ====
+        ) Client script can now create and destroy Respawn UIs. To create one, do:
+           rui = RuiCreate( $"ui/assetname.rpak", topology, drawGroup, sortKey )
+
+        You can then manipulate it using the following:
+		   RuiSetDrawGroup( rui, drawGroup )
+           RuiSetString( rui, argName, value )
+           RuiSetBool( rui, argName, value )
+           RuiSetInt( rui, argName, value )
+           RuiSetFloat( rui, argName, value )
+           RuiSetFloat2( rui, argName, value )  // value is a vector; only x and y are used
+           RuiSetFloat3( rui, argName, value )
+           RuiSetColorAlpha( rui, argName, color, alpha )  // color is a vector
+
+        To destroy it, just do:
+           RuiDestroy( rui )
+*/
+
+struct MessageData
+{
+	int		scoreEventId = -1
+	int		scoreEventValue = 0
+
+	float	messageScale = 1.0
+	string	messageText = ""
+	float	duration = 2.5
+
+	float	startTime
+
+	var 	rui
+}
+
+struct
+{
+	var tempRui
+	int medalOffset = 0
+
+	array<var> medalQueue = []
+
+	array<MessageData>	activeEventQueue = []
+
+	bool				eventQueueActive = false
+	array<MessageData>	pendingEventQueue = []
+
+	var weaponInfo
+	int lastSortKey = 0
+	int lastOffset = 0
+
+	bool damageFlyoutEnabled = true
+
+	var hitIndicatorRui
+	float lastHitTime = 0.0
+} file
+
+const int NUM_OFFSETS = 4
+const int[NUM_OFFSETS] DAMAGE_OFFSETS = [0, 1, 0, -1]
+
+void function CLHud_Init()
+{
+}
+
+
+void function AddGenericQueueMessage( string messageText, bool isBigText = false, float duration = 2.5 )
+{
+	MessageData messageData
+	messageData.messageScale = isBigText ? 1.5 : 1.0
+	messageData.messageText = messageText
+	messageData.duration = duration
+
+	file.pendingEventQueue.append( messageData )
+
+	if ( file.eventQueueActive )
+		return
+
+	thread QueueMessageThink()
+}
+
+
+void function QueueMessageThink()
+{
+	file.eventQueueActive = true
+	while ( file.pendingEventQueue.len() )
+	{
+		MessageData messageData = file.pendingEventQueue[0]
+		file.pendingEventQueue.remove( 0 )
+
+		messageData.startTime = Time()
+
+		var rui = RuiCreate( $"ui/killdeath_info.rpak", clGlobal.topoFullScreen, RUI_DRAW_HUD, 0 )
+		RuiSetGameTime( rui, "startTime", messageData.startTime )
+		RuiSetFloat( rui, "duration", messageData.duration )
+		RuiSetString( rui, "messageText", Localize( messageData.messageText ) )
+		RuiSetBool( rui, "isBigText", messageData.messageScale > 1.0 )
+
+		messageData.rui = rui
+		thread MessageThink( messageData )
+
+		file.activeEventQueue.insert( 0, messageData )
+
+		float totalMessageScale = 0.0
+		for ( int index = 0; index < file.activeEventQueue.len(); index++ )
+		{
+			var messageRui = file.activeEventQueue[index].rui
+			RuiSetFloat( messageRui, "messageOffsetScale", totalMessageScale )
+			RuiSetGameTime( messageRui, "updateTime", Time() )
+
+			totalMessageScale += file.activeEventQueue[index].messageScale
+		}
+
+		wait 0.1
+	}
+
+	file.eventQueueActive = false
+}
+
+
+void function MessageThink( MessageData messageData )
+{
+	float endTime = messageData.startTime + messageData.duration
+
+	while ( Time() < endTime )
+	{
+		wait endTime - Time()
+		endTime = messageData.startTime + messageData.duration
+	}
+
+	file.activeEventQueue.removebyvalue( messageData )
+	RuiDestroy( messageData.rui )
+
+	float totalMessageScale = 0.0
+	for ( int index = 0; index < file.activeEventQueue.len(); index++ )
+	{
+		var messageRui = file.activeEventQueue[index].rui
+		RuiSetFloat( messageRui, "messageOffsetScale", totalMessageScale )
+		totalMessageScale += file.activeEventQueue[index].messageScale
+	}
+}
+
+
+void function DamageFlyout( float damage, vector damagePosition, entity victim, bool isCrit, bool isIneffective )
+{
+	if ( !file.damageFlyoutEnabled )
+		return
+
+	int hitType = HIT_NORMAL
+	if ( isCrit )
+		hitType = HIT_CRIT
+	//else if ( isIneffective )
+	//	hitType = HIT_INEFFECTIVE
+
+	entity player = GetLocalClientPlayer()
+
+	float dist = Distance( player.CameraPosition(), damagePosition )
+
+	damagePosition += DAMAGE_OFFSETS[file.lastOffset] * <0,0,dist * 0.04>
+
+	file.lastOffset = (file.lastOffset + 1) % NUM_OFFSETS
+
+	float duration = 1.0
+	float startTime = Time()
+
+	int sortKey = (file.lastSortKey++) % 30
+	if ( hitType == HIT_CRIT )
+		sortKey += 10
+
+	float[2] screenSize = GetScreenSize()
+
+	if ( Time() - file.lastHitTime > 0.1 )
+	{
+		var rui = RuiCreate( $"ui/hit_indicator.rpak", clGlobal.topoFullScreen, RUI_DRAW_HUD, 0 )
+		RuiSetResolution( rui, screenSize[0], screenSize[1] )
+
+		RuiSetGameTime( rui, "startTime", startTime )
+		RuiSetInt( rui, "hitType", hitType )
+		file.lastHitTime = Time()
+	}
+}

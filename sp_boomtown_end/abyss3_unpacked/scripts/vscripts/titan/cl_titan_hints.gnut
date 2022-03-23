@@ -1,0 +1,187 @@
+global function ClTitanHints_Init
+global function ServerCallback_ShowOffhandWeaponHint
+global function ClTitanHints_ClearOffhandHint
+global function CreateButtonPressHint
+global function ServerCallback_ActiveSPTitanLoadout
+
+const float TITAN_HINT_DURATION = 8.0
+
+struct
+{
+	var hintRui
+	table<int,string> useString
+	table<int,string> lasetHintString
+	int lastUsedIndex = -1
+	float lastHintTime
+} file
+
+void function ClTitanHints_Init()
+{
+	file.useString[ TITAN_HINT_DASH ] <- "%dodge%"
+	file.useString[ OFFHAND_ORDNANCE ] <- "%offhand0%"
+	file.useString[ OFFHAND_SPECIAL ] <- "%offhand1%"
+	file.useString[ OFFHAND_ANTIRODEO ] <- "%offhand2%"
+	file.useString[ OFFHAND_EQUIPMENT ] <- "%offhand3%"
+
+	file.lasetHintString[ TITAN_HINT_DASH ] <- ""
+	file.lasetHintString[ OFFHAND_ORDNANCE ] <- ""
+	file.lasetHintString[ OFFHAND_SPECIAL ] <- ""
+	file.lasetHintString[ OFFHAND_ANTIRODEO ] <- ""
+	file.lasetHintString[ OFFHAND_EQUIPMENT ] <- ""
+
+	AddOnDeathCallback( "player", OnDeath_ClearOffhandHints )
+	AddCreateTitanCockpitCallback( TitanCockpit_TitanHint )
+}
+
+void function ServerCallback_ShowOffhandWeaponHint( int index )
+{
+	entity player = GetLocalViewPlayer()
+	if ( !IsAlive( player ) )
+		return
+
+	if ( Tracker_GetNumTitans( player ) <= 0 )
+		return
+
+	if ( index == TITAN_HINT_DASH )
+	{
+		CreateButtonPressHint( "#HINT_DASH", index )
+		return
+	}
+
+	entity weapon = player.GetOffhandWeapon( index )
+	if ( !IsValid( weapon ) )
+		return
+
+	string name = expect string( weapon.GetWeaponInfoFileKeyField( "shortprintname" ) )
+
+	if ( index == OFFHAND_EQUIPMENT )
+	{
+		if ( IsConversationPlaying() ) // don't show core hint during conversation, since it's unbound
+			return
+
+		name = expect string( weapon.GetWeaponInfoFileKeyField( "printname" ) )
+	}
+
+	var hintType = weapon.GetWeaponInfoFileKeyField( "hint_type" )
+
+	if ( hintType == null )
+		hintType = "press"
+
+	string hintBase = "#HINT_WEAPON_PRESS"
+
+	switch ( hintType )
+	{
+		case "range_toggle":
+			if ( player.GetMainWeapons().len() > 0 )
+			{
+				entity primaryWeapon = player.GetMainWeapons()[0]
+				if ( primaryWeapon.HasMod( "LongRangeAmmo" ) )
+				{
+					name = "#CLOSE_RANGE_MODE"
+				}
+				else
+				{
+					name = "#LONG_RANGE_MODE"
+				}
+			}
+		case "press":
+			hintBase = "#HINT_WEAPON_PRESS"
+			break
+		case "hold":
+			hintBase = "#HINT_WEAPON_HOLD"
+			break
+	}
+
+	CreateButtonPressHint( hintBase, index, name )
+	thread EnsureHintIsValid( player, weapon, index )
+}
+
+void function EnsureHintIsValid( entity player, entity weapon, int index )
+{
+	EndSignal( player, "DisplayingOnscreenHint" )
+
+	while ( Time() - file.lastHintTime < TITAN_HINT_DURATION )
+	{
+		if ( Tracker_GetNumTitans( player ) <= 0 || !WeaponCanBeUsed( weapon, player ) )
+		{
+			ClTitanHints_ClearOffhandHint( index )
+			return
+		}
+
+		WaitFrame()
+	}
+}
+
+// only put checks that need to happen every frame here.
+bool function WeaponCanBeUsed( entity weapon, entity player )
+{
+	// need to check shared energy every frame since it can be used up by other weapons
+	int curEnergyCost = weapon.GetWeaponCurrentEnergyCost()
+	if ( !player.CanUseSharedEnergy( curEnergyCost ) )
+		return false
+
+	return true
+}
+
+void function CreateButtonPressHint( string baseHint, int offhandIndex, string useObject = "" )
+{
+	if ( file.lastUsedIndex >= 0 )
+		ClTitanHints_ClearOffhandHint( file.lastUsedIndex )
+	if ( useObject == "" )
+		AddOnscreenHint( baseHint, file.useString[offhandIndex], "", TITAN_HINT_DURATION ) //AddPlayerHint( TITAN_HINT_DURATION, 0.25, $"", baseHint, file.useString[offhandIndex] )
+	else
+		AddOnscreenHint( baseHint, file.useString[offhandIndex], useObject, TITAN_HINT_DURATION ) //AddPlayerHint( TITAN_HINT_DURATION, 0.25, $"", baseHint, file.useString[offhandIndex], useObject )
+
+	file.lasetHintString[ offhandIndex ] = baseHint
+
+	file.lastUsedIndex = offhandIndex
+	file.lastHintTime = Time()
+}
+
+void function AddOnscreenHint( string baseString, string arg1, string arg2, float duration )
+{
+	OnscreenHint hintInfo
+	hintInfo.locStringGamepad = baseString
+	hintInfo.stringArg1 = arg1
+	hintInfo.stringArg2 = arg2
+	hintInfo.adsFade = false
+	thread DisplayOnscreenHint( hintInfo, duration )
+}
+
+void function ClTitanHints_ClearOffhandHint( int index )
+{
+	if ( file.lastUsedIndex == index && file.lasetHintString[ index ] != "" && Time() - file.lastHintTime < TITAN_HINT_DURATION )
+	{
+		HidePlayerHint( file.lasetHintString[ index ] )
+		ScriptCallback_ClearOnscreenHint()
+		file.lastHintTime = 0.0
+	}
+}
+
+void function ServerCallback_ActiveSPTitanLoadout( int loadoutIndex )
+{
+	if ( file.lastUsedIndex >= 0 )
+		ClTitanHints_ClearOffhandHint( file.lastUsedIndex )
+}
+
+void function OnDeath_ClearOffhandHints( entity player )
+{
+	if ( player == GetLocalViewPlayer() )
+	{
+	    if ( file.lastUsedIndex >= 0 )
+		    ClTitanHints_ClearOffhandHint( file.lastUsedIndex )
+	}
+}
+
+void function TitanCockpit_TitanHint( entity cockpit, entity player )
+{
+	thread TitanCockpit_TitanHint_Internal( cockpit )
+}
+
+void function TitanCockpit_TitanHint_Internal( entity cockpit )
+{
+	cockpit.WaitSignal( "OnDestroy" )
+
+	if ( file.lastUsedIndex >= 0 )
+		ClTitanHints_ClearOffhandHint( file.lastUsedIndex )
+}

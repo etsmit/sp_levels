@@ -1,0 +1,504 @@
+global function ShAIBossTitan_Init
+global function GetBossTitanID
+global function GetBossTitanData
+global function GetBossTitanIntroData
+global function RegisterBossTitanRemoteFunctions
+global function GetBossTitanDataByID
+global function GetBossNameFromID
+global function GetBossTitleFromID
+global function GetBossMarkerBossID
+global function GetMercCharacterModel
+global function IsValidBossTitan
+
+#if SERVER
+global function StartBossIntro
+global function EndBossIntro
+global function RegisterBossTitan
+global function DeregisterBossTitan
+#endif
+
+#if CLIENT
+global function RunBossConversation
+global function CancelBossConversation
+#endif
+
+global const BOSS_TITAN_MARKER_TARGETNAME = "AI_BossTitan_Marker"
+const int NUM_VOICES = 8
+
+global struct BossTitanData
+{
+	int bossID
+	string bossTitle
+	string introAnimTitan
+	string introAnimPilot
+	string introAnimTitanRef
+	string titanCameraAttachment
+	asset characterModel
+}
+
+//this is script driven, while above is csv driven
+global struct BossTitanIntroData
+{
+	string waitToStartFlag 	= ""
+	bool waitForLookat 		= true
+	bool lookatDoTrace 		= false
+	float lookatDegrees 	= 30
+	float lookatMinDist 	= 5100
+
+	entity parentRef 		= null
+	string parentAttach 	= ""
+	bool doCockpitDisplay 	= true
+	bool checkpointOnlyIfPlayerTitan = true
+}
+
+struct BossTitanConversation
+{
+	array<string> soundAliases
+	array<string> usedAliases
+	int eventPriority
+	string eventVisualStyle
+	asset customVideo
+}
+
+struct
+{
+	table< string, BossTitanData > bossTitans
+	table< string, BossTitanIntroData > bossTitanIntros
+	table< string, table<string,BossTitanConversation> > bossTitanConvData
+	table< string, float > aliasUsedTimes
+} file
+
+BossTitanData function AddBossTitan( string bossName )
+{
+	Assert( !( bossName in file.bossTitans ) )
+	BossTitanData bossTitanData
+	bossTitanData.bossID = file.bossTitans.len()
+	file.bossTitans[ bossName ] <- bossTitanData
+	BossTitanIntroData bossTitanIntroData
+	file.bossTitanIntros[ bossName ] <- bossTitanIntroData
+	return bossTitanData
+}
+
+BossTitanIntroData function GetBossTitanIntroData( string bossName )
+{
+	Assert( bossName in file.bossTitanIntros )
+	return file.bossTitanIntros[ bossName ]
+}
+
+BossTitanData function GetBossTitanData( string bossName )
+{
+	Assert( bossName in file.bossTitans )
+	return file.bossTitans[ bossName ]
+}
+
+bool function IsValidBossTitan( string bossName )
+{
+	return ( bossName in file.bossTitans )
+}
+
+BossTitanData function GetBossTitanDataByID( int id )
+{
+	foreach ( bossData in file.bossTitans )
+	{
+		if ( bossData.bossID == id )
+			return bossData
+	}
+	unreachable
+}
+
+string function GetBossNameFromID( int bossID )
+{
+	foreach ( name, data in file.bossTitans )
+	{
+		if ( data.bossID == bossID )
+			return name
+	}
+
+	return ""
+}
+
+string function GetBossTitleFromID( int bossID )
+{
+	foreach ( name, data in file.bossTitans )
+	{
+		if ( data.bossID == bossID )
+			return data.bossTitle
+	}
+
+	return ""
+}
+
+asset function GetMercCharacterModel( int mercCharacterID )
+{
+	string name = GetBossNameFromID( mercCharacterID )
+	Assert( name in file.bossTitans )
+	return file.bossTitans[ name ].characterModel
+}
+
+int function GetBossTitanID( string bossName )
+{
+	Assert( bossName != "", "No bossname supplied" )
+	Assert( bossName in file.bossTitans, "No boss named " + bossName )
+	return file.bossTitans[ bossName ].bossID
+}
+
+void function RegisterBossTitanRemoteFunctions()
+{
+//	Remote_RegisterFunction( "ServerCallback_NotifyLoadout" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanIntro_Start" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanIntro_End" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanNoIntro" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanDamaged" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanLostSegment" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanDoomed" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanDeath" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanUseCoreAbility" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanPlayerUsedCoreAbility" )
+	Remote_RegisterFunction( "BossTitanPlayerLostHealthSegment" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanRetreat" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanAdvance" )
+	Remote_RegisterFunction( "ServerCallback_BossTitanPostIntro" )
+}
+
+void function ShAIBossTitan_Init()
+{
+	// fill boss fields
+	var dataTable = GetDataTable( $"datatable/titan_bosses.rpak" )
+	for ( int i = 0; i < GetDatatableRowCount( dataTable ); i++ )
+	{
+		string bossName	= GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "bossCharacter" ) )
+		AddBossTitan( bossName )
+		BossTitanData bossTitanData = GetBossTitanData( bossName )
+
+		bossTitanData.bossTitle 			= GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "bossTitle" ) )
+		bossTitanData.titanCameraAttachment	= GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "titanCameraAttachment" ) )
+		bossTitanData.introAnimTitan 		= GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "introAnimTitan" ) )
+		bossTitanData.introAnimPilot 		= GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "introAnimPilot" ) )
+		bossTitanData.introAnimTitanRef 	= GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "introAnimTitanRef" ) )
+		bossTitanData.characterModel 		= GetDataTableAsset( dataTable, i, GetDataTableColumnByName( dataTable, "pilotModel" ) )
+
+		BossTitanIntroData introData = GetBossTitanIntroData( bossName )
+		introData.waitToStartFlag 	= GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "waitToStartFlag" ) )
+		introData.waitForLookat 	= GetDataTableBool( dataTable, i, GetDataTableColumnByName( dataTable, "waitForLookat" ) )
+		introData.lookatDoTrace 	= GetDataTableBool( dataTable, i, GetDataTableColumnByName( dataTable, "lookatDoTrace" ) )
+		introData.lookatDegrees 	= GetDataTableFloat( dataTable, i, GetDataTableColumnByName( dataTable, "lookatDegrees" ) )
+		introData.lookatMinDist 	= GetDataTableFloat( dataTable, i, GetDataTableColumnByName( dataTable, "lookatMinDist" ) )
+	}
+
+	RegisterSignal( "DeregisterBossTitan" )
+	RegisterSignal( "CancelBossConversation" )
+
+	// InitBossDialogue()
+
+	dataTable = GetDataTable( $"datatable/titan_boss_lines.rpak" )
+	for ( int i = 0; i < GetDatatableRowCount( dataTable ); i++ )
+	{
+		string bossName	= GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "characterName" ) )
+		string eventName = GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "event" ) )
+
+		if (!( bossName in file.bossTitanConvData ) )
+			file.bossTitanConvData[ bossName ] <- {}
+
+		if (!( eventName in file.bossTitanConvData[ bossName ] ))
+		{
+			BossTitanConversation data
+			data.eventPriority = GetDataTableInt( dataTable, i, GetDataTableColumnByName( dataTable, "priority" ) )
+			data.eventVisualStyle = GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "visualStyle" ) )
+			if ( data.eventVisualStyle == "vdu_custom" )
+			{
+				data.customVideo = GetDataTableAsset( dataTable, i, GetDataTableColumnByName( dataTable, "customVideo" ) )
+				PrecacheMaterial( data.customVideo )
+			}
+
+			file.bossTitanConvData[ bossName ][ eventName ] <- data
+		}
+
+		string soundAlias = GetDataTableString( dataTable, i, GetDataTableColumnByName( dataTable, "audio" ) )
+		file.bossTitanConvData[ bossName ][ eventName ].soundAliases.append( soundAlias )
+	}
+
+	foreach ( charName,conversations in file.bossTitanConvData )
+	{
+		foreach( eventName,data in conversations )
+		{
+			string suffix = "_" + charName.tolower()
+
+			// if ( charName.tolower() == "generic" )
+			// 	suffix = ""
+
+			string key = "bossTitan_" + eventName + suffix
+
+			RegisterConversation( key, data.eventPriority )
+			#if CLIENT
+			var convRef = AddConversation( key, TEAM_MILITIA )
+			AddBossAIEvent( convRef, charName, eventName )
+			#endif
+		}
+	}
+}
+
+#if SERVER
+void function StartBossIntro( entity player, entity bossTitan, BossTitanIntroData introData )
+{
+	Remote_CallFunction_NonReplay( player, "ServerCallback_BossTitanIntro_Start", bossTitan.GetEncodedEHandle(), GetMercCharacterID( bossTitan ), BossTitanVDUEnabled( bossTitan ), introData.doCockpitDisplay )
+}
+
+void function EndBossIntro( entity player, entity bossTitan )
+{
+	Remote_CallFunction_NonReplay( player, "ServerCallback_BossTitanIntro_End", bossTitan.GetEncodedEHandle(), BossTitanVDUEnabled( bossTitan ) )
+}
+
+void function RegisterBossTitan( entity bossTitan )
+{
+	entity marker = CreateEntity( MARKER_ENT_CLASSNAME )
+	marker.kv.spawnflags = SF_INFOTARGET_ALWAYS_TRANSMIT_TO_CLIENT
+	SetTargetName( marker, BOSS_TITAN_MARKER_TARGETNAME )
+	marker.SetOwner( bossTitan )
+	string name = bossTitan.ai.bossCharacterName == "" ? GetGenericPilotName() : bossTitan.ai.bossCharacterName
+	bossTitan.ai.bossCharacterName = name
+	BossTitanData bossTitanData = GetBossTitanData( name )
+	int bossID = bossTitanData.bossID
+	SetBossMarkerBossID( marker, bossID )
+	DispatchSpawn( marker )
+
+	thread MarkerCleanup( bossTitan, marker )
+}
+
+string function GetGenericPilotName()
+{
+	return "Generic" + RandomIntRange( 1,NUM_VOICES + 1 )
+}
+
+void function DeregisterBossTitan( entity bossTitan )
+{
+	bossTitan.Signal( "DeregisterBossTitan" )
+	bossTitan.ai.bossTitanType = TITAN_AUTO
+}
+
+void function MarkerCleanup( entity bossTitan, entity marker )
+{
+	bossTitan.EndSignal( "OnDeath" )
+	bossTitan.EndSignal( "OnDestroy" )
+	bossTitan.EndSignal( "DeregisterBossTitan" )
+
+	OnThreadEnd(
+	function() : ( marker )
+		{
+			if ( IsValid( marker ) )
+			{
+				marker.Destroy()
+			}
+		}
+	)
+
+	WaitForever()
+}
+
+void function SetBossMarkerBossID( entity marker, int id )
+{
+	marker.SetOrigin( <id, 0, 0> )
+}
+#endif
+
+int function GetBossMarkerBossID( entity marker )
+{
+	return int( marker.GetOrigin().x )
+}
+
+#if CLIENT
+void function RunBossConversation( entity player, string speaker, string event )
+{
+	float duration = 0.0
+	table<string,BossTitanConversation> conversations
+
+	entity titan = GetBossAISpeaker()
+	string oldEvent = event
+
+	if ( speaker in file.bossTitanConvData )
+	{
+		conversations = file.bossTitanConvData[ speaker ]
+	}
+
+	bool lowHealth = false
+
+	if ( IsAlive( titan ) )
+	{
+		if ( GetDoomedState( titan ) || GetTitanCurrentRegenTab( titan ) <= 1 )
+		{
+			lowHealth = true
+		}
+	}
+
+	if ( lowHealth )
+	{
+		if ( (event+"_boss1segmentLeft") in conversations )
+			event = event + "_boss1segmentLeft"
+	}
+
+	BossTitanConversation data = conversations[event]
+
+	if ( GetFreshAlias( data ) == "" )
+	{
+		if ( (oldEvent+"_backup") in conversations )
+		{
+			event = oldEvent+"_backup"
+			data = conversations[event]
+		}
+	}
+
+	string alias = GetBestAlias( data )
+	duration = GetSoundDuration( alias )
+
+	int id = GetBossTitanID( speaker )
+	speaker = GetBossTitleFromID( id )
+
+	BeginBossConversation( player, speaker, data, alias )
+}
+
+void function BeginBossConversation( entity player, string speakerName, BossTitanConversation data, string alias )
+{
+	clGlobal.levelEnt.EndSignal( "CancelBossConversation" )
+	clGlobal.levelEnt.EndSignal( "CancelConversation" )
+	player.EndSignal( "OnDestroy" )
+
+	HideBossVDU( player )
+
+	string eventVisualStyle = data.eventVisualStyle
+	// float duration = GetSoundDuration( alias )
+
+	switch ( eventVisualStyle )
+	{
+		case "waveform":
+			entity speaker = GetBossAISpeaker()
+			if ( speaker == null ) // JFS
+				return
+			ShowBossWaveform( player, speaker, speakerName, 100.0 ) //max( duration - 0.1 , 0.0 ) )
+			break
+		case "vdu_custom":
+			ShowBossVDU( player, data.customVideo )
+			break
+		case "vdu_basic":
+			ShowGenericBossVDU( player )
+			break
+	}
+
+	player.EndSignal( "ConversationOver" )
+	player.EndSignal( "OnDestroy" )
+
+	OnThreadEnd(
+	function() : ( player, eventVisualStyle, alias )
+		{
+			if ( IsValid( player ) )
+			{
+				switch ( eventVisualStyle )
+				{
+					case "waveform":
+						HideBossWaveform( player )
+						break
+					case "vdu_custom":
+					case "vdu_basic":
+						HideBossVDU( player )
+						break
+				}
+
+				StopSoundOnEntity( player, alias )
+			}
+		}
+	)
+
+	if ( alias == "diag_sp_BossVdu_BM112_03_01_imc_ash" ) // "Impressive...surprisingly impressive."
+	{
+		// ASH HACK:
+		// so she doesn't say "Very disappointing. I expected so much more of you." right after saying "Impressive...surprisingly impressive."
+		file.bossTitanConvData[ "Ash" ][ "tookPlayerSegment_backup" ].usedAliases.append( "diag_sp_BossVdu_BM112_27_01_imc_ash" )
+	}
+
+	var obj = EmitSoundOnEntity( player, alias )
+
+	OnThreadEnd(
+	function() : ( player, alias )
+		{
+			printt( "BossCancelConversation" )
+			// StopSound( obj )
+			StopSoundOnEntity( player, alias )
+		}
+	)
+
+	WaitSignal( obj, "OnSoundFinished" )
+
+	if (!( alias in file.aliasUsedTimes ))
+		file.aliasUsedTimes[ alias ] <- Time()
+	else
+		file.aliasUsedTimes[ alias ] = Time()
+}
+
+void function EndPlayerSound( entity player, entity sourceGuy, string alias, float delay = 0.0 )
+{
+	// this function is threaded but it needs to end with the conversation
+	player.EndSignal( "ConversationOver" )
+	player.EndSignal( "OnDestroy" )
+
+	if ( IsValid( sourceGuy ) )
+		EndSignal( sourceGuy, "OnDeath" )
+
+	OnThreadEnd(
+		function () : ( player, alias )
+		{
+			if( IsValid( player ) )
+				StopSoundOnEntity( player, alias )
+		}
+	)
+
+	// necessary because of the OnThreadEnd
+	wait delay	// this is for delayed radio playback of AI dialogue
+}
+
+string function GetFreshAlias( BossTitanConversation data )
+{
+	foreach ( alias in data.soundAliases )
+	{
+		if ( !data.usedAliases.contains(alias) )
+			return alias
+	}
+
+	return ""
+}
+
+string function GetBestAlias( BossTitanConversation data )
+{
+	string alias = GetFreshAlias( data )
+	if ( alias == "" )
+	{
+		float longestTime = 0.0
+		array<string> aliases = clone data.soundAliases
+		aliases.randomize()
+		foreach ( a in aliases )
+		{
+			if (!( a in file.aliasUsedTimes ))
+			{
+				return a
+			}
+			else
+			{
+				float lastUsedDelay = Time() - file.aliasUsedTimes[a]
+				if ( lastUsedDelay > longestTime )
+				{
+					longestTime = lastUsedDelay
+					alias = a
+				}
+			}
+		}
+	}
+	else
+	{
+		data.usedAliases.append( alias )
+	}
+
+	return alias
+}
+
+void function CancelBossConversation()
+{
+	clGlobal.levelEnt.Signal( "CancelBossConversation" )
+}
+#endif

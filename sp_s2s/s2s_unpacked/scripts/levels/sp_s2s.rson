@@ -1,0 +1,35 @@
+//IsTestMap: true
+
+When: "SERVER || CLIENT"
+Scripts:
+[
+	sp/hubs/sh_sp_s2s.nut
+	weapons/sp_weapon_mega_turret_s2s.nut
+	weapons/sp_weapon_mega_turret_s2s_ion.nut
+	weapons/sp_weapon_swarm_rockets_s2s.nut
+	weapons/sp_weapon_ViperBossRockets_s2s.nut
+	sp/autoprecache/sp_s2s_autoprecache.nut
+]
+
+When: "CLIENT"
+Scripts:
+[
+	sp/hubs/cl_sp_s2s.nut
+]
+
+When: "SERVER"
+Scripts:
+[
+	sp/sp_s2s_common.nut //this file MUST come first
+	sp/sp_s2s_FSM.nut
+	sp/sp_s2s_flight.nut
+	sp/sp_s2s_fastball.nut
+	sp/mo_utility.nut
+
+	sp/hubs/sp_s2s.nut
+
+	sp/sp_s2s_dropship.nut
+	sp/sp_s2s_widow.nut
+	sp/sp_s2s_capships.nut
+
+]

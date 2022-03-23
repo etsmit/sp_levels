@@ -1,0 +1,464 @@
+global function ShBeaconCommonInit
+
+void function ShBeaconCommonInit()
+{
+	switch ( GetMapName() )
+	{
+		case "sp_beacon":
+
+			// carry over from spoke 0
+			PrecacheWeapon( "mp_weapon_softball" )
+			PrecacheWeapon( "mp_weapon_deployable_cover" )
+
+			RegisterOnscreenHint( "DisembarkHint", "#HUD_TITAN_DISEMBARK" )
+			RegisterOnscreenHint( "ArcToolHint", "#BEACON_SWITCH_TO_ARC_TOOL_HINT" )
+
+			//########################
+			// 		  Intro
+			//########################
+
+			RegisterDialogue( "BT_WeShouldGetMoving", 			"diag_sp_hubApproach_BE101_02_01_mcor_bt", 			PRIORITY_NORMAL )		// We should get moving Pilot. (nag)
+			RegisterDialogue( "BT_TheresTheBeacon", 			"diag_sp_intro_BE301_06_01_mcor_bt", 				PRIORITY_NO_QUEUE )		// There's the beacon. Making contact with a rescue ship should be our top priority.
+			RegisterDialogue( "BT_ItMayNeedRepairs", 			"diag_sp_intro_BE301_07_01_mcor_bt", 				PRIORITY_NORMAL )		// Scans detect minimal power functionality. It may need repairs.
+			RegisterDialogue( "BT_MultipleContacts", 			"diag_sp_intro_BE301_08_01_mcor_bt", 				PRIORITY_NORMAL )		// Careful. I am picking up multiple contacts, range 300 meters.
+			RegisterDialogue( "BT_HostilesConfirmed", 			"diag_sp_fogFields_BE311_02_01_mcor_bt", 			PRIORITY_NO_QUEUE )		// Hostiles confirmed: The Stalkers appear to be programmed to attack the control room.
+			RegisterDialogue( "BT_FogIsDeadlyToOrganics", 		"diag_sp_hubApproach_BE102_01a_01_mcor_bt", 		PRIORITY_NORMAL )		// Pilot, I recommend you get in the cockpit - that fog is deadly to organic life. (nag)
+
+			//#####################
+			// Control Room Battle
+			//#####################
+
+			// First contact from Militia in the control room
+			RegisterDialogue( "BT_DetectingMilitiaForces",		"diag_sp_fogFields_BE311_03_01_mcor_bt", 			PRIORITY_NORMAL )	// Pilot, I am detecting Militia forces inside that beacon control room. They are signalling distress. Patching in.
+			RegisterDialogue( "BT_CrackleCrackle",				"diag_sp_hubApproach_BE102_03_01_mcor_bt", 			PRIORITY_NORMAL )	// <...crackle crackle unintelligible...>
+			RegisterRadioDialogue( "Mike_WeCanUseSomeHelp",			"diag_sp_fogFields_BE311_04_01_mcor_gcaptain", 		PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA )	// Hey, you out there! Pilot! Are you reading us? We could use some help over here!
+			RegisterRadioDialogue( "Mike_PleaseAssist",				"diag_sp_fogFields_BE311_05_01_mcor_gcaptain", 		PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA )	// We're from the 3rd Militia Grenadiers! We're getting overrun by Stalkers! Please assist!
+			RegisterDialogue( "BT_WeShouldHelp",				"diag_sp_fogFields_BE311_08_01_mcor_bt", 			PRIORITY_NORMAL )	// I suggest we help eliminate these Stalkers, and then make direct contact with the Militia Riflemen.
+
+			// Nags if the player isn't helping the fight
+			RegisterRadioDialogue( "Mike_Nag_NeedYourAssistance",	"diag_sp_fogFields_BE311_06_01_mcor_gcaptain", 		PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA )	// We can't hold them off for much longer. We need your assistance! Over.
+			RegisterRadioDialogue( "Mike_Nag_BadShape",				"diag_sp_fogFields_BE311_07_01_mcor_gcaptain", 		PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA )	// We're in bad shape! Please assist! Over.
+
+			// During combat, conditional
+			RegisterDialogue( "BT_GoodThinkingRunThemOver",		"diag_sp_fogFields_BE311_10_01_mcor_bt", 			PRIORITY_NORMAL )	// Interesting tactic, Pilot. The 10,000 pound weight of my chassis caneliminate Stalkers more efficiently.
+			RegisterDialogue( "BT_YouCanRunThemOver",			"diag_sp_fogFields_BE311_11_01_mcor_bt", 			PRIORITY_NORMAL )	// Tactical option: run them over. My 10,000 pound chassis can eliminate smaller enemies.
+
+			// All stalkers are dead
+			RegisterDialogue( "BT_ThreatNeutralized", 			"diag_sp_fogFields_BE311_12_01_mcor_bt", 			PRIORITY_HIGH ) 	// Threat neutralized. Well done.This victory has raised our combat efficiency rating.
+			RegisterDialogue( "BT_AllThreatsEliminated",		"diag_sp_fogFields_BE311_13_01_mcor_bt", 			PRIORITY_HIGH )	// Guardian One to Militia forces - all threats have been eliminated.
+			RegisterRadioDialogue( "Mike_YouSavedOurAsses",			"diag_sp_fogFields_BE311_14_01_mcor_gcaptain", 		PRIORITY_HIGH, "#CPT_COLE", TEAM_MILITIA )	// You saved our asses. Those Stalkers just kept on coming -- we may not have lasted much longer.
+			RegisterRadioDialogue( "Mike_ComeOnIn",					"diag_sp_hubApproach_BE102_14_01_mcor_grunt1", 		PRIORITY_HIGH, "#CPT_COLE", TEAM_MILITIA )	// We're opening the blast doors. Come on in.
+
+			// Nag if player doesn't enter control room
+			RegisterDialogue( "BT_Nag_GoIntoControlRoom",		"diag_sp_fogFields_BE311_15_01_mcor_bt", 			PRIORITY_HIGH )	// We can attempt beacon activation from the control room. I recommend we go there.
+
+			// After control room doors are open
+			RegisterRadioDialogue( "Mike_BlastDoorsAreOpen",			"diag_sp_fogFields_BE311_16_01_mcor_gcaptain", 		PRIORITY_HIGH, "#CPT_COLE", TEAM_MILITIA )	// The blast doors are open, Pilot. Come on in. We're trying to send a signal but the beacon was hit hard. We're having some trouble bringing it back online.
+
+			//#########################
+			// Inside the Control Room
+			//#########################
+
+			RegisterDialogue( "Grunt1_BringEmUp", 				"diag_sp_controlBunker_BE321_01_01_mcor_gcaptain", 	PRIORITY_NO_QUEUE )	// The Pilot and Titan are on the lift. McCord! Bring 'em up. Let's go!
+			RegisterDialogue( "Grunt2_RogerThat", 				"diag_sp_controlBunker_BE321_02_01_mcor_grunt1", 	PRIORITY_NO_QUEUE )	// Right away, sir!
+			RegisterDialogue( "BT_DisembarkNag", 				"diag_sp_controlRoom_BE901_01_01_mcor_bt",			PRIORITY_NORMAL ) 	// Pilot, I advise you disembark to engage the Militia Riflemen directly.
+			RegisterDialogue( "BT_RequestBeaconStatus", 		"diag_sp_controlBunker_BE321_07_01_mcor_bt", 		PRIORITY_NO_QUEUE )	// Captain, request beacon status.
+			RegisterDialogue( "Mike_PowerHasShutDown", 			"diag_sp_controlBunker_BE321_08_01_mcor_gcaptain", 	PRIORITY_NO_QUEUE )	// The power has shut down. We've lost all control of the beacon. We need something like this to jump start the system, but this one's destroyed.
+			RegisterDialogue( "BT_DesignationArcTool", 			"diag_sp_controlBunker_BE321_09_01_mcor_bt", 		PRIORITY_NO_QUEUE )	// Designation: Arc Tool. Function: Generates power up to 5 Megajoules. Developed by IMC at Gridiron Station 207. Dr. Colby Marvin--
+			RegisterDialogue( "Mikes_WeKnowWhatItIs", 			"diag_sp_controlBunker_BE321_10_01_mcor_gcaptain", 	PRIORITY_NO_QUEUE )	// Yes. Yes...We know what it is.
+			RegisterDialogue( "BT_IsItSalvageable", 			"diag_sp_controlBunker_BE321_11_01_mcor_bt", 		PRIORITY_NO_QUEUE )	// Is it salvageable?
+			RegisterDialogue( "Mike_UnfortunatelyNot", 			"diag_sp_controlBunker_BE321_12_01_mcor_gcaptain", 	PRIORITY_NO_QUEUE )	// Unfortunately not. Sensors indicate another one in the substation, but it's nearly impossible to get down there. This place just ain't built for humans.
+			RegisterDialogue( "BT_UseCautionNavigating", 		"diag_sp_recExtra_BE701_01_01_mcor_bt", 			PRIORITY_NO_QUEUE )	// Understood. Pilot Cooper, I advise caution while navigating this facility's substation. You must recover the Arc Tool.
+			RegisterDialogue( "Mike_CooperIsThatYou", 			"diag_sp_recExtra_BE701_03_01_mcor_gcaptain", 		PRIORITY_NO_QUEUE )	// Cooper? Is that you? Looks like you got a story to tell. Save it for when we get off this rock.
+
+			RegisterDialogue( "BT_GoodLuckPilot", 				"diag_sp_controlBunker_BE321_15_01_mcor_bt", 		PRIORITY_NO_QUEUE )	// Good luck, Pilot.
+			RegisterDialogue( "Grunt_GoodLuckSir", 				"diag_sp_controlBunker_BE321_16_01_mcor_grunt3",	PRIORITY_NORMAL )	// Good luck sir, hope you make it back. We've lost too many down there.
+			RegisterDialogue( "BT_Nag_ThatDoorOverThere", 		"diag_sp_controlBunker_BE321_17_01_mcor_bt",		PRIORITY_NORMAL )	// Pilot, the beacon power substation is through that giant door marked "Power Grid"
+
+			// Grunt dialogue after mission dialogue (solos)
+			RegisterDialogue( "Grunt_4_StalkersKeptComing", 	"diag_sp_controlBunker_BE321_18_01_mcor_grunt4",	PRIORITY_NORMAL )	// Those Stalkers just kept coming. It's a good thing that Pilot and that Titan showed up...
+			RegisterDialogue( "Grunt_5_PickingThemOff", 		"diag_sp_controlBunker_BE321_19_01_mcor_grunt5",	PRIORITY_NORMAL )	// Blisk and his Mercs are cold blooded killers. It's a good thing someone's been picking them off one by one.
+			RegisterDialogue( "Grunt_6_KillBecauseWeHaveTo", 	"diag_sp_controlBunker_BE321_20_01_mcor_grunt6",	PRIORITY_NORMAL )	// We kill because we have to. The IMC hired Blisk to kill for money. That's not noble.
+			RegisterDialogue( "Grunt_11_TasteOfOwnMedicine", 	"diag_sp_controlBunker_BE321_27_01_mcor_grunt11",	PRIORITY_NORMAL )	// I heard someone's been killing off Blisk's team. Giving the mercenaries a taste of their own medicine.
+			RegisterDialogue( "Grunt_12_NothingButWatch", 		"diag_sp_controlBunker_BE321_28_01_mcor_grunt12",	PRIORITY_NORMAL )	// We were just forced to watch the massacre over at the beacon. Nothing I could do but watch...
+			RegisterDialogue( "Grunt_13_HeMadeItThisFar", 		"diag_sp_controlBunker_BE321_29_01_mcor_grunt13",	PRIORITY_NORMAL )	// That Pilot's gotta know some interesting tactics. He made it this far.
+			RegisterDialogue( "Grunt_14_ProgrammedDrones", 		"diag_sp_controlBunker_BE321_30_01_mcor_grunt14",	PRIORITY_NORMAL )	// They didn't build this place expecting humans to hit the buttons. Nothing but programmed drones in charge down here.
+
+			// Grunt dialogue after mission dialogue (conversation)
+			RegisterDialogue( "Grunt_7_Conv1", 					"diag_sp_controlBunker_BE321_21_01_mcor_grunt7",	PRIORITY_NORMAL )	// I thought with Demeter shut down the IMC wouldn't have reinforcements.
+			RegisterDialogue( "Grunt_8_Conv2", 					"diag_sp_controlBunker_BE321_22_01_mcor_grunt8",	PRIORITY_NORMAL )	// They have pleny of mindless Stalkers, that's for damn sure.
+			RegisterDialogue( "Grunt_7_Conv3", 					"diag_sp_controlBunker_BE321_23_01_mcor_grunt7",	PRIORITY_NORMAL )	// I don't know if that's a good thing or a bad thing.
+			RegisterDialogue( "Grunt_9_Conv4", 					"diag_sp_controlBunker_BE321_24_01_mcor_grunt9",	PRIORITY_NORMAL )	// Taking out Demeter was a huge victory for us, why doesn't it feel that way?
+			RegisterDialogue( "Grunt_10_Conv5", 				"diag_sp_controlBunker_BE321_25_01_mcor_grunt10",	PRIORITY_NORMAL )	// Well, the Demeter fleet was only about a third of the IMC presence on the Frontier. Still, every little victory counts.
+			RegisterDialogue( "Grunt_9_Conv6", 					"diag_sp_controlBunker_BE321_26_01_mcor_grunt9",	PRIORITY_NORMAL )	// You have the fullest half-glass I've ever seen...
+
+			//########################################
+			// Returned to Control Room with Arc Tool
+			//########################################
+
+			// Tell Pilot to enter the power relay room
+			RegisterDialogue( "Grunt1_LooksLikeArcTool", 		"diag_sp_returnArcTool_BE341_01_01_mcor_grunt1", 	PRIORITY_NORMAL ) 	// The Pilot's back and that looks like an Arc Tool to me -- I think we just got our ticket off this dirt ball.
+			RegisterDialogue( "BT_GoodWorkCooper", 				"diag_sp_returnArcTool_BE341_17_01_mcor_bt", 		PRIORITY_NORMAL ) 	// Good work, Pilot Cooper. Now we can jump-start the power to get the beacon functional.
+			RegisterDialogue( "Grunt_CableSecure", 				"diag_sp_returnArcTool_BE341_03_01_mcor_grunt3", 	PRIORITY_NORMAL ) 	// The cable is secure, Captain.
+			RegisterDialogue( "Mike_WeNeedSomePower", 			"diag_sp_returnArcTool_BE341_02_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// Glad you made it back, sir. Just in time too, we've rewired the whole system - now all we need is some power.
+			RegisterDialogue( "BT_RelaysAreOffline", 			"diag_sp_returnArcTool_BE341_08_01_mcor_bt", 		PRIORITY_NORMAL ) 	// Pilot, the power chamber relays are offline. The Arc Tool should be able to jump start them manually.
+			RegisterDialogue( "Mike_WorthTheTrouble", 			"diag_sp_returnArcTool_BE341_04_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// Pilot, let's hope that Arc Tool was worth all the trouble.
+
+			// Nag if player doesn't enter the relay room
+			RegisterDialogue( "BT_Nag_GoIntoChamber", 			"diag_sp_returnArcTool_BE341_09_01_mcor_bt", 		PRIORITY_NORMAL ) 	// The Captain will open the chamber door for you when you are ready.
+
+			// Grunt banter while waiting for player to enter the power chamber
+			RegisterDialogue( "Grunt_Banter_Wait_Power_Array1", "diag_sp_returnArcTool_BE341_05_01_mcor_bGrunt", 	PRIORITY_NORMAL ) 	// That Pilot better be careful in there...After those relays blew, they leaked radiation all over that chamber. Scorched my damn hair when I got too close.
+			RegisterDialogue( "Grunt_Banter_Wait_Power_Array2", "diag_sp_returnArcTool_BE341_06_01_mcor_grunt4", 	PRIORITY_NORMAL ) 	// What hair? You're bald, Barry.
+			RegisterDialogue( "Grunt_Banter_Wait_Power_Array3", "diag_sp_returnArcTool_BE341_07_01_mcor_bGrunt", 	PRIORITY_NORMAL ) 	// Not yet, still got a few survivors. Just like us.
+
+			// Player is between inner and outer hatches of power array
+			RegisterRadioDialogue( "BT_RadiationVeryHigh", 			"diag_sp_returnArcTool_BE341_10_01_mcor_bt", 		PRIORITY_NORMAL, "#NPC_BT_NAME", TEAM_MILITIA ) 	// Caution: high radiation levels detected. Your suit will only protect you for a limited time. I suggest you move quickly.
+			RegisterRadioDialogue( "Mike_WouldntStayTooLong", 		"diag_sp_returnArcTool_BE341_12_01_mcor_gcaptain", 	PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA ) 	// I wouldn't stay in there too long unless you want to be burnt to a crisp.
+			RegisterRadioDialogue( "Mike_HaveArcToolReady", 			"diag_sp_returnArcTool_BE341_13_01_mcor_gcaptain", 	PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA ) 	// Get that Arc Tool ready. When I open the hatch, every second will count.
+			RegisterRadioDialogue( "Mike_SwitchToArcTool", 			"diag_sp_controlroom_BE140_06_01_mcor_grunt1", 		PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA ) 	// You need to switch to the Arc Tool, Pilot. When I open that inner hatch, every second will count.
+
+			RegisterRadioDialogue( "Mike_OkOpeningHatch", 			"diag_sp_controlroom_BE140_07_01_mcor_grunt1", 		PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA ) 	// Ok, opening the hatch in 3...
+			RegisterRadioDialogue( "Mike_2", 						"diag_sp_controlroom_BE140_08_01_mcor_grunt1", 		PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA ) 	// 2...
+			RegisterRadioDialogue( "Mike_1", 						"diag_sp_controlroom_BE140_09_01_mcor_grunt1", 		PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA ) 	// 1...
+			RegisterRadioDialogue( "Mike_Go", 						"diag_sp_controlroom_BE140_10_01_mcor_grunt1", 		PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA ) 	// Go!
+
+			// Powering up the array
+			RegisterRadioDialogue( "BT_100PercentPower", 			"diag_sp_returnArcTool_BE341_14_01_mcor_bt", 		PRIORITY_NORMAL, "#NPC_BT_NAME", TEAM_MILITIA ) 	// Power at 100%. I recommend you exit the chamber immediately.
+			RegisterRadioDialogue( "Mike_ExitTheChamber", 			"diag_sp_returnArcTool_BE341_15_01_mcor_gcaptain", 	PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA ) 	// Alright Pilot, the hatch is opening. Get outta there.
+			RegisterRadioDialogue( "Mike_PowerIsBack", 				"diag_sp_returnArcTool_BE341_16_01_mcor_gcaptain", 	PRIORITY_LOW, "#CPT_COLE", TEAM_MILITIA ) 	// Great job, Pilot. The power is back.
+
+			// Control room is powered up
+			RegisterDialogue( "Mike_OpenThoseShutters", 		"diag_sp_uplinkDown_BE351_16_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// Open those blast shutters! Let's let some light in here.
+			RegisterDialogue( "Grunt2_OpeningShutters", 		"diag_sp_uplinkDown_BE351_17_01_mcor_grunt4", 		PRIORITY_NO_QUEUE ) 	// Opening shutters!
+			RegisterDialogue( "Facility_DiagnosticsComplete", 	"diag_sp_uplinkDown_BE351_18_01_imc_facilityPA", 	PRIORITY_NORMAL ) 	// Diagnostic complete. Power 100%.
+			RegisterDialogue( "Mike_InitiateDishTargeting", 	"diag_sp_uplinkDown_BE351_19_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// Initiate dish targeting reset.
+			//RegisterDialogue( "Grunt1_InitiatingReset", 		"diag_sp_uplinkDown_BE351_20_01_mcor_grunt1", 		PRIORITY_NORMAL ) 	// Yes, sir! Initiating reset.
+			RegisterDialogue( "Facility_TargetingInitiated", 	"diag_sp_uplinkDown_BE351_21_01_imc_facilityPA", 	PRIORITY_NORMAL ) 	// Uplink Targeting Module reset intiated.
+			RegisterDialogue( "Grunt1_60Percent", 				"diag_sp_uplinkDown_BE351_22_01_mcor_grunt1", 		PRIORITY_NORMAL ) 	// 60%
+			RegisterDialogue( "Grunt1_70Percent", 				"diag_sp_uplinkDown_BE351_23_01_mcor_grunt1", 		PRIORITY_NORMAL ) 	// 70%
+			RegisterDialogue( "Grunt1_8090Percent", 			"diag_sp_uplinkDown_BE351_24_01_mcor_grunt1", 		PRIORITY_NORMAL ) 	// 80% ... 90%
+			RegisterDialogue( "Facility_FaultDetected", 		"diag_sp_uplinkDown_BE351_25_01_imc_facilityPA", 	PRIORITY_NORMAL ) 	// WARNING. Fault detected. Emergency shut down.
+			RegisterDialogue( "Mikes_WhatsGoingOn", 			"diag_sp_uplinkDown_BE351_26_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// Son of a-! What's going on? Talk to me!
+			RegisterDialogue( "Grunt3_NotSure", 				"diag_sp_uplinkDown_BE351_27_01_mcor_grunt3", 		PRIORITY_NORMAL ) 	// Not sure. Some sort of fail safe!
+			RegisterDialogue( "BT_TargetingModuleOffline", 		"diag_sp_uplinkDown_BE351_28_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Scans indicate the Uplink Targeting Module is offline.
+			RegisterDialogue( "Mike_IMCOnTheirWay", 			"diag_sp_uplinkDown_BE351_29_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// Dammit! I bet the IMC are on their way.
+			RegisterDialogue( "BT_ReasonableBet", 				"diag_sp_uplinkDown_BE351_30_01_mcor_bt", 			PRIORITY_NORMAL ) 	// That is a reasonable bet.
+			RegisterDialogue( "Mike_CanWeBypassModule", 		"diag_sp_uplinkDown_BE351_31_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// McCord, can we bypass the module?
+			RegisterDialogue( "Grunt2_NoSir", 					"diag_sp_uplinkDown_BE351_32_01_mcor_grunt2", 		PRIORITY_NORMAL ) 	// No, sir. Not unless we want to send a message to the entire IMC fleet.
+			RegisterDialogue( "Mike_RepairedManually", 			"diag_sp_uplinkDown_BE351_33_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// The module's gonna have to be repaired manually.
+			RegisterDialogue( "BT_SituationForPilot", 			"diag_sp_uplinkDown_BE351_34_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Pilot, this situation could use your skills.
+			RegisterDialogue( "Mike_RepairBeaconInSite", 		"diag_sp_uplinkDown_BE351_35_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// I hope you're up for another trip to hell, Pilot. You'll need to repair beacon on-site and get back here as fast as possible.
+			RegisterDialogue( "BT_ReadyToMoveOut", 				"diag_sp_uplinkDown_BE351_36_01_mcor_bt", 			PRIORITY_NORMAL ) 	// I suggest we relocate to the beacon platform for repairs. Embark and we will move out, Pilot.
+
+			RegisterDialogue( "BT_Nag_ReadyToMoveOut", 			"diag_sp_hubApproach_BE102_01a_01_mcor_bt", 		PRIORITY_NORMAL ) 	// Embark and we will move out Pilot.
+
+			RegisterRadioDialogue( "Mike_BeCareful", 				"diag_sp_uplinkDown_BE351_37_01_mcor_gcaptain", 	PRIORITY_NORMAL, "#CPT_COLE", TEAM_MILITIA ) 	// Be careful. We've already lost a lot of good soldiers over there.
+
+			//#####################
+			// Crossing to Spoke 1
+			//#####################
+
+			RegisterDialogue( "BT_ScansIndicateModule", 	"diag_sp_spoke1pre_BE361_04_01_mcor_bt", 		PRIORITY_NO_QUEUE ) 	// My scans detect a functioning targeting module. 200 meters north-east.
+			RegisterDialogue( "BT_ThrowIsOnlyOption", 		"diag_sp_spoke1pre_BE361_07_01_mcor_bt", 		PRIORITY_NO_QUEUE ) 	// My analysis indicates a throw is our only option here. I can throw you across the gap.
+			RegisterDialogue( "BT_Nag_ClimbIntoMyHand", 	"diag_sp_finalDish_BE391_04_01_mcor_bt", 		PRIORITY_NORMAL ) 		// Standing by, Pilot. Climb onto my hand.
+
+			RegisterDialogue( "BT_WindHeadingRange", 		"diag_sp_spoke1_BE117_10_01_mcor_bt", 			PRIORITY_NO_QUEUE ) 	// Wind: 3 knots, heading 274. Range: 372 meters. Projectile mass ----- 89 kilograms.
+			RegisterDialogue( "BT_TrustMe", 				"diag_sp_spoke1_BE117_04_01_mcor_bt", 			PRIORITY_NO_QUEUE ) 	// Trust me.
+
+			RegisterRadioDialogue( "Blisk_This_Is_Blisk", 				"diag_sp_bossComms_BE501_01_01_imc_blisk", 		PRIORITY_NORMAL, 	"#BOSSNAME_BLISK",		TEAM_IMC, true ) 	// Richter, this is Blisk.
+			RegisterRadioDialogue( "Richter_Dies_Ist_Richter", 			"diag_sp_bossComms_BE501_02_01_imc_richter", 	PRIORITY_NORMAL, 	"#BOSSNAME_RICHTER",	TEAM_IMC, true ) 	// Ja, dies ist Richter.
+			RegisterRadioDialogue( "Blisk_Pilot_Trying_To_Use_Beacon", 	"diag_sp_bossComms_BE501_03_01_imc_blisk", 		PRIORITY_NORMAL, 	"#BOSSNAME_BLISK",		TEAM_IMC, true ) 	// That damn Pilot is trying to use the beacon. End this. I’m counting on you. Blisk out.
+			RegisterRadioDialogue( "Richter_Get_To_Beacon_Now", 		"diag_sp_bossComms_BE501_04_01_imc_richter", 	PRIORITY_NORMAL, 	"#BOSSNAME_RICHTER",	TEAM_IMC, true ) 	// All security units, this is Richter. Get to the beacon now. Find that Kleine Mann. Jetzt. Lass mich nicht hängen.
+			RegisterRadioDialogue( "Comms_CopyThat", 					"diag_sp_spoke1_BE371_05_01_imc_hqcom", 		PRIORITY_NORMAL,	"#IMC_HQ_COMMS",		TEAM_IMC, true ) 	// Copy that. Zulu One, Kilo One, move in! Alpha two, get soldiers on ground! Move it!
+
+			//################
+			// Spoke 1 Combat
+			//################
+
+			RegisterRadioDialogue( "BT_IMCDropships", 					"diag_sp_spoke1_BE371_01_01_mcor_bt", 				PRIORITY_NORMAL,	"#NPC_BT_NAME", 	TEAM_MILITIA ) 	// IMC dropships headed to your location.
+			RegisterRadioDialogue( "EnemyRadio_NeedReinforcements", 	"diag_sp_bchatter_BE153_05_01_imc_grunt1", 			PRIORITY_NORMAL,	"#IMC_HQ_COMMS", 	TEAM_IMC ) 		// Zulu One-Six, we need reinforcements!
+			RegisterRadioDialogue( "EnemyRadio_ETA3Minutes", 			"diag_sp_bchatter_BE153_06_01_imc_dispatch1", 		PRIORITY_NORMAL,	"#IMC_HQ_DISPATCH",	TEAM_IMC ) 		// <static> Alpha One-Four, we are diverting forces to assist. ETA 3 minutes. <static>
+
+			RegisterDialogue( "Grunt_DeployStalkersSendIn", 			"diag_sp_bchatter_BE153_12_01_imc_grunt1", 			PRIORITY_NORMAL ) 	// Deploy the Stalkers and send them in!
+
+			//####################
+			// Before Second Dish
+			//####################
+
+			RegisterRadioDialogue( "RadioGrunt1_PilotSpotted", 		"diag_sp_spoke1_BE143_01_01_imc_grunt1", 			PRIORITY_NORMAL,	"#IMC_HQ_COMMS",	TEAM_IMC, true ) 	// Kilo One-Four, hostile Pilot sighted, headed your way. Acknowledge.
+			RegisterRadioDialogue( "RadioGrunt1_DoYouCopy", 		"diag_sp_spoke1_BE143_02_01_imc_grunt1", 			PRIORITY_NORMAL,	"#IMC_HQ_COMMS",	TEAM_IMC, true ) 	// Kilo One-Four, do you copy? Come in Kilo One-Four!
+			RegisterRadioDialogue( "RadioGrunt1_NotResponding", 	"diag_sp_spoke1_BE143_03_01_imc_grunt1", 			PRIORITY_NORMAL,	"#IMC_HQ_COMMS",	TEAM_IMC, true ) 	// All units, Kilo One-Four is not responding. Prepare to engage the target at Beacon Four.
+			RegisterRadioDialogue( "RadioGrunt2_StandingBy", 		"diag_sp_spoke1_BE143_04_01_imc_grunt2", 			PRIORITY_NORMAL,	"#IMC_HQ_COMMS_B",	TEAM_IMC, true ) 	// Copy that. In position at Beacon Four gantry, standing by to intercept.
+
+			//#############
+			// Second Dish
+			//#############
+
+			RegisterRadioDialogue( "BT_UplinkTargetingModuleDetected", 	"diag_sp_spoke1_BE371_07_01_mcor_bt", 			PRIORITY_NORMAL,	"#NPC_BT_NAME",		TEAM_MILITIA ) 	// Uplink Targeting Module detected. Check your HUD.
+
+			RegisterRadioDialogue( "EnemyRadio_TeamIsKIA", 			"diag_sp_spoke1_BE145_01_01_imc_grunt2", 			PRIORITY_NORMAL,	"#IMC_HQ_COMMS",		TEAM_IMC, true ) 	// Zulu One-Six, Beacon Four gantry team is KIA. Pilot may be attempting to transmit from there.
+			RegisterRadioDialogue( "EnemyRadio_DrawUsAway", 		"diag_sp_bossComms_BE501_05_01_imc_security1", 		PRIORITY_NORMAL,	"#IMC_HQ_COMMS_B",		TEAM_IMC, true ) 	// Zulu One- Six to Richter, the Pilot’s intentions are unknown. He may be attempting to draw us away from the Titan.
+			RegisterRadioDialogue( "EnemyRadio_FocusOnPilot", 		"diag_sp_bossComms_BE501_07_01_imc_richter", 		PRIORITY_NORMAL,	"#BOSSNAME_RICHTER",	TEAM_IMC, true ) 	// Nein. Focus on the Pilot. I have other plans for the Titan.
+
+			RegisterRadioDialogue( "Richter_IsHeDeadYet", 			"diag_sp_bossComms_BE501_08_01_imc_richter", 		PRIORITY_NORMAL,	"#BOSSNAME_RICHTER",	TEAM_IMC, true ) 	// Alpha Two-One, is he dead yet? Give me a sitrep, over.
+			RegisterRadioDialogue( "EnemyRadio_WeNeedBackup", 		"diag_sp_bossComms_BE501_09_01_imc_security2", 		PRIORITY_NORMAL,	"#IMC_HQ_COMMS",		TEAM_IMC, true ) 	// Richter, we need backup. The enemy Pilot is still active around Beacon 4, over.
+			RegisterRadioDialogue( "Richter_SendingBackup", 		"diag_sp_bossComms_BE501_10_01_imc_richter", 		PRIORITY_NORMAL,	"#BOSSNAME_RICHTER",	TEAM_IMC, true ) 	// Backup?...typical IMC Schwächling. Sending backup.
+
+			RegisterRadioDialogue( "BT_MoveDishCloser", 			"diag_sp_spoke1_BE146_01_01_mcor_bt", 				PRIORITY_NORMAL, "#NPC_BT_NAME",		TEAM_MILITIA ) 		// Good, you're at the controls. Move the dish to the far right, to bring it within your reach.
+			RegisterRadioDialogue( "BT_ModuleInProjector", 			"diag_sp_spoke1_BE371_08_01_mcor_bt", 				PRIORITY_NORMAL, "#NPC_BT_NAME",		TEAM_MILITIA ) 		// Sensors detect the module in the projector of that dish.
+			RegisterDialogue( "Beacon_ModuleRemoved", 			"diag_sp_spoke1_BE146_03a_01_imc_ai", 				PRIORITY_NORMAL ) 		// Uplink targeting module...disconnected.
+			RegisterRadioDialogue( "BT_GoodYouGotIt", 			"diag_sp_spoke1_BE371_09_01_mcor_bt", 				PRIORITY_NORMAL,	"#NPC_BT_NAME",	TEAM_MILITIA ) 	// *Chime 1 In* Protocol 2 Mission Update: Uplink module acquired. *Chime 1 Out* Standing by for your return Cooper.
+			RegisterDialogue( "Beacon_MaintananceMode", 		"diag_sp_spoke1_BE146_03b_01_imc_ai", 				PRIORITY_NORMAL ) 		// Caution...entering maintenance mode.
+			RegisterDialogue( "Grunt_FallBack", 				"diag_sp_bchatter_BE153_02_01_imc_grunt1", 			PRIORITY_NORMAL ) 		// Enemy Pilot! Fall back!
+			RegisterDialogue( "Grunt_DeployStalkers", 			"diag_sp_bchatter_BE153_03_01_imc_grunt1", 			PRIORITY_NORMAL ) 		// Deploy the Stalkers!
+			RegisterDialogue( "Grunt_GetReady", 				"diag_sp_bchatter_BE153_04_01_imc_grunt1", 			PRIORITY_NO_QUEUE ) 	// Hostile Pilot sighted, get ready!
+
+			//##################
+			// Spoke1 Backtrack
+			//##################
+
+			RegisterRadioDialogue( "Richter_AlphaTwoComeIn", "diag_sp_bossComms_BE501_11_01_imc_richter", 				PRIORITY_NORMAL,	"#BOSSNAME_RICHTER", TEAM_MILITIA, true ) 	// Alpha - Two One. Sitrep. Come in! Was zum Teufel!
+
+			RegisterRadioDialogue( "BT_AntiTitanSquadsArrived", "diag_sp_spoke1_BE371_10_01_mcor_bt", 				PRIORITY_NORMAL,	"#NPC_BT_NAME", TEAM_MILITIA ) 	// Anti-Titan squads have arrived. Requesting assistance.
+			RegisterDialogue( "Grunt_ZiplinesOut", 				"diag_sp_spoke1_BE146_06_01_imc_grunt1", 			PRIORITY_NORMAL ) 	// Ziplines out! Go after the Titan!
+			RegisterDialogue( "Grunt_MoveMove", 				"diag_sp_spoke1_BE146_07_01_imc_grunt2", 			PRIORITY_NORMAL ) 	// Hit the zipline, move move!
+
+			//#############
+			// Back at HUB
+			//#############
+
+			RegisterDialogue( "BT_WelcomeBackPilot", 			"diag_sp_returnBT_BE381_01_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Welcome back Cooper. Recommend we secure this area before proceeding with the repairs.
+			RegisterDialogue( "BT_StalkerDown", 				"diag_sp_returnBt_BE148_01_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Stalker down.
+			RegisterDialogue( "BT_TargetEliminated", 			"diag_sp_returnBt_BE148_03_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Target eliminated.
+			RegisterDialogue( "BT_GoodShot", 					"diag_sp_returnBt_BE148_04_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Good shot.
+			RegisterDialogue( "BT_ReaperDown", 					"diag_sp_returnBt_BE148_05_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Reaper down.
+			RegisterDialogue( "BT_AreaSecure", 					"diag_sp_returnBT_BE381_02_01_mcor_bt", 			PRIORITY_NORMAL ) 	// All threats eliminated. Area secure.
+
+			//############
+			// Climb Dish
+			//############
+
+			RegisterDialogue( "BT_ReplaceUplinkModule", 		"diag_sp_finalDish_BE391_01_01_mcor_bt", 			PRIORITY_NO_QUEUE ) 	// *Chime 1 In* Protocol 2 Mission Update: Replace the uplink module. *Chime 1 Out*
+			RegisterDialogue( "BT_ClimbingRequired", 			"diag_sp_finalDish_BE391_02_01_mcor_bt", 			PRIORITY_NO_QUEUE ) 	// The socket for the module is at the top of this dish. A Fastball Traversal combined with additional climbing is required.
+
+			RegisterDialogue( "BT_Nag_WhenReadyClimbIntoHand", 	"diag_sp_finalDish_BE391_02_01_mcor_bt", 			PRIORITY_NORMAL ) 	// The socket for the module is at the top of this dish. A throw combined with additional climbing is required.
+			RegisterDialogue( "BT_Nag_StadingByClimbIntoHand", 	"diag_sp_finalDish_BE391_03_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Pilot, we must install the module. When you are ready, climb onto my hand.
+
+			RegisterRadioDialogue( "Radio_DishClimb_01", 		"diag_sp_finalDish_BE392_01_01_imc_slone", 			PRIORITY_NORMAL,  		"#BOSSNAME_SLONE",		TEAM_IMC, true ) 	// Blisk, this is Slone.
+			RegisterRadioDialogue( "Radio_DishClimb_02", 		"diag_sp_finalDish_BE392_02_01_imc_blisk", 			PRIORITY_NORMAL,  		"#BOSSNAME_BLISK",		TEAM_IMC, true ) 	// Go ahead.
+			RegisterRadioDialogue( "Radio_DishClimb_03", 		"diag_sp_finalDish_BE392_03_01_imc_slone", 			PRIORITY_NORMAL,  		"#BOSSNAME_SLONE",		TEAM_IMC, true ) 	// Kane and Ash are dead. Someone's been killing your mercs. And it looks like one of our radios has been nicked. I knew you shouldn't have hired those tossers...
+			RegisterRadioDialogue( "Radio_DishClimb_04", 		"diag_sp_finalDish_BE392_04_01_imc_blisk", 			PRIORITY_NORMAL,  		"#BOSSNAME_BLISK",		TEAM_IMC, true ) 	// (impressed rough chuckle, dangerous laugh)
+			RegisterRadioDialogue( "Radio_DishClimb_05", 		"diag_sp_finalDish_BE392_05_01_imc_blisk", 			PRIORITY_NORMAL,  		"#BOSSNAME_BLISK",		TEAM_IMC, true ) 	// Oi Pilot...this is Kuben Blisk. You been listening to us eh? You want to be a hero, yeah? Ok.
+			RegisterRadioDialogue( "Radio_DishClimb_06", 		"diag_sp_finalDish_BE392_06_01_imc_blisk", 			PRIORITY_NORMAL,  		"#BOSSNAME_BLISK",		TEAM_IMC, true ) 	// Keep coming at me, keep coming! But if I were you, I'd stop trying so hard to be a hero eh?. You'll live longer.
+
+			RegisterRadioDialogue( "BT_DishWillReorientItself", "diag_sp_finalDish_BE391_17_01_mcor_bt", 			PRIORITY_NORMAL, 		"#NPC_BT_NAME", 		TEAM_MILITIA ) 		// Hypothesis: the dish will automatically reorient intself once the new module is installed.
+			RegisterRadioDialogue( "Mike_OutstandingWorkSir", 	"diag_sp_finalDish_BE391_18_01_mcor_gcaptain", 		PRIORITY_HIGH, 			"#CPT_COLE", 		TEAM_MILITIA ) 	// Pilot, the dish is back online. Get back here and we'll send this message to the Fleet. Outstanding work, Sir.
+			RegisterDialogue( "BT_IveGotYou", 					"diag_sp_finalDish_BE150_10_01_mcor_bt", 			PRIORITY_NO_QUEUE ) // I've got you.
+
+			RegisterRadioDialogue( "Richter_This_Is_Blisk", 	"diag_sp_bossComms_BE501_12_01_imc_blisk", 			PRIORITY_HIGH,  		"#BOSSNAME_BLISK",		TEAM_IMC, true ) 	// Richter, this is Blisk.
+			RegisterRadioDialogue( "Richter_On_My_Way", 		"diag_sp_bossComms_BE501_13_01_imc_richter", 		PRIORITY_HIGH,  		"#BOSSNAME_RICHTER",	TEAM_IMC, true ) 	// Ja. Ja. I am already on my way. Richter out.
+
+			RegisterDialogue( "BEEEE_TEEEE", 					"diag_sp_extra_GB101_78_01_mcor_player",			PRIORITY_HIGH )
+
+			//############
+			// Fog Battle
+			//############
+
+			RegisterDialogue( "BT_ReapersInbound", 				"diag_sp_fogBattle_BE401_04_01_mcor_bt", 			PRIORITY_HIGH ) 	// Reapers inbound.
+			RegisterDialogue( "BT_LockdownControlRoom", 		"diag_sp_fogBattle_BE401_02_01_mcor_bt", 			PRIORITY_HIGH ) 	// Militia forces, lockdown the control room. Threat detected.
+			RegisterRadioDialogue( "Mike_GoingIntoLockdown", 	"diag_sp_fogBattle_BE401_03_01_mcor_gcaptain", 		PRIORITY_HIGH, "#CPT_COLE", 		TEAM_MILITIA ) 	// Copy that. Locking down. We will assist from here.
+			RegisterDialogue( "BT_HostileTitanfall", 			"diag_sp_fogBattle_BE401_01_01_mcor_bt", 			PRIORITY_HIGH ) 	// Caution: Anomaly detected. Possible hostile Titan.
+
+			// This is Richter. Intercept and destroy that Pilot. Then execute the remaining Militia troops.
+			RegisterRadioDialogue( "Richter_DestroyThatPilot", 	"diag_sp_bossComms_BE501_14_01_imc_richter", 		PRIORITY_HIGH,  		"#BOSSNAME_RICHTER",		TEAM_IMC, true )
+
+			// Listen, IMC. I am looking for someone to promote. I am also looking for someone to kill. You get to choose which one you wish to be. Now ihn zu vernichten!
+			RegisterRadioDialogue( "Richter_LookingToPromote", 	"diag_sp_bossComms_BE501_15_01_imc_richter", 		PRIORITY_HIGH,  		"#BOSSNAME_RICHTER",		TEAM_IMC, true )
+
+			// Do not let him leave here alive.
+			RegisterRadioDialogue( "Richter_DontLeaveHimAlive", "diag_sp_bossComms_BE501_16_01_imc_richter", 		PRIORITY_HIGH,  		"#BOSSNAME_RICHTER",		TEAM_IMC, true )
+
+			// Ugh.. You all deserve to die.
+			RegisterRadioDialogue( "Richter_YouDeserveToDie", 	"diag_sp_bossComms_BE501_17_01_imc_richter", 		PRIORITY_HIGH,  		"#BOSSNAME_RICHTER",		TEAM_IMC, true )
+
+			//RegisterDialogue( "BT_AllThreatsEliminated2", 		"diag_sp_fogBattle_BE151_05_01_mcor_bt", 			PRIORITY_NORMAL ) 	// All threats eliminated, area secure.
+			//RegisterDialogue( "Mike_AmazingWorkPilot", 			"diag_sp_fogBattle_BE151_06_01_mcor_grunt1", 		PRIORITY_NORMAL ) 	// Amazing work Pilot. See you inside.
+			//RegisterDialogue( "BT_Nag_ICanSendSignal", 			"diag_sp_fogBattle_BE151_07_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Let's get to the control room, Pilot.  I can send the signal from there.
+
+			//#############
+			// Send Signal
+			//#############
+
+			RegisterDialogue( "Ike_AllSystemsFunctional", 		"diag_sp_sendSignal_BE152_01_01_mcor_grunt2", 		PRIORITY_NORMAL ) 	// Ok, all systems are functional!
+			RegisterDialogue( "Mike_FireItUp", 					"diag_sp_sendSignal_BE152_02_01_mcor_grunt1", 		PRIORITY_NORMAL ) 	// Grenier! Fire it up!
+			RegisterDialogue( "Ike_YesSir", 					"diag_sp_sendSignal_BE152_03_01_mcor_grunt2", 		PRIORITY_NORMAL ) 	// Yes sir! Transmission sequence activated!
+			RegisterDialogue( "Ike_ItsWorking", 				"diag_sp_sendSignal_BE152_04_01_mcor_grunt2", 		PRIORITY_NORMAL ) 	// It's working! Transmission power at 25 percent and climbing!
+			RegisterDialogue( "Ike_60Percent", 					"diag_sp_sendSignal_BE152_05_01_mcor_grunt2", 		PRIORITY_NORMAL ) 	// 60 percent! Looking good!
+			RegisterDialogue( "Ike_80Percent", 					"diag_sp_sendSignal_BE152_06_01_mcor_grunt2", 		PRIORITY_NORMAL ) 	// Almost there! 80 percent!
+			RegisterDialogue( "Ike_WeAreGoForTransmission", 	"diag_sp_sendSignal_BE152_07_01_mcor_grunt2", 		PRIORITY_NORMAL ) 	// Signal strength at maximum power! We are a go for transmission!
+			RegisterDialogue( "BT_BroadcastingDataStream", 		"diag_sp_sendSignal_BE411_01_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Broadcasting data stream. Awaiting response.
+			RegisterDialogue( "Mike_HopingSomeoneStillUpThere", "diag_sp_sendSignal_BE411_02_01_mcor_gcaptain", 	PRIORITY_NORMAL ) 	// Here's hoping someone's still up there....
+
+			RegisterDialogue( "Grunt_GotIt", 					"diag_sp_sendSignal_BE411_07_01_mcor_grunt2", 		PRIORITY_NORMAL ) 	// Got it.
+			RegisterRadioDialogue( "Sarah_Authenticate", 			"diag_sp_sendSignal_BE411_08_01_mcor_sarah", 		PRIORITY_NORMAL, "#NPC_SARAH_NAME", TEAM_MILITIA ) 	// This is Commander Sarah Briggs of Marauder Corps, Militia SRS. Authenticate.
+			RegisterDialogue( "BT_ThisIsBT", 					"diag_sp_sendSignal_BE411_09_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Commander Briggs, this is BT-7274.
+			RegisterDialogue( "BT_UpholdTheMission", 			"diag_sp_sendSignal_BE411_10_01_mcor_bt", 			PRIORITY_NORMAL ) 	// Protocol 2: Uphold the mission. Report intel to the fleet attached to the SRS unit.
+			RegisterRadioDialogue( "Sarah_SolidCopy", 				"diag_sp_sendSignal_BE411_11_01_mcor_sarah", 		PRIORITY_NORMAL, "#NPC_SARAH_NAME", TEAM_MILITIA ) 	// Solid copy - Good to hear you guys are still down there. We're receiving your data now.
+
+
+			//#############
+			// Ending
+			//#############
+
+			RegisterDialogue( "diag_sp_sendSignal_BE411_13_01_mcor_bt", "diag_sp_sendSignal_BE411_13_01_mcor_bt", 	PRIORITY_NO_QUEUE )	// Correct. Captain Tai Lastimosa was killed in action.
+			RegisterDialogue( "diag_sp_sendSignal_BE411_14_01_mcor_bt", "diag_sp_sendSignal_BE411_14_01_mcor_bt", 	PRIORITY_NO_QUEUE )	// I am now linked to an Acting Pilot - Rifleman Jack Cooper.
+			RegisterDialogue( "diag_sp_sendSignal_BE411_16_01_mcor_bt", "diag_sp_sendSignal_BE411_16_01_mcor_bt",	PRIORITY_NO_QUEUE ) // Yes. He had no other options.
+			RegisterDialogue( "diag_sp_sendSignal_BE411_20_01_mcor_bt", "diag_sp_sendSignal_BE411_20_01_mcor_bt", 	PRIORITY_NO_QUEUE )	//  Objection: Cooper is my Pilot. Our combat effectiveness rating now exceeds
+			RegisterDialogue( "diag_sp_sendSignal_BE411_21a_01_mcor_bt", "diag_sp_sendSignal_BE411_21a_01_mcor_bt", PRIORITY_NO_QUEUE )	// Request permission to retain this link.
+
+			break
+
+		case "sp_beacon_spoke0":
+
+			RegisterOnscreenHint( "ArcToolHint", "#BEACON_SWITCH_TO_ARC_TOOL_HINT" )
+			RegisterOnscreenHint( "ArcToolActivateSwitchesHint", "#BEACON_ARC_TOOL_ACTIVATE_SWITCHES_HINT" )
+
+
+			//###################
+			// Facility Dialogue
+			//###################
+
+			// Misc flavor
+			RegisterDialogue( "Facility_MarvinReportToSector",		"diag_sp_Spoke0_BE100_03_01_imc_ai",		PRIORITY_NO_QUEUE )		// Marvin Delta-Seven-Three-Zulu please report to sector Bravo-Seven.
+			RegisterDialogue( "Facility_PowerFilteringNominal",		"diag_sp_Spoke0_BE100_07_01_imc_ai",		PRIORITY_NO_QUEUE )		// Status - Beacon Three Power Substation - power filtering - nominal.
+			RegisterDialogue( "Facility_AcceptableOperatingLimits",	"diag_sp_Spoke0_BE100_11_01_imc_ai",		PRIORITY_NO_QUEUE )		// Status - Beacon Three Power Substation - shock resistant bombardment survival envelope is within acceptable operating limits.
+			RegisterDialogue( "Facility_RequestAuthorized",			"diag_sp_Spoke0_BE100_09_01_imc_ai",		PRIORITY_NO_QUEUE )		// Marvin Delta-Seven-Four-Alpha - airflow regulation request - authorized.
+			RegisterDialogue( "Facility_LockoutProtocols", 			"diag_sp_Spoke0_BE100_08_01_imc_ai", 		PRIORITY_NO_QUEUE ) 	// Status - Beacon Three Power Substation - hostile force lockout protocols in effect for all critical access points - manual activation by Arc Tool required.
+
+			// Entering logroll room
+			RegisterDialogue( "Facility_UnauthorizedHuman", 		"diag_sp_Spoke0_BE102_01_01_imc_ai", 		PRIORITY_NO_QUEUE ) 	// Unauthorized human personnel detected. Deploying automated security forces.
+
+			// Player disabled and jumps down first fan
+			RegisterDialogue( "Facility_TurbineDeactivation", 		"diag_sp_Spoke0_BE100_12_01_imc_ai", 		PRIORITY_NO_QUEUE ) 	// Unscheduled turbine deactivation detected. Running diagnostics.
+			RegisterDialogue( "Facility_ForeignObject", 			"diag_sp_Spoke0_BE100_13_01_imc_ai", 		PRIORITY_NO_QUEUE ) 	// Foreign object detected in turbine thermal exhaust shaft. Analysis inconclusive - excessive magnetic interference.
+
+			// Arc tool room
+			RegisterDialogue( "Facility_RetuneBladeAngle", 			"diag_sp_Spoke0_BE100_10_01_imc_ai", 		PRIORITY_NO_QUEUE ) 	// Marvin Delta- Two-One-Bravo - retune blade angle on turbine four to - one point eight-seven degrees.
+			RegisterDialogue( "Facility_TurbineIteration1", 		"diag_sp_Spoke0_BE103_08_01_imc_ai", 		PRIORITY_NO_QUEUE )		// Marvin Delta-Five-One-X-Ray - turbine power cycle iteration sixteen thousand four hundred eighty seven - complete.
+			RegisterDialogue( "Facility_TurbineIteration2", 		"diag_sp_Spoke0_BE103_09_01_imc_ai", 		PRIORITY_NO_QUEUE )		// Marvin Delta-Five-One-X-Ray - turbine power cycle iteration sixteen thousand four hundred eighty eight - complete.
+			RegisterDialogue( "Facility_TurbineIteration3", 		"diag_sp_Spoke0_BE103_10_01_imc_ai", 		PRIORITY_NO_QUEUE )		// Marvin Delta-Five-One-X-Ray - turbine power cycle iteration sixteen thousand four hundred eighty nine - complete.
+			RegisterDialogue( "Facility_TurbineIteration4", 		"diag_sp_Spoke0_BE103_11_01_imc_ai", 		PRIORITY_NO_QUEUE )		// Marvin Delta-Five-One-X-Ray - turbine power cycle iteration sixteen thousand four hundred ninety - complete.
+			RegisterDialogue( "Facility_TurbineIteration5", 		"diag_sp_Spoke0_BE103_12_01_imc_ai", 		PRIORITY_NO_QUEUE )		// Marvin Delta-Five-One-X-Ray - turbine power cycle iteration sixteen thousand four hundred ninety-one - complete.
+			RegisterDialogue( "Facility_TurbineIteration6", 		"diag_sp_Spoke0_BE103_13_01_imc_ai", 		PRIORITY_NO_QUEUE )		// Marvin Delta-Five-One-X-Ray - turbine power cycle iteration sixteen thousand four hundred ninety-two - complete.
+			RegisterDialogue( "Facility_TurbineIterationReverse", 	"diag_sp_Spoke0_BE103_14_01_imc_ai", 		PRIORITY_NO_QUEUE )		// Marvin Delta-Five-One-X-Ray - standby for iteration in reverse sequence for efficiency analysis.
+
+			// First fan room
+			RegisterDialogue( "Facility_AnomalyDetected", 			"diag_sp_Spoke0_BE331_22_01_imc_facilityPA", 		PRIORITY_NO_QUEUE ) 		// Anomaly detected. Organic. Code yellow. Unauthorized personnel. Unauthorized personnel.
+			RegisterDialogue( "Facility_IntruderDetected", 			"diag_sp_Spoke0_BE331_24_01_imc_facilityPA", 		PRIORITY_NO_QUEUE ) 		// Intruder detected. Deploying security forces for further investigation.
+
+			// Spectres deployed before first cooling room
+			RegisterDialogue( "Facility_DeployingReinforcements", 	"diag_sp_Spoke0_BE100_04_01_imc_ai", 		PRIORITY_NO_QUEUE ) 		// Deploying security reinforcements.
+
+			// Horizontal fan rooms with cooling panels
+			RegisterDialogue( "Facility_CoolingProcessActivated", 	"diag_sp_Spoke0_BE102_02_01_imc_ai", 		PRIORITY_NO_QUEUE ) 		// Automated cooling process - activated.
+			RegisterDialogue( "Facility_CooldownInProgress", 		"diag_sp_Spoke0_BE102_03_01_imc_ai", 		PRIORITY_NO_QUEUE ) 		// Heatsink cooldown in progress
+			RegisterDialogue( "Facility_Temp75Percent", 			"diag_sp_Spoke0_BE102_04_01_imc_ai", 		PRIORITY_NO_QUEUE ) 		// Heatsink temperature at 75 percent
+			RegisterDialogue( "Facility_Temp50Percent", 			"diag_sp_Spoke0_BE102_05_01_imc_ai", 		PRIORITY_NO_QUEUE ) 		// Heatsink temperature at 50 percent
+			RegisterDialogue( "Facility_Temp25Percent", 			"diag_sp_Spoke0_BE102_06_01_imc_ai", 		PRIORITY_NO_QUEUE ) 		// Heatsink temperature at 25 percent
+
+			//##########################
+			// Grunt banter at entrance
+			//##########################
+
+			RegisterDialogue( "RandomGrunt_Banter_1a", 				"diag_sp_Spoke0_BE331_01_01_mcor_grunt1", 	PRIORITY_NO_QUEUE ) 		// Who is this loudspeaker talking to? It's not like these tin-cans speak english.
+			RegisterDialogue( "RandomGrunt_Banter_1b", 				"diag_sp_Spoke0_BE331_02_01_mcor_grunt2", 	PRIORITY_NO_QUEUE ) 		// Maybe they can...
+			RegisterDialogue( "RandomGrunt_Banter_2", 				"diag_sp_Spoke0_BE331_03_01_mcor_grunt3", 	PRIORITY_NO_QUEUE ) 		// Pilot, more Stalkers are expected... We'll hold them off but don't be gone too long.
+			RegisterDialogue( "RandomGrunt_Banter_3", 				"diag_sp_Spoke0_BE331_04_01_mcor_grunt4", 	PRIORITY_NO_QUEUE ) 		// We're getting low on ammo... and soldiers.
+			RegisterDialogue( "RandomGrunt_Banter_4", 				"diag_sp_Spoke0_BE331_05_01_mcor_grunt5", 	PRIORITY_NO_QUEUE ) 		// We're doing our best down here.
+			RegisterDialogue( "RandomGrunt_Banter_5", 				"diag_sp_Spoke0_BE331_06_01_mcor_grunt6", 	PRIORITY_NO_QUEUE ) 		// It's great to have a Pilot with us again. Looks like we'll have a chance of getting out alive after all.
+			RegisterDialogue( "RandomGrunt_Banter_6", 				"diag_sp_Spoke0_BE331_07_01_mcor_grunt3", 	PRIORITY_NO_QUEUE ) 		// I wonder how deep this facility goes.
+			RegisterDialogue( "RandomGrunt_Banter_7", 				"diag_sp_Spoke0_BE331_09_01_mcor_grunt7", 	PRIORITY_NO_QUEUE ) 		// Careful people. These Stalkers can come out of the walls...Stay alert.
+			RegisterDialogue( "RandomGrunt_Banter_8a", 				"diag_sp_Spoke0_BE101_05_01_mcor_grunt3", 	PRIORITY_NO_QUEUE ) 		// We should just seal this place off and be done with it...
+			RegisterDialogue( "RandomGrunt_Banter_8b", 				"diag_sp_Spoke0_BE331_10_01_mcor_grunt8", 	PRIORITY_NO_QUEUE ) 		// That's your answer to everything, Barry.
+			RegisterDialogue( "RandomGrunt_Banter_9", 				"diag_sp_Spoke0_BE331_11_01_mcor_grunt9", 	PRIORITY_NO_QUEUE ) 		// This place is run by machines. It's not like there's an elevator around here. How's he gonna get through this place?
+			RegisterDialogue( "RandomGrunt_Banter_10", 				"diag_sp_Spoke0_BE101_07_01_mcor_grunt2", 	PRIORITY_NO_QUEUE ) 		// It looks like they can turtle up to protect their heads. That's why they were so hard to kill...
+			RegisterDialogue( "RandomGrunt_Banter_11", 				"diag_sp_Spoke0_BE331_12_01_mcor_grunt12", 	PRIORITY_NO_QUEUE ) 		// Wish I could tell you what's down there, but whatever it is, we're hoping you can handle it, Pilot.
+
+			RegisterDialogue( "RandomGrunt_LastPilotWentThatWay", 	"diag_sp_Spoke0_BE101_08_01_mcor_grunt2", 	PRIORITY_NO_QUEUE ) 		// The last Pilot in our unit went that way a few hours ago, but he never came back. Be careful.
+
+			//#################
+			// BT Player Hints
+			//#################
+
+			// Entering behind the scenes area of facility
+			RegisterRadioDialogue( "BT_PatchedIntoHelmet", 				"diag_sp_Spoke0_BE331_18_01_mcor_bt", 		PRIORITY_NORMAL, 	"#NPC_BT_NAME", TEAM_MILITIA )		// Pilot, I patched into your helmet display to monitor your progress. Communication is open if you need assistance.
+
+			// Player in first fan room
+			RegisterRadioDialogue( "BT_GoAheadJumpIn",					"diag_sp_spoke0_BE103_02_01_mcor_bt", 		PRIORITY_NORMAL, 	"#NPC_BT_NAME",	TEAM_MILITIA )		// Go ahead and dive in - your jumpkit can take that fall.
+			RegisterRadioDialogue( "BT_FanOffline",						"diag_sp_Spoke0_BE331_25_01_mcor_bt", 		PRIORITY_NORMAL, 	"#NPC_BT_NAME",	TEAM_MILITIA )		// Bypass successful. Fan exhaust is offline.
+			RegisterRadioDialogue( "BT_HintFan1", 						"diag_sp_Spoke0_BE331_21_01_mcor_bt", 		PRIORITY_NORMAL, 	"#NPC_BT_NAME",	TEAM_MILITIA )		// Sensors detect a power control room located at the top of the silo. The fan exhaust is non-lethal.
+
+			// Player in room to get arc tool
+			RegisterRadioDialogue( "BT_MarvinHasArcTool", 				"diag_sp_Spoke0_BE331_32_01_mcor_bt", 		PRIORITY_NORMAL, 	"#NPC_BT_NAME",	TEAM_MILITIA )		// Arc Tool detected at 30 meters.
+
+			// Got the arc tool
+			RegisterRadioDialogue( "BT_YouHaveTheArcTool", 				"diag_sp_Spoke0_BE331_33_01_mcor_bt", 		PRIORITY_NORMAL, 	"#NPC_BT_NAME",	TEAM_MILITIA )		// Well done, Pilot. You have acquired the Arc Tool. Return to the control room. We are ready to jumpstart the system.
+			RegisterRadioDialogue( "BT_OverrideSwitchOnTurbine", 		"diag_sp_spoke0_BE104_02_01_mcor_bt", 		PRIORITY_NORMAL, 	"#NPC_BT_NAME",	TEAM_MILITIA )		// Pilot, there appears to be an override switch on the central turbine.
+			RegisterRadioDialogue( "BT_TryUsingArcToolOnSwitch", 		"diag_sp_spoke0_BE104_03_01_mcor_bt", 		PRIORITY_NORMAL, 	"#NPC_BT_NAME",	TEAM_MILITIA )		// Try using the Arc Tool on that switch. That should enable you to run across the face of the turbine.
+
+			//###########################################
+			// Grunts at the end respond to your success
+			//###########################################
+
+			RegisterDialogue( "Grunt_FanWallrun_Banter1",			"diag_sp_Spoke0_BE331_34_01_mcor_grunt1", 		PRIORITY_NO_QUEUE )		// Is that the Pilot? He must be crazy making those jumps!
+			RegisterDialogue( "Grunt_FanWallrun_Banter2",			"diag_sp_Spoke0_BE331_35_01_mcor_grunt2", 		PRIORITY_NO_QUEUE )		// That's him! That's the Pilot. He gonna make it. I thought he was lost for sure.
+			RegisterDialogue( "Grunt_FanWallrun_Banter3",			"diag_sp_Spoke0_BE331_39_01_mcor_grunt4", 		PRIORITY_NO_QUEUE )		// Those fans are pouring out deadly exhaust! Be careful Sir!
+			RegisterDialogue( "Grunt_FanWallrun_Banter4",			"diag_sp_Spoke0_BE331_37_01_mcor_grunt4", 		PRIORITY_NO_QUEUE )		// One more, Pilot, and we're heading home. We got your back.
+
+			RegisterDialogue( "Grunt_FanWallrun_Death1",			"diag_sp_Spoke0_BE331_41_01_mcor_grunt5", 		PRIORITY_NO_QUEUE )		// Sir! No!
+			RegisterDialogue( "Grunt_FanWallrun_Death2",			"diag_sp_Spoke0_BE331_42_01_mcor_grunt5", 		PRIORITY_NO_QUEUE )		// Watch out! No!
+			RegisterDialogue( "Grunt_FanWallrun_Death3",			"diag_sp_Spoke0_BE331_43_01_mcor_grunt5", 		PRIORITY_NO_QUEUE )		// Pilot down!
+
+			RegisterDialogue( "Grunt1_ReturnedWithArcTool",			"diag_sp_Spoke0_BE331_53_01_mcor_grunt10", 		PRIORITY_NO_QUEUE )		// Now that was impressive, Pilot. They're waiting for you back in the control room.
+
+			// Few attempts
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Few_Banter1",	"diag_sp_Spoke0_BE331_44_01_mcor_grunt6", 	PRIORITY_NO_QUEUE )		// That was some amazing moves.
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Few_Banter2",	"diag_sp_Spoke0_BE331_45_01_mcor_grunt7", 	PRIORITY_NO_QUEUE )		// That's not in the Pilot handbook.
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Few_Banter3",	"diag_sp_Spoke0_BE331_46_01_mcor_grunt8", 	PRIORITY_NO_QUEUE )		// He's got the Arc Tool. Now that's impressive.
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Few_Banter4",	"diag_sp_Spoke0_BE331_47_01_mcor_grunt9", 	PRIORITY_NO_QUEUE )		// Welcome back, sir. Those moves were something else.
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Few_Banter5",	"diag_sp_Spoke0_BE331_48_01_mcor_grunt10", 	PRIORITY_NO_QUEUE )		// You, sir, are one hell of a Pilot.
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Few_Banter6",	"diag_sp_Spoke0_BE331_52_01_mcor_grunt9", 	PRIORITY_NO_QUEUE )		// Good to see you back here safely, Pilot. That Arc Tool is just what we need to signal the Militia fleet.
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Few_Banter7",	"diag_sp_Spoke0_BE331_54_01_mcor_grunt11", 	PRIORITY_NO_QUEUE )		// They must be stepping up their Pilot training...I gotta work out more if I'm gonna keep up.
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Few_Banter8",	"diag_sp_Spoke0_BE331_55_01_mcor_grunt12", 	PRIORITY_NO_QUEUE )		// There's no giving up today, guys. That Pilot went down there and got us an Arc Tool. We're still in business.
+
+			// Many attempts
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Multi_Banter1",	"diag_sp_Spoke0_BE331_49_01_mcor_grunt6", 	PRIORITY_NO_QUEUE )		// Looks like you've been to hell and back... We're glad you made it, Pilot.
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Multi_Banter2",	"diag_sp_Spoke0_BE331_50_01_mcor_grunt7", 	PRIORITY_NO_QUEUE )		// I can't imagine what you just went through down there. Great work, Pilot.
+			RegisterDialogue( "Grunt_FanWallrunSuccess_Multi_Banter3",	"diag_sp_Spoke0_BE331_51_01_mcor_grunt8", 	PRIORITY_NO_QUEUE )		// You made it all the way around and found an Arc Tool. If I had a medal I'd give it to you. Well done, sir.
+
+			break
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

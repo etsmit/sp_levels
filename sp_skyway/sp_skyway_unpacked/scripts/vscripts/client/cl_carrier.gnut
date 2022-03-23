@@ -1,0 +1,1193 @@
+untyped
+
+global function ClCarrier_Init
+
+global function SkyCameraToWorld
+global function WorldToSkyCamera
+global function HornetsSwarmCarrierFromOrigin
+global function HornetsPeriodicallyAttackCarrier
+global function ShipFiresFromOriginToTargetShip
+global function CarrierShipLauncherInit
+global function HornetsAttackCarrierAtIndex
+global function ServerCallback_DogFight
+global function MegaCarrierShips
+global function CreateStratonFromCarrier
+global function HornetMissilesForTime
+
+global function ServerCallback_CaptialShips
+
+const FX_CARRIER_ATTACK 	= $"P_weapon_tracers_megalaser"
+const FX_REDEYE_ATTACKS_CARRIER 	= $"P_Rocket_Phaser_Swirl"
+const FX_EXP_BIRM_SML = $"p_exp_redeye_sml"
+const FIRE_TRAIL = $"Rocket_Smoke_Swirl_LG"
+const FX_EXPLOSION_MED = $"P_exp_redeye_sml_elec"
+
+const STRATON_MODEL	= $"models/vehicle/straton/straton_imc_gunship_01.mdl"
+const HORNET_MODEL 	= $"models/vehicle/hornet/hornet_fighter.mdl"
+
+function ClCarrier_Init()
+{
+	CarrierTorpedoPoints_Init()
+
+	level.megaCarrierDefenses <- [
+		"GUN_FRONT"
+		"GUN_BACK"
+		"GUN_RIGHT"
+		"GUN_LEFT"
+	]
+
+	level.megaTurretImpactFX <-
+	[
+		$"impact_exp_bomber_smoke1"
+		$"impact_air_OS"
+		$"P_impact_exp_XLG_air"
+	]
+
+	// various hornet attack anims
+	level.hornetAttackPatterns <- {}
+	level.hornetAttackPatterns[ "curve" ] <- [ "ht_carrier_attack_1", "ht_carrier_launch_2", "ht_carrier_launch_3" ]
+	level.hornetAttackPatterns[ "straight" ] <- [ "ht_carrier_Final_attack_1", "ht_carrier_Final_attack_2" ]
+	level.hornetAttackPatterns[ "all" ] <- [ "ht_carrier_attack_1", "ht_carrier_launch_2", "ht_carrier_launch_3", "ht_carrier_Final_attack_1", "ht_carrier_Final_attack_2" ]
+
+//	level.leftSideCarrierDoors <- [ "l_door1", "l_door2", "l_door3", "l_door4" ]
+//	level.rightSideCarrierDoors <- [ "r_door1", "r_door2", "r_door3", "r_door4" ]
+	level.leftSideCarrierDoors <- [ "l_door1", "l_door2", "l_door4" ]
+	level.rightSideCarrierDoors <- [ "r_door1", "r_door2", "r_door4" ]
+
+	PrecacheParticleSystem( FX_REDEYE_ATTACKS_CARRIER )
+
+
+	PrecacheParticleSystem( FX_CARRIER_ATTACK )
+	PrecacheParticleSystem( FX_EXP_BIRM_SML )
+	PrecacheParticleSystem( FIRE_TRAIL )
+
+	PrecacheParticleSystem( FX_HORNET_DEATH )
+	PrecacheParticleSystem( FX_EXPLOSION_MED )
+
+	RegisterSignal( "stop_hornet_attacks" )
+	RegisterSignal( "StopLaunching" )
+	RegisterSignal( "StopFiring" )
+
+	foreach ( fx in level.megaTurretImpactFX )
+	{
+		PrecacheParticleSystem( expect asset( fx ) )
+	}
+}
+
+void function ServerCallback_CaptialShips( float x, float y, float z )
+{
+	// #if HAS_CAPITAL_SHIP_SKYSHOW
+	// vector center = < x,y,z >
+	// thread SkyboxSlowFlybys( center )
+	// #endif
+}
+
+// #if HAS_CAPITAL_SHIP_SKYSHOW
+// void function SkyboxSlowFlybys( vector skyboxCenter )
+// {
+// 	vector refuelShipDirection = Vector( -0.813501, 0.580235, -0.039295 )
+
+// 	array<entity> slowFlybyShips = []
+
+// 	local skyboxWidth = { min = -500.0, max = 500.0 }
+// 	local skyboxLength = { min = -800, max = 800 }
+// 	local skyboxHeight = { min = 100, max = 200 }
+// 	local moveDuration = { min = 200.0, max = 300.0 }
+
+// 	local spawnAng = VectorToAngles( refuelShipDirection )
+// 	local right = AnglesToRight( spawnAng )
+
+// 	local numShipsAcross = 8
+// 	local shipSpacing = fabs( skyboxWidth.min - skyboxWidth.max ) / numShipsAcross
+
+// 	local spawnOrder = [ 1, 6, 4, 0, 5, 3, 7, 2 ]
+// 	local shipModels = [ 1, 1, 1, 0, 0, 0, 0, 0 ]
+// 	Assert( spawnOrder.len() == numShipsAcross )
+// 	Assert( shipModels.len() == numShipsAcross )
+
+// 	while ( GetGameState() <= eGameState.SuddenDeath )
+// 	{
+// 		foreach( index, val in spawnOrder )
+// 		{
+// 			local shipMoveDuration = RandomFloatRange( moveDuration.min, moveDuration.max )
+
+// 			local offsetForward = skyboxLength.min
+// 			offsetForward += RandomFloat( 500.0 )
+
+// 			local offsetRight = skyboxWidth.min + ( shipSpacing / 2.0 ) + ( shipSpacing * val )
+// 			offsetRight += RandomFloatRange( -shipSpacing * 0.4, shipSpacing * 0.4 )
+
+// 			local offsetHeight = RandomFloatRange( skyboxHeight.min, skyboxHeight.max )
+
+// 			local spawnPos = skyboxCenter + ( refuelShipDirection * offsetForward ) + ( right * offsetRight ) + Vector( 0, 0, offsetHeight )
+// 			local moveToPos = spawnPos + ( refuelShipDirection * abs( skyboxLength.min - skyboxLength.max ) )
+
+// 			local model = shipModels[ index ] == 0 ? TRINITY_SKYBOX : DRACONIS_SKYBOX
+// 			entity ship = CreateClientsideScriptMover( model, spawnPos, spawnAng )
+// 			slowFlybyShips.append( ship )
+
+// 			thread SkyboxShipWarpIn( ship )
+// 			ship.NonPhysicsMoveTo( moveToPos, shipMoveDuration, 0, 0 )
+// 			thread WarpOutFlybyShipWithDelay( ship, shipMoveDuration )
+
+// 			wait 0.35
+// 		}
+
+// 		wait moveDuration.min * 0.25
+// 		spawnOrder.randomize()
+// 		shipModels.randomize()
+// 	}
+
+// 	// Make some of the remaining ships warp out during the epilogue
+// 	foreach( ship in slowFlybyShips )
+// 	{
+// 		if ( IsValid( ship ) && "warpinComplete" in ship.s )
+// 			thread WarpOutFlybyShipWithDelay( ship, RandomFloat( 30.0 ) )
+// 	}
+// }
+
+
+// function SkyboxShipWarpIn( ship )
+// {
+// 	ship.EndSignal( "OnDestroy" )
+
+// 	ship.Hide()
+// 	local sndOrigin = CalcSkyboxSoundOrigin( ship.GetOrigin() )
+// 	EmitSoundAtPosition( TEAM_UNASSIGNED, sndOrigin, "largeship_warpin" )
+// 	wait 0.25
+// 	ship.Show()
+// 	ship.s.warpinComplete <- true
+// }
+
+// function CalcSkyboxSoundOrigin( origin )
+// {
+// 	local center = Vector( -12288, -12288, -9728 )
+// 	local delta = ( origin - center ) * 15
+
+// 	return GetLocalViewPlayer().GetOrigin() + delta
+// }
+
+// function SkyboxShipWarpOut( ship )
+// {
+// }
+
+// function WarpOutFlybyShipWithDelay( ship, delay = 0 )
+// {
+// 	wait delay
+// 	if ( !IsValid( ship ) )
+// 		return
+
+// 	SkyboxShipWarpOut( ship )
+// 	ship.Kill_Deprecated_UseDestroyInstead()
+// }
+// #endif
+
+function ServerCallback_DogFight( x, y, z, yaw, animIndex )
+{
+	thread PlayDogFightAtOrigin( x, y, z, yaw, animIndex )
+}
+
+function PlayDogFightAtOrigin( x, y, z, yaw, animIndex )
+{
+	table<string, string> anims = DogFightAnimsFromIndex( animIndex )
+	string anim1 = anims.anim1
+	string anim2 = anims.anim2
+
+	asset model = STRATON_MODEL
+	asset otherModel = HORNET_MODEL
+	if ( CoinFlip() )
+	{
+		otherModel = STRATON_MODEL
+		model = HORNET_MODEL
+	}
+
+	local origin = Vector( x, y, z )
+	local angles = Vector( 0, yaw, 0 )
+	entity ship1 = CreatePropDynamic( model, origin, angles )
+
+	ship1.SetFadeDistance( 36000 )
+	ship1.EnableRenderAlways()
+
+	ship1.s.hitsRemaining <- 1
+	thread PlayAnimTeleport( ship1, anim1, origin, angles )
+
+	local waitTime = RandomFloatRange( 0.7, 1.5 )
+	wait waitTime
+	local duration = ship1.GetSequenceDuration( anim1 )
+	local time = duration - 4.0
+
+
+	if ( RandomInt( 100 ) > 80 )
+		thread ExtraShipChases( otherModel, origin, angles, anim2 )
+
+	entity ship2 = CreatePropDynamic( otherModel, origin, angles )
+	ship2.EnableRenderAlways()
+	thread HornetMissilesForTime( ship2, ship1, time )
+	ship2.SetFadeDistance( 36000 )
+	waitthread PlayAnimTeleport( ship2, anim2, origin, angles )
+	wait waitTime
+	// can be destroyed
+	if ( IsValid( ship1 ) )
+		ship1.Destroy()
+
+	ship2.Destroy()
+}
+
+function ExtraShipChases( asset model, var origin, var angles, var anim )
+{
+//	wait RandomFloatRange( 0.6, 0.8 )
+	wait RandomFloatRange( 0.8, 1.1 )
+	entity ship = CreatePropDynamic( model, angles )
+	ship.SetFadeDistance( 36000 )
+	waitthread PlayAnimTeleport( ship, anim, origin, angles )
+	ship.Destroy()
+}
+
+void function ShipFiresFromOriginToTargetShip( entity attackingShip, entity targetShip, string targetType = "carrier" )
+{
+	if ( !IsValid( attackingShip ) )
+		return
+
+	if ( !IsAlive( targetShip ) )
+		return
+
+	attackingShip.EndSignal( "OnDestroy" )
+	attackingShip.EndSignal( "OnDeath" )
+	attackingShip.EndSignal( "StopFiring" )
+	targetShip.EndSignal( "OnDestroy" )
+	targetShip.EndSignal( "OnDeath" )
+
+	local Table = CreateCarrierRocketTable()
+	Table.attackingShip = attackingShip
+	Table.targetShip = targetShip
+	Table.fx = FX_REDEYE_ATTACKS_CARRIER
+	Table.explosionFX = FX_EXPLOSION_MED
+	Table.minSpeed = 24000
+	Table.maxSpeed = 28000
+	Table.fireSound = "AngelCity_Scr_RedeyeWeaponFire"
+	Table.impactSound = "AngelCity_Scr_RedeyeWeaponExplos"
+
+	local torpedoPoints = []
+	if( targetType == "redeye" )
+		torpedoPoints = level.redeyeTorpedoPoints
+	else
+		torpedoPoints = level.carrierTorpedoPoints
+
+	local timeBetweenShots = 1.2
+	for ( ;; )
+	{
+		local points = GetScriptAttachPointsWithinDot( targetShip, torpedoPoints, attackingShip.GetOrigin(), 0.2 )
+
+		Table.index = points.getrandom()
+
+		if( !IsValid( Table.index ) )
+		{
+			wait timeBetweenShots
+			continue
+		}
+
+		for ( int i = 0; i < 6; i++ )
+		{
+			thread FireHomingRocketAtTargetShip( Table, torpedoPoints )
+			Table.index++
+
+			wait RandomFloatRange( 0.2, 0.8 )
+		}
+
+		wait timeBetweenShots
+	}
+}
+
+function CreateCarrierRocketTable()
+{
+	local Table = {}
+	Table.attackingShip <- null
+	Table.targetShip <- null
+	Table.index <- null
+	Table.fx <- null
+	Table.explosionFX <- null
+	Table.minSpeed <- null
+	Table.maxSpeed <- null
+	Table.fireSound <- null
+	Table.impactSound <- null
+	return Table
+}
+
+
+void function HornetsPeriodicallyAttackCarrier( entity carrier, float minTime = 8.0, float maxTime = 16.0 )
+{
+	// hornets attack from time to time
+	if ( !IsAlive( carrier ) )
+		return
+	carrier.EndSignal( "OnDeath" )
+	carrier.EndSignal( "OnDestroy" )
+
+	carrier.Signal( "stop_hornet_attacks" )
+	carrier.EndSignal( "stop_hornet_attacks" )
+
+	for ( ;; )
+	{
+		int num = RandomInt( level.carrierTorpedoPoints.len() )
+		int waves = RandomIntRange( 2, 3 )
+		for ( int p = 0; p < waves; p++ )
+		{
+			int count = RandomIntRange( 2, 3 )
+			for ( int i = 0; i < count; i++ )
+			{
+				thread SpawnHornetToAttackLocation( carrier, num + i, "curve" )
+				wait RandomFloatRange( 0.4, 0.6 )
+			}
+
+			wait RandomFloatRange( 1.0, 1.4 )
+		}
+
+		wait RandomFloatRange( minTime, maxTime )
+	}
+}
+
+void function HornetsAttackCarrierAtIndex( entity carrier, int wave, float minTime = 8.0, float maxTime = 16.0 )
+{
+	// hornets attack from time to time
+	if ( !IsAlive( carrier ) )
+		return
+
+	carrier.EndSignal( "OnDeath" )
+	carrier.EndSignal( "OnDestroy" )
+	carrier.Signal( "stop_hornet_attacks" )
+	carrier.EndSignal( "stop_hornet_attacks" )
+
+	for ( ;; )
+	{
+		local num = wave + RandomInt( 4 )
+
+		int waves = RandomIntRange( 2, 3 )
+		for ( int p = 0; p < waves; p++ )
+		{
+			int count = RandomIntRange( 2, 3 )
+			for ( int i = 0; i < count; i++ )
+			{
+				thread SpawnHornetToAttackLocation( carrier, num + i, "straight" )
+				wait RandomFloatRange( 0.4, 0.6 )
+			}
+
+			wait RandomFloatRange( 1.0, 1.4 )
+		}
+
+		wait RandomFloatRange( minTime, maxTime )
+	}
+}
+
+function MegaCarrierFiresAtShip( carrier, ship )
+{
+	expect entity( carrier )
+	expect entity( ship )
+
+	carrier.EndSignal( "OnDeath" )
+	carrier.EndSignal( "OnDestroy" )
+
+	ship.EndSignal( "OnDestroy" )
+	ship.EndSignal( "OnDeath" )
+	wait 0.8
+
+	local start = carrier.GetOrigin()
+	local angles = ship.GetAngles()
+
+	//draw a tracer
+	int fxid			= GetParticleSystemIndex( FX_CARRIER_ATTACK )
+	//local effect 		= StartParticleEffectInWorldWithHandle( effectIndex, start, Vector( 0, 0, 1 ) )
+//	local effect 		= StartParticleEffectOnEntityWithPos( ship, fxid, FX_PATTACH_POINT_FOLLOW, -1, origin, angles )
+
+
+	local shipOrigin = ship.GetOrigin()
+	local dist
+	local foundAttach
+
+	foreach ( attach in level.megaCarrierDefenses )
+	{
+		local attachIndex = carrier.LookupAttachment( attach )
+		local org = carrier.GetAttachmentOrigin( attachIndex )
+
+		local newdist = Distance( org, shipOrigin )
+		if ( dist && newdist >= dist )
+			continue
+
+		foundAttach = attachIndex
+		dist = newdist
+	}
+	Assert( foundAttach != null )
+
+	local effect 		= StartParticleEffectOnEntity( carrier, fxid, FX_PATTACH_POINT_FOLLOW, foundAttach )
+//	local effect = StartParticleEffectOnEntity( weapon, GetParticleSystemIndex("wpn_arc_cannon_electricity"), FX_PATTACH_POINT_FOLLOW, attachIdx )
+
+	OnThreadEnd(
+		function () : ( effect )
+		{
+			if ( EffectDoesExist( effect ) )
+				EffectStop( effect, false, true ) // stop particles, play end cap
+		}
+	)
+
+	local destroyTime = Time() + RandomFloatRange( 1.2, 1.8 )
+
+	while ( true )
+	{
+		local start = ship.GetOrigin()
+		start.z += 3200
+
+		local end = ship.GetOrigin()
+
+		//trace for impact
+		local vec = end - start
+
+		//update tracer
+		EffectSetControlPointVector( effect, 1, end )
+
+
+		if ( Time() > destroyTime )
+		{
+			// blew up the ship!
+			FighterExplodes( ship )
+
+			ship.Destroy()
+			Assert( false ) // old line mover.Destroy() references undefined variable... what is intended here?
+			//mover.Destroy()
+			return
+		}
+
+		wait 0.1
+	}
+}
+
+
+function SpawnHornetToAttackLocation( carrier, index, attackPattern )
+{
+	local offset = GetTorpedoOffset( carrier.GetOrigin(), carrier.GetAngles(), index, level.carrierTorpedoPoints )
+	local refOrigin = offset.refOrigin
+	local pointAngles = offset.angles
+	local pointOrigin = offset.origin
+
+	if ( fabs( refOrigin.x ) >= MAX_WORLD_COORD )
+		return
+	if ( fabs( refOrigin.y ) >= MAX_WORLD_COORD )
+		return
+	if ( fabs( refOrigin.z ) >= MAX_WORLD_COORD )
+		return
+
+	asset model = HORNET_MODEL
+	local anims = level.hornetAttackPatterns[ attackPattern ]
+	local anim = anims.getrandom()
+
+	entity hornet = CreatePropDynamic( model, Vector(0,0,0), Vector(0,0,0) )
+	//local hornet = CreateClientsideScriptMover( model, Vector(0,0,0), Vector(0,0,0) )
+	if ( RandomInt( 100 ) > 72 )
+		thread MegaCarrierFiresAtShip( carrier, hornet )
+
+	hornet.EndSignal( "OnDestroy" )
+	hornet.SetFadeDistance( 36000 )
+	hornet.EnableRenderAlways()
+
+	hornet.SetOrigin( refOrigin )
+	hornet.SetAngles( pointAngles )
+	//hornet.SetParent( carrier, "", true )
+	thread HornetMissilesVsCarrier( hornet, carrier, offset.index )
+
+	waitthread PlayAnimTeleport( hornet, anim, refOrigin, pointAngles )
+
+	hornet.Destroy()
+}
+
+function HornetMissilesForTime( entity hornet, entity carrier, time, minSpeed = 8000, maxSpeed = 10000 )
+{
+	Assert( IsValid, hornet )
+
+	hornet.EndSignal( "OnDestroy" )
+	carrier.EndSignal( "OnDestroy" )
+
+	local endTime = Time() + time
+
+	wait 0.5 // wait for anim to start
+
+	for ( ;; )
+	{
+		if ( LegalOrigin( hornet.GetOrigin() ) )
+			break
+
+		WaitFrame()
+	}
+
+	for ( ;; )
+	{
+		for ( int i = 0; i < 3; i++ )
+		{
+			if ( Time() > endTime )
+				return
+
+			if ( RandomInt( 100 ) > 75 )
+				thread FireHomingRocket( hornet, carrier, FIRE_TRAIL, FX_EXP_BIRM_SML, minSpeed, maxSpeed )
+			else
+				thread FireHomingRocketMiss( hornet, carrier, FIRE_TRAIL, FX_EXP_BIRM_SML, minSpeed, maxSpeed )
+
+			wait RandomFloatRange( 0.2, 0.3 )
+		}
+
+		wait RandomFloatRange( 0.5, 1.5 )
+	}
+}
+
+function HornetMissilesVsCarrier( entity hornet, carrier, index )
+{
+	Assert( IsValid, hornet )
+
+	hornet.EndSignal( "OnDestroy" )
+	carrier.EndSignal( "OnDestroy" )
+	local endTime = Time() + 1.75
+
+	wait 0.5 // wait for anim to start
+
+	for ( ;; )
+	{
+		if ( LegalOrigin( hornet.GetOrigin() ) )
+			break
+
+		WaitFrame()
+	}
+
+	local oldDist = Distance( hornet.GetOrigin(), carrier.GetOrigin() )
+
+	local Table = CreateCarrierRocketTable()
+	Table.attackingShip = hornet
+	Table.targetShip = carrier
+	Table.index = index
+	Table.fx = FIRE_TRAIL
+	Table.explosionFX = FX_EXP_BIRM_SML
+	Table.minSpeed = 6000
+	Table.maxSpeed = 25000
+	Table.impactSound = "AngelCity_Scr_RedeyeWeaponExplos"
+//	Table.fireSound = "AngelCity_Scr_RedeyeWeaponFire"
+
+	local dist
+	for ( ;; )
+	{
+		// various conditions to stop firing missiles
+		dist = Distance( hornet.GetOrigin(), carrier.GetOrigin() )
+		if ( dist < 1100 )
+		{
+			break
+		}
+
+		if ( dist < oldDist )
+		{
+			oldDist = dist + 200
+		}
+		else
+		if ( dist > oldDist )
+		{
+			break
+		}
+
+		thread FireHomingRocketAtTargetShip( Table, level.carrierTorpedoPoints )
+		Table.index++
+		wait RandomFloatRange( 0.2, 0.8 )
+	}
+}
+
+void function RocketFliesToTarget( entity rocket, entity carrier, float speed )
+{
+	rocket.EndSignal( "OnDestroy" )
+	local dist
+	local origin
+	local travelTime
+	local destroyTime = 0
+
+	for ( ;; )
+	{
+		// keep re-moving to target
+		if ( !IsAlive( carrier ) )
+			break
+
+		origin = carrier.GetOrigin()
+		dist = Distance( rocket.GetOrigin(), origin )
+		travelTime = Graph( dist, 0, speed, 0, 1.0 )
+
+		destroyTime = Time() + travelTime
+
+		if ( travelTime <= 0 )
+			break
+
+		rocket.NonPhysicsMoveTo( origin, travelTime, 0, 0 )
+
+		// getting close?
+		if ( travelTime < 0.1 )
+		{
+			wait travelTime
+			return
+		}
+
+		wait 0.1
+	}
+
+	// still travel time left? carrier may have left
+	if ( Time() < destroyTime )
+	{
+		wait destroyTime - Time()
+	}
+}
+
+void function RocketLaunchesFromHornet( entity hornet, entity rocket, float speed, float dist )
+{
+	local start = hornet.GetOrigin()
+	local angles = hornet.GetAngles()
+	local forward = AnglesToForward( angles )
+
+	local end = start + forward * dist
+
+	float time = Graph( dist, 0, speed, 0, 1.0 )
+	rocket.NonPhysicsMoveTo( end, time, 0, 0 )
+	wait time
+}
+
+void function RocketMissesTarget( entity rocket, entity carrier, float speed )
+{
+	rocket.EndSignal( "OnDestroy" )
+
+	local dist
+	local start, end
+	local travelTime
+	local destroyTime = 0
+
+	local vec, angles, up, right, forward
+
+	for ( ;; )
+	{
+		// keep re-moving to target
+		if ( !IsAlive( carrier ) )
+			break
+
+		start = rocket.GetOrigin()
+		end = carrier.GetOrigin()
+		vec = end - start
+		angles = VectorToAngles( vec )
+		up = AnglesToUp( angles )
+		right = AnglesToRight( angles )
+		forward = AnglesToForward( angles )
+
+		end += up * 400
+		end += right * 400
+
+		//DebugDrawLine( 		carrier.GetOrigin(), end,255, 0, 0, true, 5.0 )
+		dist = Distance( start, end )
+		travelTime = Graph( dist, 0, speed, 0, 1.0 )
+
+		destroyTime = Time() + travelTime
+
+		if ( travelTime <= 0.25 )
+			break
+
+		rocket.NonPhysicsMoveTo( end, travelTime, 0, 0 )
+
+		wait 0.1
+	}
+
+	if ( IsAlive( carrier ) )
+	{
+		start = rocket.GetOrigin()
+		end = carrier.GetOrigin()
+		vec = end - start
+		local angles = VectorToAngles( vec )
+		forward = AnglesToForward( angles )
+	}
+	else
+	{
+		local angles = rocket.GetAngles()
+		forward = AnglesToForward( angles )
+	}
+
+	local endTime = Time() + 6.0
+
+	//local vec1 = Vector( -1789, -7578, 2455 )
+	//local vec2 = Vector( 3369, -10889, 2455 )
+	//TraceResults result = TraceLine( vec1, vec2, rocket, TRACE_MASK_NPCWORLDSTATIC, TRACE_COLLISION_GROUP_NONE )
+	//DebugDrawLine( vec1, result.endPos, 0, 255, 0, true, 1.0 )
+	//DebugDrawLine( result.endPos, vec2, 255, 0, 0, true, 1.0 )
+	//printt( "hit " + result.surfaceName )
+
+	for ( ;; )
+	{
+		if ( Time() > endTime )
+			return
+
+		start = rocket.GetOrigin()
+		end = start + forward * 7500
+		if ( !LegalOrigin( expect vector( end ) ) )
+			return
+
+		TraceResults result = TraceLine( start, end, rocket, TRACE_MASK_NPCWORLDSTATIC, TRACE_COLLISION_GROUP_NONE )
+		if ( result.fraction < 1.0 && !result.startSolid && result.surfaceName != "" ) // != "default_silent" )
+		{
+//	printt( "hit " + result.surfaceName )
+			local time = 0.75 * result.fraction
+			if ( time > 0 )
+			{
+				rocket.NonPhysicsMoveTo( result.endPos, time, 0, 0 )
+				//DrawArrow( result.endPos, Vector(0,0,0), 30, 350 )
+				wait time
+			}
+			return
+		}
+
+		rocket.NonPhysicsMoveTo( end, 0.75, 0, 0 )
+
+		wait 0.75
+	}
+}
+
+
+function RocketFliesToCarrierTorpedoPoint( rocket, entity carrier, ref, minSpeed, maxSpeed )
+{
+	rocket.EndSignal( "OnDestroy" )
+	local dist
+	local origin
+	local travelTime
+	local destroyTime = 0
+
+	local speed = RandomFloatRange( minSpeed, maxSpeed )
+
+	//local start = rocket.GetOrigin()
+	//local vec = rocket.GetOrigin() - ref.GetOrigin()
+	//vec.Norm()
+	//local end = ref.GetOrigin() + vec * -2500
+	//TraceResults result = TraceLine( start, end, rocket, TRACE_MASK_SHOT_HULL, TRACE_COLLISION_GROUP_NONE )
+	//DebugDrawLine( start, result.endPos, 0, 255, 0, true, 10.0 )
+	//DebugDrawLine( result.endPos, end, 255, 0, 0, true, 10.0 )
+	//if ( result.fraction < 1 )
+	//{
+	//	printt( "hit " + result.hitEnt.GetClassName() )
+	//}
+
+	for ( ;; )
+	{
+		// keep re-moving to target
+		if ( !IsAlive( carrier ) )
+			break
+
+		Assert( IsValid( ref ) )
+		origin = ref.GetOrigin()
+		dist = Distance( rocket.GetOrigin(), origin )
+		travelTime = Graph( dist, 0, speed, 0, 1.0 )
+
+		destroyTime = Time() + travelTime
+
+		if ( travelTime <= 0 )
+			break
+		//if ( dist < 500 )
+		//	travelTime = 0.05
+		//else
+		//	printt( "dist " + dist + " time " + travelTime )
+
+		rocket.NonPhysicsMoveTo( origin, travelTime, 0, 0 )
+
+		// getting close?
+		if ( travelTime < 0.1 )
+		{
+			wait travelTime
+			return
+		}
+
+		wait 0.1
+	}
+
+	// still travel time left? carrier may have left
+	if ( Time() < destroyTime )
+	{
+		wait destroyTime - Time()
+	}
+}
+
+function FireHomingRocketAtTargetShip( e, torpedoPoints )
+{
+	if ( !IsAlive( expect entity( e.targetShip ) ) )
+		return
+
+	local result = GetTorpedoOffset( e.targetShip.GetOrigin(), e.targetShip.GetAngles(), e.index, torpedoPoints )
+
+	if ( !LegalOrigin( expect vector( result.origin ) ) )
+		return
+
+	// create the rocket
+	local origin = e.attackingShip.GetOrigin()
+	local vec = origin - e.targetShip.GetOrigin()
+	local angles = VectorToAngles( vec )
+
+	entity rocket = CreateClientsideScriptMover( $"models/dev/empty_model.mdl", origin, angles )
+	rocket.DisableDraw()
+
+	// rocket FX
+	int fxid = GetParticleSystemIndex( e.fx )
+	local attachID = rocket.LookupAttachment( "REF" )
+	local particleFX = StartParticleEffectOnEntity( rocket, fxid, FX_PATTACH_POINT_FOLLOW, attachID )
+
+	// create a ref that maintains an offset from the carrier so we dont have to recalc it
+	local ref = CreateScriptRef( result.origin, result.angles )
+
+	if ( e.fireSound )
+		EmitSoundAtPosition( TEAM_UNASSIGNED, origin, e.fireSound )
+
+	ref.SetParent( e.targetShip, "", true )
+
+	OnThreadEnd(
+		function () : ( e, rocket, ref, attachID, result, particleFX )
+		{
+			EffectStop( particleFX, false, true )
+
+			if ( IsAlive( expect entity( e.targetShip ) ) )
+			{
+				if ( e.impactSound )
+					EmitSoundAtPosition( TEAM_UNASSIGNED, result.origin, e.impactSound )
+
+				// the hits look weird if there is no carrier
+				// explosion
+				int explosionID = GetParticleSystemIndex( e.explosionFX )
+				local offset = result.origin - e.targetShip.GetOrigin()
+				StartParticleEffectOnEntityWithPos( e.targetShip, explosionID, FX_PATTACH_ABSORIGIN_FOLLOW, -1, offset, result.sourceAngles )
+			}
+
+			rocket.Destroy()
+
+			if ( IsValid( ref ) )
+				ref.Destroy()
+		}
+	)
+
+	// fly the rocket
+	waitthread RocketFliesToCarrierTorpedoPoint( rocket, expect entity( e.targetShip ), ref, e.minSpeed, e.maxSpeed )
+}
+
+function FireHomingRocket( hornet, carrier, fxName, explosionFX, minSpeed, maxSpeed )
+{
+	FireHomingRocketLogic( hornet, carrier, RocketFliesToTarget, fxName, explosionFX, minSpeed, maxSpeed )
+}
+
+function FireHomingRocketMiss( hornet, carrier, fxName, explosionFX, minSpeed, maxSpeed )
+{
+	FireHomingRocketLogic( hornet, carrier, RocketMissesTarget, fxName, explosionFX, minSpeed, maxSpeed )
+}
+
+//pointOrigin + RandomVec( 300.0 ) )
+function FireHomingRocketLogic( hornet, carrier, void functionref( entity, entity, float ) rocketMoveFunc, fxName, explosionFX, minSpeed, maxSpeed )
+{
+	expect entity( hornet )
+	expect entity( carrier )
+
+	if ( !IsValid( hornet ) )
+		return
+
+	if ( !IsAlive( carrier ) )
+		return
+
+	vector origin = hornet.GetOrigin()
+	vector angles = hornet.GetAngles()
+	if ( !LegalOrigin( origin ) )
+		return
+
+	// create the rocket
+	local vec = origin - carrier.GetOrigin()
+
+	entity rocket = CreateClientsideScriptMover( $"models/dev/empty_model.mdl", origin, angles )
+	rocket.DisableDraw()
+
+	// rocket FX
+	int fxid = GetParticleSystemIndex( fxName )
+	local attachID = rocket.LookupAttachment( "REF" )
+	local particleFX = StartParticleEffectOnEntity( rocket, fxid, FX_PATTACH_POINT_FOLLOW, attachID )
+
+	OnThreadEnd(
+		function () : ( carrier, rocket, attachID, explosionFX, particleFX )
+		{
+			if ( EffectDoesExist( particleFX ) )
+				EffectStop( particleFX, false, true )
+
+			if ( IsAlive( carrier ) )
+			{
+				int explosionID = GetParticleSystemIndex( explosionFX )
+				local dist = Distance( rocket.GetOrigin(), carrier.GetOrigin() )
+				//printt( "dist " + dist )
+				if ( dist < 750 )
+				{
+					// the hits look weird if there is no carrier
+					// explosion
+					local attachIdx = carrier.LookupAttachment( "ORIGIN" )
+					StartParticleEffectOnEntity( carrier, explosionID, FX_PATTACH_ABSORIGIN_FOLLOW, attachIdx )
+					carrier.s.hitsRemaining--
+					//printt( "hits remaining " + carrier.s.hitsRemaining )
+					if ( carrier.s.hitsRemaining <= 0 )
+					{
+						FighterExplodes( carrier )
+						carrier.Destroy()
+					}
+				}
+				else
+				{
+					StartParticleEffectInWorld( explosionID, rocket.GetOrigin(), rocket.GetAngles() )
+				}
+			}
+
+			rocket.Destroy()
+		}
+	)
+
+	float speed = RandomFloatRange( minSpeed, maxSpeed )
+
+	waitthread RocketLaunchesFromHornet( hornet, rocket, speed, 1500 )
+
+	// fly the rocket
+	waitthread rocketMoveFunc( rocket, carrier, speed )
+}
+
+function SkyCameraToWorld( origin )
+{
+	local org = origin
+	local scale = level.skyCameraScale
+	org -= level.skyCameraOrg
+	org *= scale
+	return org
+}
+
+function WorldToSkyCamera( origin )
+{
+	local scale = level.skyCameraScale
+	local org = origin
+	org.x /= scale
+	org.y /= scale
+	org.z /= scale
+	org += level.skyCameraOrg
+	return org
+}
+
+function GetScriptAttachPointsWithinDot( carrier, torpedoPoints, skyVec, dotVal )
+{
+	local points = []
+	foreach ( index, point in torpedoPoints )
+	{
+		local result = GetTorpedoOffset( carrier.GetOrigin(), carrier.GetAngles(), index, torpedoPoints )
+		local forward = AnglesToForward( result.angles )
+		local vec = skyVec - result.origin
+		vec.Norm()
+		local dot = DotProduct( vec, forward )
+		if ( dot > dotVal )
+			points.append( index )
+	}
+
+	return points
+}
+
+void function HornetsSwarmCarrierFromOrigin( entity carrier, vector skyVec )
+{
+	if ( !IsAlive( carrier ) )
+		return
+
+	local points = GetScriptAttachPointsWithinDot( carrier, level.carrierTorpedoPoints, skyVec, 0.2 )
+
+	local e = {}
+	e.origin <- carrier.GetOrigin()
+	e.angles <- carrier.GetAngles()
+	waitthread HornetSwarmUntilCarrierLeaves( carrier, skyVec, points, e )
+
+	local startTime = Time()
+	local endTime = Time() + 20.0
+
+	for ( ;; )
+	{
+		if ( Time() > endTime )
+			break
+		thread HornetSwarmCarrier( e.origin, e.angles, null, points.getrandom(), skyVec )
+
+		float delay = Graph( Time(), startTime, endTime, 0.5, 2.5 )
+		wait delay
+	}
+}
+
+function HornetSwarmUntilCarrierLeaves( entity carrier, skyVec, points, e )
+{
+	carrier.EndSignal( "OnDestroy" )
+	for ( ;; )
+	{
+		e.origin = carrier.GetOrigin()
+		e.angles = carrier.GetAngles()
+		thread HornetSwarmCarrier( e.origin, e.angles, carrier, points.getrandom(), skyVec )
+		wait RandomFloatRange( 0.4, 1.6 )
+	}
+}
+
+function HornetSwarmCarrier( carrierOrigin, carrierAngles, entity carrier, index, skyVec )
+{
+	local result = GetTorpedoOffset( carrierOrigin, carrierAngles, index, level.carrierTorpedoPoints )
+
+	local vec = skyVec - result.origin
+	vec.Norm()
+	local origin = result.refOrigin
+	local angles = VectorToAngles( vec )
+	angles.x = 0
+	angles.z = 0
+//	DrawArrow( origin, angles, 35, 500 )
+
+	asset model = HORNET_MODEL
+	entity hornet = CreatePropDynamic( model, origin, Vector(0,0,0) )
+	local anims
+
+	if ( RandomInt( 100 ) > 33 )
+		anims = level.hornetAttackPatterns[ "straight" ]
+	else
+		anims = level.hornetAttackPatterns[ "curve" ]
+
+	local anim = anims.getrandom()
+
+	hornet.EndSignal( "OnDestroy" )
+	hornet.SetFadeDistance( 36000 )
+	hornet.EnableRenderAlways()
+
+	if ( IsAlive( carrier ) )
+		thread HornetMissilesVsCarrier( hornet, carrier, result.index )
+
+	waitthread PlayAnimTeleport( hornet, anim, origin, angles )
+	hornet.Kill_Deprecated_UseDestroyInstead()
+}
+
+function StratonLauncher( carrier, doors )
+{
+	carrier.EndSignal( "StopLaunching" )
+	// move to client event on door open animation when we get it
+	carrier.EndSignal( "OnDestroy" )
+
+	for ( ;; )
+	{
+		local count
+		if ( carrier.s.flowHigh )
+			count = RandomIntRange( 11, 18 )
+		else
+			count = RandomIntRange( 6, 9 )
+
+		for ( int i = 0; i < count; i++ )
+		{
+			thread CreateStratonFromCarrier( carrier, doors )
+			wait RandomFloatRange( 0.3, 0.5 )
+		}
+
+		if ( carrier.s.flowHigh )
+			wait RandomFloatRange( 3, 4.5 )
+		else
+			wait RandomFloatRange( 14, 20 )
+	}
+}
+
+// makes the carrier launch ships when certain events are hit in animation
+function CarrierShipLauncherInit( carrier )
+{
+	expect entity( carrier )
+
+	AddAnimEvent( carrier, "high_flow_both_sides",	SetCarrierFlowHighBothSides )
+	AddAnimEvent( carrier, "low_flow_both_sides",	SetCarrierFlowLowBothSides )
+	AddAnimEvent( carrier, "low_flow_right", 		SetCarrierFlowLowRight )
+	AddAnimEvent( carrier, "low_flow_left", 		SetCarrierFlowLowLeft )
+	AddAnimEvent( carrier, "high_flow_right", 		SetCarrierFlowHighRight )
+	AddAnimEvent( carrier, "high_flow_left", 		SetCarrierFlowHighLeft )
+	AddAnimEvent( carrier, "no_flow", 	        	SetCarrierNoFlow )
+
+	carrier.s.flowState <- "no_flow"
+	carrier.s.flowHigh <- false
+}
+
+void function SetCarrierFlowHighBothSides( entity carrier )
+{
+	carrier.s.flowHigh = true
+	thread StratonLauncher( carrier, level.leftSideCarrierDoors )
+	thread StratonLauncher( carrier, level.rightSideCarrierDoors )
+}
+
+void function SetCarrierFlowHighLeft( entity carrier )
+{
+	carrier.s.flowHigh = true
+	thread StratonLauncher( carrier, level.leftSideCarrierDoors )
+}
+
+void function SetCarrierFlowHighRight( entity carrier )
+{
+	carrier.s.flowHigh = true
+	thread StratonLauncher( carrier, level.rightSideCarrierDoors )
+}
+
+void function SetCarrierFlowLowBothSides( entity carrier )
+{
+	carrier.s.flowHigh = false
+	thread StratonLauncher( carrier, level.leftSideCarrierDoors )
+	thread StratonLauncher( carrier, level.rightSideCarrierDoors )
+}
+
+void function SetCarrierFlowLowLeft( entity carrier )
+{
+	carrier.s.flowHigh = false
+	thread StratonLauncher( carrier, level.leftSideCarrierDoors )
+}
+
+void function SetCarrierFlowLowRight( entity carrier )
+{
+	carrier.s.flowHigh = false
+	thread StratonLauncher( carrier, level.rightSideCarrierDoors )
+}
+
+void function SetCarrierNoFlow( entity carrier )
+{
+	carrier.s.flowHigh = false
+}
+
+function CreateStratonFromCarrier( carrier, doors )
+{
+	asset model = STRATON_MODEL
+	local anim = "st_carrier_launch_" + ( RandomInt( 8 ) + 1 )
+	// st_carrier_launch_1
+	// st_carrier_launch_2
+	// st_carrier_launch_3
+	// st_carrier_launch_4
+	// st_carrier_launch_5
+	// st_carrier_launch_6
+	// st_carrier_launch_7
+	// st_carrier_launch_8
+
+	entity dropship = CreatePropDynamic( model, Vector(0,0,0), Vector(0,0,0) )
+	local door = doors.getrandom()
+	waitthread PlayAnimTeleport( dropship, anim, carrier, door )
+	if ( IsValid( dropship ) )
+		dropship.Kill_Deprecated_UseDestroyInstead()
+}
+
+function drawdoor( door, dropship )
+{
+	dropship.EndSignal( "OnDestroy" )
+	for ( ;; )
+	{
+		DebugDrawText( dropship.GetOrigin(), door, true, 0.1 )
+		WaitFrame()
+	}
+}
+
+void function MegaCarrierShips( entity carrier )
+{
+	carrier.EndSignal( "OnDeath" )
+	carrier.EndSignal( "OnDestroy" )
+	carrier.EndSignal( "idling" )
+	OnThreadEnd(
+		function () : ( carrier )
+		{
+			if ( IsValid( carrier ) )
+			{
+				thread HornetsPeriodicallyAttackCarrier( carrier )
+			}
+		}
+	)
+
+	wait 38.0
+
+	thread HornetsAttackCarrierAtIndex( carrier, 25, 2, 3 )
+	wait 15.0
+	carrier.Signal( "stop_hornet_attacks" )
+	wait 1.5
+}

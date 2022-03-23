@@ -1,0 +1,668 @@
+untyped
+
+global function CLAIBossTitan_Init
+
+global function ServerCallback_BossTitanPostIntro
+global function ServerCallback_BossTitanIntro_Start
+global function ServerCallback_BossTitanIntro_End
+global function ServerCallback_BossTitanNoIntro
+global function ServerCallback_BossTitanDamaged
+global function ServerCallback_BossTitanLostSegment
+global function ServerCallback_BossTitanDoomed
+global function ServerCallback_BossTitanDeath
+global function ServerCallback_BossTitanUseCoreAbility
+global function ServerCallback_BossTitanRetreat
+global function ServerCallback_BossTitanAdvance
+
+global function BossTitanPlayerLostHealthSegment
+global function BossTitanPlayerUsedCoreAbility
+
+global function PopupBossVDU
+global function ShowGenericBossVDU
+global function ShowBossVDU
+global function HideBossVDU
+global function ShowBossWaveform
+global function HideBossWaveform
+
+global function GetBossAISpeaker
+
+const float BOSS_TITAN_LINE_TIMEOUT = 10.0
+
+struct
+{
+	array<entity> bossTrackers
+	entity bossTitan
+	float bossNextRandomLineTime
+	var waveform
+
+	float lastSaidLineTime
+	table<string,float> lastSaidLineTimes
+} file
+
+void function CLAIBossTitan_Init()
+{
+	if ( IsMultiplayer() )
+		return
+
+	AddCreateTitanCockpitCallback( BossVDU_Init )
+	AddCreatePilotCockpitCallback( BossVDU_Init )
+
+	RegisterSignal( "PopupBossVDU" )
+
+	level.vduStyle <- 0
+
+	AddCreateCallback( MARKER_ENT_CLASSNAME, OnBossMarkerCreated )
+}
+
+entity function GetBossMarker( entity titan )
+{
+	ArrayRemoveInvalid( file.bossTrackers )
+	foreach ( bossTracker in file.bossTrackers )
+	{
+		if ( bossTracker.GetOwner() == titan )
+		{
+			return bossTracker
+		}
+	}
+	return null
+}
+
+entity function GetNearbyBossTitan()
+{
+	ArrayRemoveInvalid( file.bossTrackers )
+	foreach ( bossTracker in file.bossTrackers )
+	{
+		if ( IsAlive( bossTracker.GetOwner() ) )
+		{
+			return bossTracker.GetOwner()
+		}
+	}
+
+	return null
+}
+
+bool function IsTitanBoss( entity titan )
+{
+	return GetBossMarker( titan ) != null
+}
+
+void function ServerCallback_BossTitanAdvance( int titanEHandle )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	if ( !IsTitanBoss( titan ) )
+		return
+
+	PlayBossTitanLine( titan, "bossTitan_advance" )
+	DelayNextBossRandomLine()
+}
+
+void function ServerCallback_BossTitanRetreat( int titanEHandle )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	if ( !IsTitanBoss( titan ) )
+		return
+
+	PlayBossTitanLine( titan, "bossTitan_retreat" )
+	DelayNextBossRandomLine()
+}
+
+void function BossTitanPlayerUsedCoreAbility( entity player, int currentSegment )
+{
+	entity titan = GetNearbyBossTitan()
+	if ( titan == null )
+		return
+
+	string conv = "bossTitan_playerUsedCoreAbility"
+
+	PlayBossTitanLine( titan, conv )
+	DelayNextBossRandomLine()
+}
+
+void function ServerCallback_BossTitanUseCoreAbility( int titanEHandle, int currentSegment )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	if ( !IsTitanBoss( titan ) )
+		return
+
+	string conv = "bossTitan_coreAbility"
+
+	if ( IsGenericTitan( titan ) )
+	{
+		entity coreWeapon = titan.GetOffhandWeapon( OFFHAND_EQUIPMENT )
+		if ( !IsValid( coreWeapon ) )
+			return
+		string coreName = coreWeapon.GetWeaponClassName()
+		conv = conv + "_" + coreName
+	}
+
+	PlayBossTitanLine( titan, conv, -1, true )
+	DelayNextBossRandomLine()
+}
+
+void function ServerCallback_BossTitanDeath( int titanEHandle, int bossID )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	CancelBossConversation()
+	PlayBossTitanLine( titan, "bossTitan_death", bossID, true )
+}
+
+void function ServerCallback_BossTitanDoomed( int titanEHandle )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	if ( !IsTitanBoss( titan ) )
+		return
+
+	thread PlayBossTitanLine( titan, "bossTitan_doomed", -1, true )
+	thread DelayShowExecutionHint( titan )
+}
+
+void function DelayShowExecutionHint( entity titan )
+{
+	titan.EndSignal( "OnDeath" )
+
+	wait 0.5
+
+	if ( titan.IsInvulnerable() )
+		return // invulnerable titans can't be executed, probably in a scripted event
+
+	OnscreenHint hintInfo
+	hintInfo.locStringGamepad = "#HINT_EXECUTE"
+	thread DisplayOnscreenHint( hintInfo, 8.0 )
+}
+
+void function ServerCallback_BossTitanDamaged( int titanEHandle )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	if ( !IsTitanBoss( titan ) )
+		return
+
+	float amplitude = RandomFloatRange( 1.5, 2.5 )
+	float frequency = 20.0
+	float duration = RandomFloatRange( 0.2, 0.4 )
+
+	PlayBossTitanLine( titan, "bossTitan_damage" )
+}
+
+void function BossTitanPlayerLostHealthSegment( int currentSegment )
+{
+	entity titan = GetNearbyBossTitan()
+	if ( titan == null )
+		return
+
+	string conv = "bossTitan_tookPlayerSegment"
+
+	thread PlayBossTitanLine( titan, conv )
+}
+
+bool function IsGenericTitan( entity titan )
+{
+	entity marker = GetBossMarker( titan )
+
+	if ( !IsValid( marker ) )
+		return false
+
+	int id = GetBossMarkerBossID( marker )
+	string name = GetBossNameFromID( id )
+
+	string generic = "Generic"
+	return ( name.len() >= generic.len() && name.slice( 0,generic.len() ) == "Generic" )
+}
+
+void function ServerCallback_BossTitanLostSegment( int titanEHandle, int currentSegment )
+{
+	float amplitude = 2.0
+	float frequency = 40.0
+	float duration = RandomFloatRange( 1.5, 2.0 )
+
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	if ( !IsTitanBoss( titan ) )
+		return
+
+	if ( GetDoomedState( titan ) )
+		return
+
+	string conv = ""
+
+	if ( IsGenericTitan( titan ) )
+	{
+		int tabs = GetTitanCurrentRegenTab( titan )
+		if ( tabs == 1 )
+		{
+			conv = "bossTitan_1segmentLeft"
+		}
+		else
+		{
+			conv = "bossTitan_" + tabs + "segmentsLeft"
+		}
+	}
+	else
+	{
+		if ( GetHealthFrac( titan ) <= 0.3 )
+			conv = "bossTitan_1segmentLeft"
+		else if ( GetHealthFrac( titan ) <= 0.6 )
+			conv = "bossTitan_2segmentsLeft"
+	}
+
+	if ( conv == "" )
+		return
+
+	if ( titan.ContextAction_IsMeleeExecution() )
+		return
+
+	if ( !IsAlive( titan ) )
+		return
+
+	thread PlayBossTitanLine( titan, conv )
+}
+
+void function BossVDU_Init( entity cockpit, entity player )
+{
+	entity mainVGUI = cockpit.e.mainVGUI
+	mainVGUI.s.bossVduOpen <- false
+}
+
+function ServerCallback_BossTitanNoIntro( int titanEHandle )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	if ( IsAlive( titan ) )
+	{
+		PlayBossTitanLine( titan, "bossTitan_post_intro" )
+	}
+}
+
+function ServerCallback_BossTitanIntro_Start( int titanEHandle, int bossPilotId, bool VDUEnabled, bool doCockpitDisplay )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	thread DoBossTitanIntro( titan, bossPilotId, VDUEnabled, doCockpitDisplay )
+}
+
+function ServerCallback_BossTitanIntro_End( int titanEHandle, bool VDUEnabled )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	GetLocalClientPlayer().Signal( "StopBossIntro" )
+}
+
+void function ServerCallback_BossTitanPostIntro( int titanEHandle, bool VDUEnabled )
+{
+	entity titan = GetEntityFromEncodedEHandle( titanEHandle )
+	if ( VDUEnabled )
+		PlayBossTitanLine( titan, "bossTitan_post_intro", -1, true )
+}
+
+void function DoBossTitanIntro( entity titan, int bossPilotId, bool VDUEnabled, bool doCockpitDisplay )
+{
+	Assert( IsAlive( titan ) || ( !VDUEnabled && !doCockpitDisplay ) )
+	Assert( titan.IsTitan() || ( !VDUEnabled && !doCockpitDisplay ) )
+
+	entity player = GetLocalClientPlayer()
+	player.EndSignal( "StopBossIntro" )
+	entity cockpit = player.GetCockpit()
+
+	OnThreadEnd(
+	function() : ( player, titan, cockpit, VDUEnabled )
+		{
+			player.p.allowCoreMessages = true
+
+			if ( IsValid( cockpit ) )
+				cockpit.e.mainVGUI.Show()
+			if ( VDUEnabled )
+				thread BossTitanRandomLines( titan )
+		}
+	)
+
+
+	// Hide the cockpit
+	EmitSoundOnEntity( player, "Menu_CampaignSummary_TitanUnlocked" )
+	ClearAnnouncements()
+	player.p.allowCoreMessages = false
+
+	cockpit.e.mainVGUI.Hide()
+
+	wait 0.3
+
+	thread TrackDoF( player, titan )
+
+	if ( doCockpitDisplay )
+		thread CockpitDisplay( player, bossPilotId, titan )
+
+	WaitForever()
+}
+
+void function CockpitDisplay( entity player, int bossPilotId, entity titan )
+{
+	player.EndSignal( "StopBossIntro" )
+
+	BossTitanData bossTitanData = GetBossTitanDataByID( bossPilotId )
+	string bossName = bossTitanData.bossTitle
+
+	var dataTable = GetDataTable( $"datatable/titan_bosses.rpak" )
+	int row = GetDataTableRowMatchingStringValue( dataTable, GetDataTableColumnByName( dataTable, "bossTitle" ), bossName )
+	float delay 	= GetDataTableFloat( dataTable, row, GetDataTableColumnByName( dataTable, "analysisTextDelay" ) )
+	float align 	= GetDataTableFloat( dataTable, row, GetDataTableColumnByName( dataTable, "analysisTextAlign" ) )
+
+	// var borderRui = RuiCreate( $"ui/helmet_border.rpak", clGlobal.topoFullScreen, RUI_DRAW_HUD, 10000 )
+	// RuiSetFloat( borderRui, "displayTime", 500.0 ) // ridiculously high time
+
+	wait delay
+
+	array<entity> weapons = titan.GetMainWeapons()
+
+	entity soul = titan.GetTitanSoul()
+	string settings = GetSoulPlayerSettings( soul )
+	string titanChassis = expect string( GetPlayerSettingsFieldForClassName( settings, "printname" ) )
+
+	string weaponName = ""
+	entity primaryWeapon = null
+	foreach ( weapon in weapons )
+	{
+		primaryWeapon = weapon
+		weaponName = expect string( weapon.GetWeaponInfoFileKeyField( "printname" ) )
+		break
+	}
+
+	var rui = RuiCreate( $"ui/sp_boss_intro.rpak", clGlobal.topoFullScreen, RUI_DRAW_HUD, 10000 )
+	RuiSetString( rui, "pilotName", bossName )
+	RuiSetString( rui, "weaponName", weaponName )
+	RuiSetString( rui, "titanName", titanChassis )
+	RuiSetFloat( rui, "xAlign", align )
+	RuiSetFloat( rui, "titleAlpha", 0.0 )
+	RuiSetFloat( rui, "bg1Alpha", 0.0 )
+	RuiSetFloat( rui, "text1Alpha", 0.0 )
+	RuiSetFloat( rui, "image1Alpha", 0.0 )
+	RuiSetFloat( rui, "bg2Alpha", 0.0 )
+	RuiSetFloat( rui, "text2Alpha", 0.0 )
+	RuiSetFloat( rui, "image2Alpha", 0.0 )
+
+	OnThreadEnd(
+	function() : ( player, rui ) //, borderRui )
+		{
+			thread RuiFlickerOutAndDestroy( player, rui )
+			// RuiDestroy( borderRui )
+		}
+	)
+
+	waitthread FlickerElementIn( player, rui, "titleAlpha", 4 )
+
+	WaitForever()
+}
+
+void function RuiFlickerOutAndDestroy( entity player, var rui )
+{
+	waitthread FlickerElementOut( player, rui, "titleAlpha", 2 )
+
+	RuiDestroy( rui )
+}
+
+void function FlickerElementIn( entity player, var rui, string varName, int times )
+{
+	player.EndSignal( "StopBossIntro" )
+
+	for ( int i=0; i<times; i++ )
+	{
+		EmitSoundOnEntity( player, "Menu_GameSummary_ScreenSlideIn" )
+		wait 0.02
+		RuiSetFloat( rui, varName, 0.5 )
+		wait 0.02
+		RuiSetFloat( rui, varName, 0.0 )
+	}
+	RuiSetFloat( rui, varName, 1.0 )
+}
+
+void function FlickerElementOut( entity player, var rui, string varName, int times )
+{
+	player.EndSignal( "StopBossIntro" )
+
+	for ( int i=0; i<times; i++ )
+	{
+		EmitSoundOnEntity( player, "Menu_GameSummary_ScreenSlideIn" )
+		wait 0.02
+		RuiSetFloat( rui, varName, 0.0 )
+		wait 0.02
+		RuiSetFloat( rui, varName, 0.5 )
+	}
+	RuiSetFloat( rui, varName, 0.0 )
+}
+
+void function TrackDoF( entity player, entity titan )
+{
+	if ( !IsValid( titan ) )
+		return
+
+	player.EndSignal( "StopBossIntro" )
+	titan.EndSignal( "OnDeath" )
+	player.EndSignal( "OnDeath" )
+
+	OnThreadEnd(
+	function() : (  )
+		{
+			DoF_LerpNearDepthToDefault( 8.0 )
+			DoF_LerpFarDepthToDefault( 8.0 )
+		}
+	)
+
+	wait 0.3
+
+	while ( 1 )
+	{
+		float distToCam = Distance2D( player.CameraPosition(), titan.EyePosition() )
+		float nearDepthStart = 0
+		float nearDepthEnd = clamp( min( 50, distToCam - 100 ), 0, 50 )
+		DoF_SetNearDepth( nearDepthStart, nearDepthEnd )
+		float farDepthStart = distToCam + distToCam
+		float farDepthEnd = distToCam + distToCam*2
+		DoF_SetFarDepth( farDepthStart, farDepthEnd )
+		WaitFrame()
+	}
+}
+
+void function BossTitanRandomLines( entity titan )
+{
+	EndSignal( titan, "OnDeath" )
+	EndSignal( titan, "Doomed" )
+
+	DelayNextBossRandomLine()
+
+	while ( IsValid( titan ) )
+	{
+		if ( file.bossNextRandomLineTime < Time() && IsAlive( GetLocalViewPlayer() ) )
+		{
+			DelayNextBossRandomLine()
+			PlayBossTitanLine( titan, "bossTitan_random" )
+		}
+		wait 0.5
+	}
+}
+
+void function DelayNextBossRandomLine()
+{
+	file.bossNextRandomLineTime = Time() + RandomFloatRange( 20, 30 )
+}
+
+void function PopupBossVDU( float delay, asset video )
+{
+	// thread PopupBossVDU_Internal( delay, video )
+}
+
+void function PopupBossVDU_Internal( float delay, asset video )
+{
+	// entity player = GetLocalClientPlayer()
+	// player.Signal( "PopupBossVDU" )
+	// player.EndSignal( "PopupBossVDU" )
+	// player.EndSignal( "OnDeath" )
+
+	// ShowBossVDU( player, video )
+
+	// wait delay
+
+	// HideBossVDU( player )
+}
+
+void function HideBossVDU( entity player )
+{
+	// HideBossWaveform( player )
+	// entity cockpit = player.GetCockpit()
+
+	// if ( !IsValid( cockpit ) )
+	// 	return
+
+	// entity mainVGUI = cockpit.e.mainVGUI
+
+	// if ( !IsValid( mainVGUI ) )
+	// 	return
+
+	// if ( mainVGUI.s.bossVduOpen )
+	// {
+	// 	mainVGUI.s.bossVduOpen = false
+	// 	mainVGUI.GetPanel().RunAnimationScript( "CloseBossVDU" )
+	// }
+}
+
+void function ShowGenericBossVDU( entity player )
+{
+	// entity titan = GetBossAISpeaker()
+	// bool isHurt = false
+
+	// if ( !IsValid( titan ) )
+	// {
+	// 	return
+	// }
+	// else
+	// {
+	// 	int currentSegment = GetTitanCurrentRegenTab( titan )
+	// 	if ( currentSegment <= 1 )
+	// 		isHurt = true
+	// }
+
+	// entity marker = GetBossMarker( titan )
+	// if ( marker == null )
+	// 	return
+	// int id = GetBossMarkerBossID( marker )
+
+	// asset video = GetMercVDU( id, isHurt )
+
+	// ShowBossVDU( player, video )
+}
+
+void function ShowBossVDU( entity player, asset video )
+{
+	// HideBossWaveform( player )
+	// entity cockpit = player.GetCockpit()
+
+	// if ( !IsValid( cockpit ) )
+	// 	return
+
+	// entity mainVGUI = cockpit.e.mainVGUI
+
+	// if ( !IsValid( mainVGUI ) )
+	// 	return
+
+	// printt( video )
+	// if ( !mainVGUI.s.bossVduOpen )
+	// {
+	// 	mainVGUI.s.bossVduOpen = true
+	// }
+}
+
+void function ShowBossWaveform( entity player, entity titan, string speakerName, float duration = 9.0 )
+{
+	HideBossWaveform( player )
+	string name = speakerName
+
+	if ( name == "Generic" )
+	{
+		name = GetTitanName( titan )
+	}
+
+	printt( name )
+
+	asset image = $""
+
+	if ( IsValidBossTitan( name ) )
+		speakerName = name
+
+	file.waveform = CreateWaveform( name, TEAM_IMC, duration, titan )
+}
+
+void function HideBossWaveform( entity player )
+{
+	if ( file.waveform == null )
+		return
+
+	thread DestroyWaveform( file.waveform )
+	file.waveform = null
+}
+
+void function PlayBossTitanLine( entity boss, string conv, int bossIDOverride = -1, bool forceLine = false )
+{
+	int id = bossIDOverride
+	float timeout = BOSS_TITAN_LINE_TIMEOUT
+	float globalTimeout = timeout
+
+	if ( bossIDOverride < 0 )
+	{
+		entity marker = GetBossMarker( boss )
+		if ( marker == null )
+			return
+
+		id = GetBossMarkerBossID( marker )
+
+		if ( !IsGenericTitan( boss ) )
+		{
+			if ( conv == "bossTitan_2segmentsLeft" || conv == "bossTitan_1segmentLeft" ) // hack since bosses only have 2 lines
+			{
+				timeout *= 5
+			}
+		}
+	}
+
+	if ( conv in file.lastSaidLineTimes )
+	{
+		if ( Time() - file.lastSaidLineTimes[conv] < timeout && !forceLine )
+		{
+			return
+		}
+	}
+	else
+	{
+		file.lastSaidLineTimes[conv] <- Time()
+	}
+
+	if ( !forceLine && Time() - file.lastSaidLineTime < globalTimeout * 0.75 )
+		return
+
+	file.lastSaidLineTimes[conv] = Time()
+	file.lastSaidLineTime = Time()
+
+	string name = GetBossNameFromID( id )
+	string convName = conv + "_" + name.tolower()
+
+	file.bossTitan = boss
+
+	printt( "PlayBossTitanLine:" )
+	printt( conv )
+	printt( name )
+	printt( convName )
+
+	if ( DoesConversationExist( convName ) )
+		PlayConversationToLocalClient( convName )
+}
+
+void function OnBossMarkerCreated( entity ent )
+{
+	ArrayRemoveInvalid( file.bossTrackers )
+	if ( ent.GetTargetName() == BOSS_TITAN_MARKER_TARGETNAME )
+	{
+		file.bossTrackers.append( ent )
+	}
+}
+
+entity function GetBossAISpeaker()
+{
+	return file.bossTitan
+}
+
+string function GetTitanName( entity titan )
+{
+	string titanChassis = expect string( titan.Dev_GetAISettingByKeyField( "title" ) )
+	return titanChassis
+}

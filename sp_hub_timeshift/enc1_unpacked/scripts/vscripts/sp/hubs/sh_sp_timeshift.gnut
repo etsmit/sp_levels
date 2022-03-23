@@ -1,0 +1,1343 @@
+untyped
+
+const TIMEZONE_DAY = 0
+const TIMEZONE_NIGHT = 1
+const TIMEZONE_FROZEN = 3
+
+global function Temp_InitTimeshiftDialogue
+
+#if SERVER
+	global function Temp_PlayDialogue
+	global function PlayTimeShiftDialogue
+#endif //SERVER
+
+#if CLIENT
+	global function ServerCallback_Temp_PlayDialogue
+	global function ServerCallback_PlayTimeShiftDialogue
+
+	global struct TimeshiftCallerID
+	{
+		bool isValid = false
+		string nameLocString = ""
+		int teamIdx = -1
+		bool isRadioIntercept = false
+	}
+#endif //CLIENT
+
+struct
+{
+	#if CLIENT
+		table<string, TimeshiftCallerID> timeshiftCallerIDs
+	#endif
+
+	table<string,string> registeredDialog
+	array<string> registeredDialogIDs
+	array< entity > loudspeakerEnts
+} file
+
+
+
+
+void function InfoTargetCreated( entity infoTarget )
+{
+	file.loudspeakerEnts.append( infoTarget )
+	//info_target.kv.spawnflags = SF_INFOTARGET_ALWAYS_TRANSMIT_TO_CLIENT
+}
+
+
+
+void function Temp_InitTimeshiftDialogue()
+{
+	RegisterSignal( "OnStopTimeshiftDialogue" )
+	RegisterSignal( "OnTimeFlippedTimezoneDay" )
+	RegisterSignal( "OnTimeFlipped" )
+	RegisterSignal( "OnTimeFlippedTimezoneNight" )
+
+	RegisterOnscreenHint( "timeshift_hint_default", "#TIMESHIFT_HINT_DEFAULT" )
+	RegisterOnscreenHint( "timeshift_hint_past", "#TIMESHIFT_HINT_PAST" )
+	RegisterOnscreenHint( "timeshift_hint_present", "#TIMESHIFT_HINT_PRESENT" )
+	RegisterOnscreenHint( "timeshift_hint_combat", "#TIMESHIFT_HINT_COMBAT" )
+	RegisterOnscreenHint( "satchel_hint_tap_twice", "#SATCHEL_HINT_TAP_TWICE" )
+	RegisterOnscreenHint( "logbook_updated", "#HINT_LOGBOOK_UPDATED" )
+
+	#if CLIENT
+		AddCreateCallback( "info_target", InfoTargetCreated )
+	#endif //CLIENT
+
+	#if SERVER
+		AddClientCommandCallback( "TempDialogueFinished", ClientCommand_TempDialogueFinished )
+		RegisterSignal( "TempDialogueFinished" )
+		AddClientCommandCallback( "TimeShiftDialogueFinished", ClientCommand_TimeShiftDialogueFinished )
+		RegisterSignal( "TimeShiftDialogueFinished" )
+	#endif //SERVER
+
+	switch( GetMapName() )
+	{
+		case "sp_hub_timeshift":
+		case "sp_timeshift_spoke02":
+
+			//BT		Pilot, I recommend we split up, in order to locate Major Anderson more quickly. I can scout ahead to the main facility.
+			RegisterRadioDialogue( "diag_sp_vents_TS101_01_01_mcor_bt", "diag_sp_vents_TS101_01_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+
+			//---------------------------
+			// LECTURE HALLS (Intro hallways)
+			//---------------------------
+
+			//Scientist 1 - PA	...requests all teams working on World Sculptor artifact analysis report to the lecture hall for General Marder's presentation. Thank you
+			RegisterDialogue_Timeshift( "diag_sp_artifact_TS111_01_01_imc_scientist1", "diag_sp_artifact_TS111_01_01_imc_scientist1" )
+
+			//General Marder	By decisively neutralizing the Militia forces, we will in fact, safeguard the existence of the human race, extending its reach and power towards a prosperous, and bright future.
+			RegisterDialogue_Timeshift( "diag_sp_lecture_TS121_01_01_imc_genMarder", "diag_sp_lecture_TS121_01_01_imc_genMarder" )
+
+			//General Marder	Yes, test Pilot? May I help you?
+			RegisterDialogue_Timeshift( "diag_sp_lecture_TS121_03_01_imc_genMarder", "diag_sp_lecture_TS121_03_01_imc_genMarder" )
+
+			//General Marder	We have the room booked until 4:30, tell Fitz his test pilot group will have to wait.
+			//RegisterDialogue_Timeshift( "diag_sp_lecture_TS121_04_01_imc_genMarder", "diag_sp_lecture_TS121_04_01_imc_genMarder" )
+
+
+			//---------------------------
+			// VISTA HALLWAY
+			//---------------------------
+
+			//Scientist 2	 (very faint, almost background noise) ...found problems maintaining stability. I don't think we're ready for testing...
+			RegisterDialogue_Timeshift( "diag_sp_vistaHall_TS141_02_01_imc_scientist2", "diag_sp_vistaHall_TS141_02_01_imc_scientist2" )
+
+			//Scientist 3	(very faint, almost background noise) You're forgetting he's got Hammond in his corner, so if he says we go...we go.
+			RegisterDialogue_Timeshift( "diag_sp_vistaHall_TS141_03_01_imc_scientist3", "diag_sp_vistaHall_TS141_03_01_imc_scientist3" )
+
+			//IMC Security 1 - PA	 (ding) Security team Charlie, please report to the lecture hall.
+			//RegisterDialogue_Timeshift( "diag_sp_vistaHall_TS141_04_01_imc_security1", "diag_sp_vistaHall_TS141_04_01_imc_security1" )
+
+			//Scientist 4	 Pfft. Pilots.
+			RegisterDialogue_Timeshift( "diag_sp_vistaHall_TS141_05_01_imc_scientist4", "diag_sp_vistaHall_TS141_05_01_imc_scientist4" )
+
+			//Scientist 5	 Pilots. Thinking they run this place...
+			RegisterDialogue_Timeshift( "diag_sp_vistaHall_TS141_06a_01_imc_scientist5", "diag_sp_vistaHall_TS141_06a_01_imc_scientist5" )
+
+			//IMC Security 1 - PA	Reminder. Identification credentials must be displayed at all times. Any suspicious activity should be reported to your nearest automated security personnel.
+			RegisterDialogue_Timeshift( "diag_sp_vistaHall_TS141_07_01_imc_security1", "diag_sp_vistaHall_TS141_07_01_imc_security1" )
+
+			//---------------------------
+			// HUB FLAVOR
+			//---------------------------
+			//Strange... I am picking up traces of my own data signature within this area. The distortions must be affecting my scans.	diag_sp_extra_TS501_01_01_mcor_bt
+			RegisterDialogue( "diag_sp_extra_TS501_01_01_mcor_bt", "diag_sp_extra_TS501_01_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//Interesting. I am detecting traces of a massive energy explosion throughout this facility,
+			// however, your helmet data does not detect the same in the other timeline.
+			RegisterDialogue( "diag_sp_vistaHall_TS141_08_01_mcor_bt", "diag_sp_vistaHall_TS141_08_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			//BT These temporal distortions appear to be causing a rift in time. I advise caution until we have further information.
+			RegisterDialogue( "diag_sp_artifact_TS111_03a_01_mcor_bt", "diag_sp_artifact_TS111_03a_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//---------------------------
+			// CORPSE SEARCH
+			//---------------------------
+			//BT	None of these remains match the genetic profile of Major Anderson. 	diag_sp_watersEdge_TS150_01_01_mcor_bt
+			RegisterDialogue( "diag_sp_watersEdge_TS150_01_01_mcor_bt", "diag_sp_watersEdge_TS150_01_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			//---------------------------
+			// ANDERSON HELMET
+			//---------------------------
+
+			//Helmet nags
+
+			// BT	Uphold the mission. I am detecting a faint bio-signature in the lobby of main reception. Recommend you investigate.
+			RegisterDialogue( "diag_sp_overgrown_TS161_11_01_mcor_bt", "diag_sp_overgrown_TS161_11_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			// BT	Major Anderson's location is unknown. It is possible he proceeded through the entrance of the reception lobby.
+			RegisterDialogue( "diag_sp_overgrown_TS161_12_01_mcor_bt", "diag_sp_overgrown_TS161_12_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT	Pilot, there may be important data within Major Anderson's helmet. Retrieve it for analysis.
+			RegisterDialogue( "diag_sp_anderson_TS171_13_01_mcor_bt", "diag_sp_anderson_TS171_13_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT	I will analyze Major Anderson's helmet for mission critical data. I recommend you retrieve it.
+			RegisterDialogue( "diag_sp_anderson_TS171_14_01_mcor_bt", "diag_sp_anderson_TS171_14_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//If conversation is bypassed after player grabs helmet
+
+			//BT	Pilot, bring me his helmet, I will analyze it.
+			RegisterDialogue( "diag_sp_anderson_TS171_12_01_mcor_bt", "diag_sp_anderson_TS171_12_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			//BT	Pilot, if you hand me Anderson's helmet, I will analyze it.
+			RegisterDialogue( "diag_sp_anderson_TS171_14a_01_mcor_bt", "diag_sp_anderson_TS171_14a_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//---------------------------
+			// HOLOGRAM
+			//---------------------------
+
+			// BT	With the death of Anderson, command of Special Operation 2-1-7 now transfers to you.
+			RegisterDialogue( "diag_sp_anderson_TS171_15_01_mcor_bt", "diag_sp_anderson_TS171_15_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			// BT	Congratulations on your field promotion, Pilot Cooper.
+			RegisterDialogue( "diag_sp_overgrown_TS161_15a_01_mcor_bt", "diag_sp_overgrown_TS161_15a_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			// BT	The following is Anderson's mission briefing from Commander Sarah Briggs of the Militia SRS.
+			RegisterDialogue( "diag_sp_overgrown_TS161_15_01_mcor_bt", "diag_sp_overgrown_TS161_15_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+
+
+
+
+			//BT: Pilot, the data Major Anderson collected appears to be damaged and incomplete.
+			//We are duty-bound to uphold and fulfill Special Operation 217. Recommend we locate Anderson's wrist mounted device before proceeding.
+			RegisterDialogue( "diag_sp_overgrown_TS161_16_01_mcor_bt", "diag_sp_overgrown_TS161_16_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//---------------------------
+			// ZIPLINE JAVELIN THROW
+			//---------------------------
+			// BT	I detect a breach in the Security Services building. I will provide access.
+			RegisterDialogue( "diag_sp_overgrown_TS161_24_01_mcor_bt", "diag_sp_overgrown_TS161_24_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			// BT	I will remain here and scan the ringed structure while you investigate the facility for intel and the missing device.
+			RegisterDialogue( "diag_sp_overgrown_TS161_26_01_mcor_bt", "diag_sp_overgrown_TS161_26_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//Zipline Nags
+
+			// BT	The breach in the security services building is now accessible. Recommend you start your search for the device there while I continue scanning the ringed structure here.
+			RegisterDialogue( "diag_sp_overgrown_TS161_25_01_mcor_bt", "diag_sp_overgrown_TS161_25_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			// BT	Advisory: Use the zipline to access the upper section of the Security Services building. I will remain here until you return.
+			RegisterDialogue( "diag_sp_overgrown_TS161_27_01_mcor_bt", "diag_sp_overgrown_TS161_27_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			// BT	I suspect the ringed structure is somehow related to the devastation here. Further analysis is required. Recommend you locate Anderson's wrist-mounted device in the meantime.
+			RegisterDialogue( "diag_sp_overgrown_TS161_28_01_mcor_bt", "diag_sp_overgrown_TS161_28_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			// BT	Finding Anderson's wrist mounted device should be our top priority. I suggest you navigate to the breach in Security Services to continue the search.
+			RegisterDialogue( "diag_sp_overgrown_TS161_29b_01_mcor_bt", "diag_sp_overgrown_TS161_29b_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			//---------------------------
+			// SECURITY SERVICES
+			//---------------------------
+			//IMC Security 1 PA	Unauthorized personnel. Unauthorized personnel detected.
+			//RegisterDialogue( "diag_sp_security_TS181_01_01_imc_facilityPA", "diag_sp_security_TS181_01_01_imc_facilityPA" )
+
+			//IMC Security 1 PA	Unauthorized personnel detected. Activate automated security.
+			RegisterDialogue( "diag_sp_security_TS181_05_01_imc_facilityPA", "diag_sp_security_TS181_05_01_imc_facilityPA", PRIORITY_NO_QUEUE )
+
+			//Ruined Security PA	Not authorized….bleep….blorp….credentials…...blerp….standby
+			//RegisterDialogue_Timeshift( "diag_sp_security_TS181_02_01_imc_stalkerOld1", "diag_sp_security_TS181_02_01_imc_stalkerOld1" )
+
+			//Ruined Security PA	Security…...bleep….<static>....breach….not authorized….
+			//RegisterDialogue_Timeshift( "diag_sp_security_TS181_03_01_imc_stalkerOld2", "diag_sp_security_TS181_03_01_imc_stalkerOld2" )
+
+			//IMC Security 1 PA	Unauthorized personnel breach at Security Services. Unable to acquire target.
+			//RegisterDialogue( "diag_sp_security_TS181_04_01_imc_facilityPA", "diag_sp_security_TS181_04_01_imc_facilityPA", PRIORITY_NO_QUEUE )
+
+			//Ruined Security PA	Unauthorized - static - detected. - static - automated security
+			RegisterDialogue( "diag_sp_security_TS181_06_01_imc_facilityPA", "diag_sp_security_TS181_06_01_imc_facilityPA", PRIORITY_NO_QUEUE )
+
+			//Grunt Radio (Security Booth)	Unauthorized personnel breach at security services. Intruder may have advanced cloaking package.
+			RegisterDialogue( "diag_sp_security_TS181_07_01_imc_grunt1", "diag_sp_security_TS181_07_01_imc_grunt1", PRIORITY_NO_QUEUE )
+
+			//IMC Security 2 (Radio)	Copy that, laser meshes coming online. Sending a team to investigate.
+			RegisterDialogue_Timeshift( "diag_sp_security_TS181_08_01_imc_grunt2", "diag_sp_security_TS181_08_01_imc_grunt2" )
+
+			//IMC Security 3 - PA	Attention. Security lockdown measures are being temporarily activated due to a minor security breach in your area. Thank you for your patience.
+			RegisterDialogue_Timeshift( "diag_sp_security_TS181_09_01_imc_grunt3", "diag_sp_security_TS181_09_01_imc_grunt3" )
+
+			//---------------------------
+			// TIMESHIFT DEVICE
+			//---------------------------
+			//Cooper: Sorry Anderson
+			RegisterDialogue( "diag_sp_extra_GB101_65_01_mcor_player", "diag_sp_extra_GB101_65_01_mcor_player", PRIORITY_NO_QUEUE )
+
+			//BT	Well done, Pilot. You located the wrist mounted device. SRS intel suggests if equipped you can withstand and manipulate the temporal shifts.
+			RegisterRadioDialogue( "diag_sp_wildlifeStudy_TS191_01_01_mcor_bt", "diag_sp_wildlifeStudy_TS191_01_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+
+			//BT	Pilot, recommend you equip the device.
+			RegisterRadioDialogue( "diag_sp_wildlifeStudy_TS191_09_01_mcor_bt", "diag_sp_wildlifeStudy_TS191_09_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+			//BT	The wrist mounted device may be useful. Recommend you equip the device.
+			RegisterRadioDialogue( "diag_sp_wildlifeStudy_TS191_10_01_mcor_bt", "diag_sp_wildlifeStudy_TS191_10_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+			//BT	Advisory: Pilot, I recommend you equip the wrist mounted device.
+			RegisterRadioDialogue( "diag_sp_wildlifeStudy_TS191_11_01_mcor_bt", "diag_sp_wildlifeStudy_TS191_11_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+
+			//BT	Pilot Cooper, I have transferred some of my AI functions to the device, in order to permit communication across temporal shifts.
+			RegisterRadioDialogue( "diag_sp_wildlifeStudy_TS191_12_01_mcor_bt", "diag_sp_wildlifeStudy_TS191_12_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+
+			//---------------------------
+			// WILDLIFE RESEARCH
+			//---------------------------
+
+			//IMC Security 3 - PA	...ask that all non-combat personnel and research teams proceed directly to the nearest Emergency Shelter access point due to a minor security breach. Please remain calm and contact the nearest automated security personnel for assistance.
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_13_01_imc_security3", "diag_sp_wildlifeStudy_TS191_13_01_imc_security3" )
+
+			//IMC Grunt 1 (Radio)	….last spotted him headed towards Wildlife research. Get the rest of the eggheads evacuated and set up a choke point.
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_14_01_imc_grunt1", "diag_sp_wildlifeStudy_TS191_14_01_imc_grunt1", "#TIMESHIFT_IMC_SOLDIER01", TEAM_IMC, true )
+
+
+			//IMC Base (Radio)	Additional laser meshes coming online. Let's box him in.
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_15_01_imc_command", "diag_sp_wildlifeStudy_TS191_15_01_imc_command", "#TIMESHIFT_IMC_SECURITY_HQ", TEAM_IMC, true )
+
+			//IMC Grunt 3 (Radio)	Control, we have initiated contact with the intruder but his movement is...erratic.
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_18_01_imc_grunt3", "diag_sp_wildlifeStudy_TS191_18_01_imc_grunt3", "#TIMESHIFT_IMC_SOLDIER03", TEAM_IMC, true )
+			//RegisterRadioDialogue( "diag_sp_wildlifeStudy_TS191_18_01_imc_grunt3", "diag_sp_wildlifeStudy_TS191_18_01_imc_grunt3", 	PRIORITY_NORMAL, "#NPC_DARNO_NAME", TEAM_IMC )
+
+			//IMC Grunt 8 (Radio)	In position. Activating turrets at south-east corridor.
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_26_01_imc_grunt8", "diag_sp_wildlifeStudy_TS191_26_01_imc_grunt8", "#TIMESHIFT_IMC_SOLDIER02", TEAM_IMC, true )
+
+			//IMC Base (Radio)	We have an intruder, heavily armed and dangerous. All units in the area proceed to the south-east elevator banks on level 4 to intercept.
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_19_01_imc_command", "diag_sp_wildlifeStudy_TS191_19_01_imc_command", "#TIMESHIFT_IMC_SECURITY_HQ", TEAM_IMC, true )
+
+			//IMC Grunt  4 (Radio)	Copy that, control!
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_20_01_imc_grunt4", "diag_sp_wildlifeStudy_TS191_20_01_imc_grunt4", "#TIMESHIFT_IMC_SOLDIER01", TEAM_IMC, true )
+
+			//IMC Grunt 5 (Radio)	On our way, control!
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_21_01_imc_grunt5", "diag_sp_wildlifeStudy_TS191_21_01_imc_grunt5", "#TIMESHIFT_IMC_SOLDIER02", TEAM_IMC, true )
+
+			//IMC Base (Radio)	Security, Beta 4, do you copy? Beta 4! What is your position?
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_16_01_imc_command", "diag_sp_wildlifeStudy_TS191_16_01_imc_command", "#TIMESHIFT_IMC_SECURITY_HQ", TEAM_IMC, true )
+
+			//IMC Base (Radio)	Has the intruder been neutralized?
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_22_01_imc_command", "diag_sp_wildlifeStudy_TS191_22_01_imc_command", "#TIMESHIFT_IMC_SECURITY_HQ", TEAM_IMC, true )
+
+			//IMC Grunt 6 (Radio)	Standby, we can't get a lock on his position
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_23_01_imc_grunt6", "diag_sp_wildlifeStudy_TS191_23_01_imc_grunt6", "#TIMESHIFT_IMC_SOLDIER03", TEAM_IMC, true )
+
+			//IMC Base (Radio)	Sitrep on the unknown target.
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_24_01_imc_command", "diag_sp_wildlifeStudy_TS191_24_01_imc_command", "#TIMESHIFT_IMC_SECURITY_HQ", TEAM_IMC, true )
+
+			//IMC Grunt 7 (Radio)	We're getting our asses kicked out here, that's the bloody SitRep!
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_25_01_imc_grunt7", "diag_sp_wildlifeStudy_TS191_25_01_imc_grunt7" )
+
+			//--------------------------------------------
+			// HUMAN RESEARCH - INTEL LAB #1 - CIVILIANS
+			//-----------------------------------------------
+			//General Marder	We're going forward with this. The test must be completed.
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS201_01_01_imc_genMarder", "diag_sp_humanStudy_TS201_01_01_imc_genMarder", "#TIMESHIFT_AUDIOLOG_NAME_MARDER", TEAM_IMC, true )
+
+			//General Marder	If we don't test the Sculptor Core now we may never have another chance. Zulu Team, prep the Sculptor Core for delivery.
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS201_02_01_imc_genMarder", "diag_sp_humanStudy_TS201_02_01_imc_genMarder", "#TIMESHIFT_AUDIOLOG_NAME_MARDER", TEAM_IMC, true )
+
+			//Scientist 1	What about the intruder?!
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS201_03_01_imc_scientist1", "diag_sp_humanStudy_TS201_03_01_imc_scientist1" )
+
+			//Scientist 1	He's here!
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS202_01_01_imc_scientist1", "diag_sp_humanStudy_TS202_01_01_imc_scientist1" )
+
+			//Scientist 2	We have to leave!
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS201_04_01_imc_scientist2", "diag_sp_humanStudy_TS201_04_01_imc_scientist2" )
+
+
+
+
+			//--------------------------------------------
+			// INTEL LAB #1
+			//-----------------------------------------------
+
+			//BT	Pilot, a fragment of Anderson's damaged log may be relevant here. Activating log playback...
+			RegisterRadioDialogue( "diag_sp_humanStudy_TS201_11_01_imc_bt", "diag_sp_humanStudy_TS201_11_01_imc_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+			//IMC Security 1	Intruder spotted! Code 83!
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS201_14_01_imc_security1", "diag_sp_humanStudy_TS201_14_01_imc_security1" )
+
+			//IMC Security 2	12-18! Militia Pilot in sight!
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS201_15_01_imc_security2", "diag_sp_humanStudy_TS201_15_01_imc_security2" )
+
+			//--------------------------------
+			// DATA TERMINAL NAGS
+			//--------------------------------
+			/*
+			//BT	There is a data terminal nearby. Recommend you download any intel that can be passed on to SRS.
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS201_05_01_imc_bt", "diag_sp_humanStudy_TS201_05_01_imc_bt" )
+
+			//BT	Uphold the mission: Pilot, there is a data terminal nearby. Recommend you run a bypass on it to gather intel.
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS201_08_01_imc_bt", "diag_sp_humanStudy_TS201_08_01_imc_bt" )
+
+			//BT	Pilot, I detect another data terminal nearby.
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS201_16_01_mcor_bt", "diag_sp_humanStudy_TS201_16_01_mcor_bt" )
+			*/
+
+
+			//-----------------------
+			// INTEL LAB #2
+			//-----------------------
+
+
+
+			//--------------------------------------------
+			// HUMAN RESEARCH - HUMAN ROOM
+			//-----------------------------------------------
+
+			//Militia Prisoner 1		What? What where am I?
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS202_03_01_mcor_prisoner1", "diag_sp_humanStudy_TS202_03_01_mcor_prisoner1" )
+
+			//Militia Prisoner 2		What's going on? This isn't Colony....
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS202_04_01_mcor_prisoner2", "diag_sp_humanStudy_TS202_04_01_mcor_prisoner2" )
+
+			//Militia Prisoner 3		Where's James? Ugh...my head....
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS202_05_01_mcor_prisoner3", "diag_sp_humanStudy_TS202_05_01_mcor_prisoner3" )
+
+
+			//Scientist 5 (Radio)	Sculptor Core prepped for delivery and en route to the test chamber.
+			RegisterDialogue_Timeshift( "diag_sp_miniSculptor_TS221_01_01_imc_scientist5", "diag_sp_miniSculptor_TS221_01_01_imc_scientist5" )
+
+			//General Marder - Radio	Spin up the outer rings. Test sequence will commence once Sculptor Core is in place.
+			RegisterDialogue_Timeshift( "diag_sp_miniSculptor_TS221_02_01_imc_genMarder", "diag_sp_miniSculptor_TS221_02_01_imc_genMarder", "#TIMESHIFT_AUDIOLOG_NAME_MARDER", TEAM_IMC, true )
+
+
+			//Scientist 5	PA	Ark successfully delivered to fold weapon rings. Commencing test run.
+			RegisterDialogue_Timeshift( "diag_sp_humanStudy_TS203_01_01_imc_sci", "diag_sp_humanStudy_TS203_01_01_imc_sci" )
+
+
+			//BT: Pilot, the rings at my location contain a large amount of residual energy. This was the Ark's final destination. //diag_sp_targeting_TS231_01_01_mcor_bt
+			RegisterRadioDialogue( "diag_sp_targeting_TS231_01_01_mcor_bt", "diag_sp_targeting_TS231_01_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+			//BT: Anderson's plan indicated a recon mission within close proximity to the center of the active rings.
+			RegisterRadioDialogue( "diag_sp_targeting_TS231_07_01_mcor_bt", "diag_sp_targeting_TS231_07_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+
+			//-----------------------
+			// INTEL LAB #3
+			//-----------------------
+
+			//That was Major Anderson's final recording.
+			RegisterRadioDialogue( "diag_sp_targeting_TS232_02_01_mcor_bt", "diag_sp_targeting_TS232_02_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+			//Cooper, based on your recon of this facility, I may have a plan. Meet me outside.
+			RegisterRadioDialogue( "diag_sp_targeting_TS232_03_01_mcor_bt", "diag_sp_targeting_TS232_03_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+
+			//Security -PA	Automated security personnel: Please target all non-IMC military subjects.
+			RegisterDialogue_Timeshift( "diag_sp_targeting_TS231_11_01_imc_facilityPA", "diag_sp_targeting_TS231_11_01_imc_facilityPA" )
+
+			//Security - PA	Attention. Automated security personnel have now been deployed in all non-combatant sectors. Please display security credentials clearly to avoid accidental termination. Thank you.
+			RegisterDialogue_Timeshift( "diag_sp_targeting_TS231_12_01_imc_facilityPA", "diag_sp_targeting_TS231_12_01_imc_facilityPA" )
+
+
+			//-----------------------
+			// LOBBY REDUX
+			//-----------------------
+			//BT	Uphold the mission: Pilot, I recommend you meet me at the rings in order to scan the Sculptor Core's energy signature.
+			RegisterRadioDialogue( "diag_sp_targeting_TS231_13_01_mcor_bt", "diag_sp_targeting_TS231_13_01_mcor_bt", PRIORITY_HIGH,	"#NPC_BT_NAME", TEAM_MILITIA )
+
+
+
+			//---------------------------
+			// HUB FIGHT
+			//---------------------------
+
+			//BT	It appears that whatever actions you took in the past have caused the remaining automated security systems to be quite hostile towards us in the present.
+			RegisterDialogue( "diag_sp_pristine_TS241_01_01_mcor_bt", "diag_sp_pristine_TS241_01_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			//---------------------------
+			// NAGS - EMBARK BT
+			//---------------------------
+			//BT	Tactical analysis: we will be more effective in this situation as a combined unit.
+			RegisterDialogue( "diag_sp_pristine_TS241_02_01_mcor_bt", "diag_sp_pristine_TS241_02_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT	Overwhelming hostile forces - recommend you embark.
+			RegisterDialogue( "diag_sp_pristine_TS241_03_01_mcor_bt", "diag_sp_pristine_TS241_03_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT	Pilot, if you embark, your wrist mounted device may work to transport both of us to the past
+			//RegisterDialogue( "diag_sp_pristine_TS241_04_01_mcor_bt", "diag_sp_pristine_TS241_04_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT Tactical recommendation: Pilots should embark the Titan against overwhelming hostile forces.
+			RegisterDialogue( "diag_sp_tsAlts_TS401_10_mcor_bt", "diag_sp_tsAlts_TS401_10_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT	You must get to the center of those rings. Cross the bridge.
+			RegisterDialogue( "diag_sp_tsAlts_TS401_13_mcor_bt", "diag_sp_tsAlts_TS401_13_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			//---------------------------
+			// NAGS - BRIDGE CONTROLS
+			//---------------------------
+
+			//BT	Pilot, I have located the controls to extend the bridge to the rings. I have marked it on your HUD.
+			RegisterDialogue( "diag_sp_pristine_TS241_07_01_mcor_bt", "diag_sp_pristine_TS241_07_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT	Uphold the mission: I have marked the bridge controls on your HUD. You will need to extend the bridge before the World Sculptor testbed explodes.
+			RegisterDialogue( "diag_sp_pristine_TS241_08_01_mcor_bt", "diag_sp_pristine_TS241_08_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//---------------------------
+			// NAGS - SCAN THE RINGS
+			//---------------------------
+			//BT	Uphold the mission: You will need to get as close as possible to the center of the rings in the past. Use the bridge to access and scan the Ark.
+			RegisterDialogue( "diag_sp_pristine_TS241_10_01_mcor_bt", "diag_sp_pristine_TS241_10_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT		Pilot, we must uphold the mission. I advise you get as close as possible to the center of the rings.
+			RegisterDialogue( "diag_sp_pristine_TS241_11a_01_mcor_bt", "diag_sp_pristine_TS241_11a_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT	To uphold the mission, you will need to get as close as possible to the center of the active rings in the past.
+			RegisterDialogue( "diag_sp_pristine_TS241_12a_01_mcor_bt", "diag_sp_pristine_TS241_12a_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//BT	Pilot, I recommend you scan the center of the rings in order to uphold the mission. Use the service bridge in the past to access the Ark.
+			RegisterDialogue( "diag_sp_pristine_TS241_13a_01_mcor_bt", "diag_sp_pristine_TS241_13a_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			//---------------------------
+			// IMC MELTDOWN PANIC
+			//---------------------------
+
+			//The Ark! It's losing stability.
+			RegisterDialogue_Timeshift( "diag_sp_meltDown_TS252_05_01_imc_grunt", "diag_sp_meltDown_TS252_05_01_imc_grunt" )
+
+			//We have to get out of here. That things going to blow.
+			RegisterDialogue_Timeshift( "diag_sp_meltDown_TS252_06_01_imc_grunt", "diag_sp_meltDown_TS252_06_01_imc_grunt" )
+
+			//Defend the Ark. That's our duty.
+			RegisterDialogue_Timeshift( "diag_sp_meltDown_TS252_07_01_imc_grunt", "diag_sp_meltDown_TS252_07_01_imc_grunt" )
+
+			//Scientist 1 (Radio)	The Sculptor Core is overloading!
+			RegisterDialogue_Timeshift( "diag_sp_pristine_TS241_20_01_imc_scientist1", "diag_sp_pristine_TS241_20_01_imc_scientist1" )
+
+			//Scientist 2 (Radio)	Everyone evacuate now!
+			RegisterDialogue_Timeshift( "diag_sp_pristine_TS241_21_01_imc_scientist2", "diag_sp_pristine_TS241_21_01_imc_scientist2" )
+
+
+			//General Marder (Radio)	Initiate the test - anyone caught in the test zone will still provide valuable data as they are deconstructed.
+			//RegisterDialogue_Timeshift( "diag_sp_pristine_TS241_05_01_imc_genMarder", "diag_sp_pristine_TS241_05_01_imc_genMarder" )
+
+			//General Marder (Radio)	Damn the safety protocols, initiate the test, now!
+			RegisterDialogue_Timeshift( "diag_sp_pristine_TS241_06_01_imc_genMarder", "diag_sp_pristine_TS241_06_01_imc_genMarder", "#TIMESHIFT_AUDIOLOG_NAME_MARDER", TEAM_IMC, true )
+
+			//BT	The effects of close proximity to the Sculptor Core are unknown. Use caution when scanning. There is some data that suggests your wrist-mounted device will protect you.
+			RegisterDialogue( "diag_sp_pristine_TS241_09_01_mcor_bt", "diag_sp_pristine_TS241_09_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			//IMC Grunt 10 (Radio)	Vanguard-class titan! Taking heavy casualties!
+			RegisterDialogue_Timeshift( "diag_sp_pristine_TS241_16_01_imc_grunt2", "diag_sp_pristine_TS241_16_01_imc_grunt2", "#TIMESHIFT_IMC_SOLDIER01", TEAM_IMC, true )
+
+			//IMC Grunt 11 (Radio)	Where'd it come from!
+			RegisterDialogue_Timeshift( "diag_sp_pristine_TS241_17_01_imc_grunt3", "diag_sp_pristine_TS241_17_01_imc_grunt3", "#TIMESHIFT_IMC_SOLDIER02", TEAM_IMC, true )
+
+			//IMC Base (Radio)	Copy that. Do not allow the intruder to reach the Sculptor Core under any circumstances.
+			RegisterDialogue_Timeshift( "diag_sp_pristine_TS241_18_01_imc_command", "diag_sp_pristine_TS241_18_01_imc_command", "#TIMESHIFT_IMC_SECURITY_HQ", TEAM_IMC, true )
+
+			//IMC Grunt 9 (Radio)	Requesting reinforcements!
+			RegisterDialogue_Timeshift( "diag_sp_pristine_TS241_15_01_imc_grunt1", "diag_sp_pristine_TS241_15_01_imc_grunt1", "#TIMESHIFT_IMC_SOLDIER03", TEAM_IMC, true )
+
+			//IMC Base (Radio)	Reinforcements and orbital Titanfalls are en route.
+			RegisterDialogue_Timeshift( "diag_sp_pristine_TS241_19_01_imc_command", "diag_sp_pristine_TS241_19_01_imc_command", "#TIMESHIFT_IMC_SECURITY_HQ", TEAM_IMC, true )
+
+			//BT	Pilot, after you compete the scan.... *static* *static*
+			//RegisterDialogue( "diag_sp_pristine_TS241_22_01_mcor_bt", "diag_sp_pristine_TS241_22_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+			//---------------------------
+			// LEVEL END
+			//---------------------------
+
+			//BT	Well done, Pilot. Scan complete.
+			RegisterDialogue( "diag_sp_overgrown_TS161_29_01_mcor_bt", "diag_sp_overgrown_TS161_29_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			// This version of the Fold Weapon was only a small scale test.
+			RegisterDialogue( "diag_sp_overgrown_TS161_29a_01_mcor_bt", "diag_sp_overgrown_TS161_29a_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			// As Anderson discovered, the IMC intend to destroy the Militia planet of Harmony using the full scale version of this weapon.
+			RegisterDialogue( "diag_sp_overgrown_TS161_30a_01_mcor_bt", "diag_sp_overgrown_TS161_30a_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//Pilot Cooper, our journey is far from over.
+			RegisterDialogue( "diag_sp_overgrown_TS161_30b_01_mcor_bt", "diag_sp_overgrown_TS161_30b_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+			//We must get this data to the fleet
+			RegisterDialogue( "diag_sp_overgrown_TS161_31_01_mcor_bt", "diag_sp_overgrown_TS161_31_01_mcor_bt", PRIORITY_NO_QUEUE )
+
+
+
+			//---------------------------
+			// AUDIO LOGS
+			//---------------------------
+
+			//General Marder Call it fate. Call it evolution. Call it what you will - the truth is we have discovered our resolution
+			//and it lies in a weapon with a powerful ability to fold space and time.
+			RegisterDialogue_Timeshift( "diag_sp_audioLog_TS131_19_01_imc_genMarder", "diag_sp_audioLog_TS131_19_01_imc_genMarder" )
+
+			// Dr. Alexander Darren log fourteen point six. The intruder has some kind of advanced tech and is slaughtering our response teams.
+			// Tyler in Wildlife Research said 2 teams were taken out at the elevator banks in a matter of seconds...by one guy!
+			RegisterDialogue_Timeshift( "diag_sp_anderson_TS171_01_01_imc_scientist1", "diag_sp_anderson_TS171_01_01_imc_scientist1" )
+
+
+			// Audio Log - Scientist 2	The trial-run of the Sculptor Core will continue as planned, but you have to get security to evacuate all Tier 1 personnel.
+			// General Marder and his key team members are transferring to remote observation.
+			RegisterDialogue_Timeshift( "diag_sp_anderson_TS171_02_01_imc_scientist2", "diag_sp_anderson_TS171_02_01_imc_scientist2" )
+
+
+			//Audio log 4	This is Dr. Colby Marvin. I don't know how to explain it, but a Vanguard-Class Titan just appeared out of nowhere. The test is still underway. It will be completed.
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_09_01_imc_sci", "diag_sp_ambScience_TS551_09_01_imc_sci" )
+
+			//Audio log 5	 Dr. Altamirano log seven point six. General Marder is gone. He's making us stay to complete the test. I don't trust this thing. The Ark is unstable.
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_10_01_imc_sci", "diag_sp_ambScience_TS551_10_01_imc_sci" )
+
+			//Audio log 6	Dr. Tyler Parsons Log three point Two. I found an IMC security guard in the targetting room. His body was... I don't know how to explain it. It was warped. Backwards. Taking him to Human research.
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_11_01_imc_sci", "diag_sp_ambScience_TS551_11_01_imc_sci" )
+
+			//Audio log 7	...Dr. Ehrenberg log eleven point four. Further research still leaves questions about the Fold Weapon and its intended purpose. I don't think we're using it right and that may cause a problem. Marder thinks it's worth it. Well I'm going on record - this is a bad idea.
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_12_01_imc_sci", "diag_sp_ambScience_TS551_12_01_imc_sci" )
+
+			//Marders Log 21b - Human specimen 3 point 4. The experiments on the IMS Odyssey's colonists are underway.
+			//Soon we will discover the long lasting effects the Ark has on organic matter and brain function.
+			RegisterDialogue_Timeshift( "diag_sp_audioLog_TS132_01_01_imc_genMarder", "diag_sp_audioLog_TS132_01_01_imc_genMarder" )
+
+
+			//---------------------------
+			// AUDIO LOGS - MARDER LECTURE
+			//---------------------------
+
+			//General Marder
+			//But lest we lose sight of the bigger picture - remember those losses are ultimately
+			//replaceable by the inexorable march of human civilization.
+			RegisterDialogue_Timeshift( "lectureLogA", "diag_sp_audioLog_TS131_28_01_imc_genMarder" )
+
+			//General Marder	By decisively neutralizing the Militia forces, we will in fact, safeguard the existence of the human race,
+			//extending its reach and power towards a prosperous, and bright future.
+			RegisterDialogue_Timeshift( "lectureLogB", "diag_sp_audioLog_TS131_29_01_imc_genMarder" )
+
+			//General Marder	Yes, test Pilot? May I help you?
+			RegisterDialogue_Timeshift( "lectureLogC", "diag_sp_audioLog_TS131_30_01_imc_genMarder" )
+
+
+			//------------------------------------
+			// AUDIO LOGS - MARDER LECTURE FULL
+			//-------------------------------------
+			//I would like to spend some time today to talk about the value of human life.
+			RegisterDialogue_Timeshift( "tedTalk01", "diag_sp_audioLog_TS131_01_01_imc_genMarder" )
+
+			//There is no value to human life.
+			RegisterDialogue_Timeshift( "tedTalk02", "diag_sp_audioLog_TS131_02_01_imc_genMarder" )
+
+			//Now that I have your attention...to be more precise...human life - to a certain limit - is expendable.
+			RegisterDialogue_Timeshift( "tedTalk03", "diag_sp_audioLog_TS131_03_01_imc_genMarder" )
+
+			//We are...self-perpetuating yet self-destructive...adaptable yet flawed...and always, always resource intensive.
+			RegisterDialogue_Timeshift( "tedTalk04", "diag_sp_audioLog_TS131_04_01_imc_genMarder" )
+
+			//We are endless consumers of resources.
+			RegisterDialogue_Timeshift( "tedTalk05", "diag_sp_audioLog_TS131_05_01_imc_genMarder" )
+
+			//But most relevant to our research here is - one...undeniable...fact: That human life...is abundant.
+			RegisterDialogue_Timeshift( "tedTalk06", "diag_sp_audioLog_TS131_06_01_imc_genMarder" )
+
+			//Overpopulation...of any colonized world is a given.
+			RegisterDialogue_Timeshift( "tedTalk07", "diag_sp_audioLog_TS131_07_01_imc_genMarder" )
+
+			//Through the lens of cold objectivity, it is irresponsible to say that all individuals on such worlds are actually indispensable.
+			RegisterDialogue_Timeshift( "tedTalk08", "diag_sp_audioLog_TS131_08_01_imc_genMarder" )
+
+			//Millions of humans die across the colonized worlds every day by any number of causes. Human life...is expendable.
+			RegisterDialogue_Timeshift( "tedTalk09", "diag_sp_audioLog_TS131_09_01_imc_genMarder" )
+
+			//Now, our problem is twofold. On the one hand, we are faced with a hostile Frontier populace opposed to our commercial pursuits for the greater good.
+			RegisterDialogue_Timeshift( "tedTalk10", "diag_sp_audioLog_TS131_10_01_imc_genMarder" )
+
+			//And on the other hand - there is a never-ending cry for natural resources, demanded of us by the greater populations of the Core Systems.
+			RegisterDialogue_Timeshift( "tedTalk11", "diag_sp_audioLog_TS131_11_01_imc_genMarder" )
+
+			//We must have order on the Frontier, if we are to achieve true progress, but the Militia - in its provincial, myopic lack of vision - refuses to accept this.
+			RegisterDialogue_Timeshift( "tedTalk12", "diag_sp_audioLog_TS131_12_01_imc_genMarder" )
+
+			//Thus we are at war.
+			RegisterDialogue_Timeshift( "tedTalk13", "diag_sp_audioLog_TS131_13_01_imc_genMarder" )
+
+			//Now the bitter truth - Reinforcements from the core systems will not arrive for two more years. The Militia gains strength day by day, taking back one one planet after another.
+			RegisterDialogue_Timeshift( "tedTalk14", "diag_sp_audioLog_TS131_14_01_imc_genMarder" )
+
+			//Our choices are limited. Drastic action must be taken.
+			RegisterDialogue_Timeshift( "tedTalk15", "diag_sp_audioLog_TS131_15_01_imc_genMarder" )
+
+			//Again, I remind you all of one, simple, truth: that human life...is abundant.
+			RegisterDialogue_Timeshift( "tedTalk16", "diag_sp_audioLog_TS131_16_01_imc_genMarder" )
+
+			//And...as distasteful as it may sound, human life is, in truth - expendable.
+			RegisterDialogue_Timeshift( "tedTalk17", "diag_sp_audioLog_TS131_17_01_imc_genMarder" )
+
+			//And so that brings us to this planet - Typhon, where we have discovered a gift. A machine that will do more than change the tide.
+			RegisterDialogue_Timeshift( "tedTalk18", "diag_sp_audioLog_TS131_18_01_imc_genMarder" )
+
+			//Call it fate. Call it evolution. Call it what you will - the truth is we have discovered our resolution and it lies in a weapon with a powerful ability to fold space and time.
+			RegisterDialogue_Timeshift( "tedTalk19", "diag_sp_audioLog_TS131_19_01_imc_genMarder" )
+
+			//We don't know who built it but we do know that it is quite old.
+			RegisterDialogue_Timeshift( "tedTalk20", "diag_sp_audioLog_TS131_20_01_imc_genMarder" )
+
+			//And most importantly, we have learned enough to bring it to life.
+			RegisterDialogue_Timeshift( "tedTalk21", "diag_sp_audioLog_TS131_21_01_imc_genMarder" )
+
+			//As we use this Fold Weapon, we will manipulate spacetime targeting anything we desire -  Sundering full scale planets.
+			RegisterDialogue_Timeshift( "tedTalk22", "diag_sp_audioLog_TS131_23_01_imc_genMarder" )
+
+			//Our restoration efforts in the mountains are nearly complete, but one task remains.
+			RegisterDialogue_Timeshift( "tedTalk23", "diag_sp_audioLog_TS131_24_01_imc_genMarder" )
+
+			//We must complete a small scale test here first, to tune the power source or The Ark as our colleagues tend to call it.
+			RegisterDialogue_Timeshift( "tedTalk24", "diag_sp_audioLog_TS131_25_01_imc_genMarder" )
+
+			//Once we have accomplished this, we will transfer the power source, The Ark, to the full scale site, and destroy one populated Militia planet, and then another, until they capitulate.
+			RegisterDialogue_Timeshift( "tedTalk25", "diag_sp_audioLog_TS131_26_01_imc_genMarder" )
+
+			//[We will be] Opening an Einstein–Rosen bridge sending through thousands of concentrated gravitational waves, [which will be] ripping apart - sundering every molecule, every atom, and every living thing we target resulting in total loss of life.
+			RegisterDialogue_Timeshift( "tedTalk26", "diag_sp_audioLog_TS131_27_01_imc_genMarder" )
+
+			//But lest we lose sight of the bigger picture - remember those losses are ultimately replaceable by the inexorable march of human civilization.
+			RegisterDialogue_Timeshift( "tedTalk27", "diag_sp_audioLog_TS131_28_01_imc_genMarder" )
+
+			//By decisively neutralizing the Militia forces, we will in fact, safeguard the existence of the human race, extending its reach and power towards a prosperous, and bright future.
+			RegisterDialogue_Timeshift( "tedTalk28", "diag_sp_audioLog_TS131_29_01_imc_genMarder" )
+
+
+			//---------------------------------------
+			// Panicked soldiers
+			//---------------------------------------
+
+			//IMC Grunt 2 (Radio)	What the hell? He was just over there!
+			RegisterDialogue_Timeshift( "diag_sp_wildlifeStudy_TS191_17_01_imc_grunt2", "diag_sp_wildlifeStudy_TS191_17_01_imc_grunt2" )
+
+			//security3	(radio comms, agitated): Who has visual?	104	01
+			RegisterDialogue_Timeshift( "diag_sp_securityComs_TS104_01_01_imc_security3", "diag_sp_securityComs_TS104_01_01_imc_security3" )
+
+			//security1	(radio comms, agitated): Can't track him, he's bouncing all over the place.	104	02
+			RegisterDialogue_Timeshift( "diag_sp_securityComs_TS104_02_01_imc_security1", "diag_sp_securityComs_TS104_02_01_imc_security1" )
+
+			//security2	(radio comms, agitated): Base, we cannot acquire the target. Advanced cloaking or teleportation package confirmed. 	105	01
+			RegisterDialogue_Timeshift( "diag_sp_securityComs_TS105_01_01_imc_security2", "diag_sp_securityComs_TS105_01_01_imc_security2" )
+
+			//securityBase	(radio comms, base calm): Copy 2-3, ahh...we have a possible tech breach, additional reinforcements are on their way.	105	02
+			RegisterDialogue_Timeshift( "diag_sp_securityComs_TS105_02_01_imc_securityBase", "diag_sp_securityComs_TS105_02_01_imc_securityBase" )
+
+			//security1	(radio comms, agitated): Someone give me a location on this guy!	106	01
+			RegisterDialogue_Timeshift( "diag_sp_securityComs_TS106_01_01_imc_security1", "diag_sp_securityComs_TS106_01_01_imc_security1" )
+
+			//security2	(radio comms, agitated): Watch your back! Watch your back!	106	02
+			RegisterDialogue_Timeshift( "diag_sp_securityComs_TS106_02_01_imc_security2", "diag_sp_securityComs_TS106_02_01_imc_security2" )
+
+			//security3	(radio comms, agitated): Where the hell did he go?	106	03
+			RegisterDialogue_Timeshift( "diag_sp_securityComs_TS106_03_01_imc_security3", "diag_sp_securityComs_TS106_03_01_imc_security3" )
+
+
+			//---------------------------------------
+			// PA announcements
+			//---------------------------------------
+
+			RegisterDialogue_Timeshift( "Timeshift_Scr_AnnouncementChime", "Timeshift_Scr_AnnouncementChime" )
+			RegisterDialogue_Timeshift( "Timeshift_Scr_SpectreAnnouncement", "Timeshift_Scr_SpectreAnnouncement" )
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_01_01_imc_sci", "diag_sp_ambScience_TS551_01_01_imc_sci" )
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_02_01_imc_sci", "diag_sp_ambScience_TS551_02_01_imc_sci" )
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_03_01_imc_sci", "diag_sp_ambScience_TS551_03_01_imc_sci" )
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_04_01_imc_sci", "diag_sp_ambScience_TS551_04_01_imc_sci" )
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_05_01_imc_sci", "diag_sp_ambScience_TS551_05_01_imc_sci" )
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_06_01_imc_sci", "diag_sp_ambScience_TS551_06_01_imc_sci" )
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_07_01_imc_sci", "diag_sp_ambScience_TS551_07_01_imc_sci" )
+			RegisterDialogue_Timeshift( "diag_sp_ambScience_TS551_08_01_imc_sci", "diag_sp_ambScience_TS551_08_01_imc_sci" )
+
+
+
+			//---------------------------------------
+			// Boyle audio logs: 1
+			//---------------------------------------
+			//Dr. Jefferson Boyle - Log one. Looks like they went forward with the Ark test despite my warnings to postpone, but what Marder wants - Marder gets.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog1_TS701_01_01_imc_boyle", "diag_sp_BoyleLog1_TS701_01_01_imc_boyle" )
+
+			//I don’t know how I survived, but I did...for now. 	I don’t know how I survived, but I did...for now.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog1_TS701_02_01_imc_boyle", "diag_sp_BoyleLog1_TS701_02_01_imc_boyle" )
+
+			//I’ve tried all exits but I’m trapped; damn place is locked down good. All I have is Hope. That’s what I get for picking a lab underground... What can say? I like archaeology.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog1_TS701_03_01_imc_boyle", "diag_sp_BoyleLog1_TS701_03_01_imc_boyle" )
+
+
+			//---------------------------------------
+			// Boyle audio logs: 2
+			//---------------------------------------
+			//Dr. Jefferson Boyle	Log 2	Dr. Jefferson Boyle - Log two. I found myself a standard IMC survival kit, which provides me with enough flavorless rations to keep me alive for a few days.	Dr. Jefferson Boyle. Log two. I found myself a standard IMC survival kit, which provides me with enough flavorless rations to keep me alive for a few days.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog2_TS701_04_01_imc_boyle", "diag_sp_BoyleLog2_TS701_04_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 2	I’m hoping that’s all I need otherwise I’m going to have to get creative.  I hate getting creative...	I’m hoping that’s all I need otherwise I’m going to have to get creative.  I hate getting creative...
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog2_TS701_05_01_imc_boyle", "diag_sp_BoyleLog2_TS701_05_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 2	I hate getting creative...					included in previous line
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog2_TS701_06_01_imc_boyle", "diag_sp_BoyleLog2_TS701_06_01_imc_boyle" )
+
+			//---------------------------------------
+			// Boyle audio logs: 3
+			//---------------------------------------
+			//Dr. Jefferson Boyle	Log 3	Dr. Jefferson Boyle - Log three. I had to get creative. Failed experiments on Typhon’s indigenous wildlife are unfortunately next door...in other words, I cooked a prowler.  	Dr. Jefferson Boyle. Log three. I had to get creative. Failed experiments on Typhon’s indigenous wildlife are unfortunately next door...in other words, I cooked a prowler.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog3_TS701_07_01_imc_boyle", "diag_sp_BoyleLog3_TS701_07_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 3	It tasted like chicken if chicken was a weird dinosaur-like creature injected with IMC meds and steroids.	It tasted like chicken if chicken was a weird dinosaur-like creature injected with IMC meds and steroids.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog3_TS701_08_01_imc_boyle", "diag_sp_BoyleLog3_TS701_08_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 3	On a lighter note, I think I found a way to upload these logs to what's left of the IMC network here. Maybe someone's monitoring...here's to Hope.	On a lighter note, I think I found a way to upload these logs to what's left of the IMC network here. Maybe someone's monitoring...here's to Hope.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog3_TS701_09_01_imc_boyle", "diag_sp_BoyleLog3_TS701_09_01_imc_boyle" )
+
+			//---------------------------------------
+			// Boyle audio logs: 4
+			//---------------------------------------
+			//Dr. Jefferson Boyle	Log 4	Dr. Jefferson Boyle - Log four. All right, my logs are on the network but unfortunately, I am out of Prowler so I'm pretty disappointed. 	Dr. Jefferson Boyle. Log four. All right, my logs are on the network but unfortunately, I am out of Prowler so I'm pretty disappointed.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog4_TS701_10_01_imc_boyle", "diag_sp_BoyleLog4_TS701_10_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 4	I’ve moved on to the vines and plants growing throughout this facility.	I’ve moved on to the vines and plants growing throughout this facility.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog4_TS701_11_01_imc_boyle", "diag_sp_BoyleLog4_TS701_11_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 4	It’s raining non-stop so I have water, at least I think it’s water.	It’s raining non-stop so I have water, at least I think it’s water.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog4_TS701_12_01_imc_boyle", "diag_sp_BoyleLog4_TS701_12_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 4	Yeah, it's water. It's definitely water....I think. Um, I gotta go run some tests...	Yeah, it's water. It's definitely water...I think. Um, I got to go run some tests...
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog4_TS701_13_01_imc_boyle", "diag_sp_BoyleLog4_TS701_13_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 5	Dr. Jefferson Boyle - Log five. Okay, good news, tests came back negative...it is water. Bad news... Literally everything else. Nothing's good. 	Dr. Jefferson Boyle. Log five. Okay, good news, tests came back negative...it is water. Bad news... Literally everything else. Nothing's good.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog5_TS701_14_01_imc_boyle", "diag_sp_BoyleLog5_TS701_14_01_imc_boyle" )
+
+			//---------------------------------------
+			// Boyle audio logs: 5
+			//---------------------------------------
+			//Dr. Jefferson Boyle	Log 5	I think it's time I get out of this place. I've managed to breach a hole in the wall, it leads up to the main campus.	I think it's time I get out of this place. I've managed to breach a hole in the wall, it leads up to the main campus.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog5_TS701_15_01_imc_boyle", "diag_sp_BoyleLog5_TS701_15_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 5	I'm about 100 meters underground. I have no idea how long it'll take me to get to the top because I'm horrible at math, but I am an archaeologist; I've done some climbing before. 	I'm about 100 meters underground. I have no idea how long it'll take me to get to the top because I'm horrible at math, but I am an archaeologist; I've done some climbing before.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog5_TS701_16_01_imc_boyle", "diag_sp_BoyleLog5_TS701_16_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 5	I just don't know what I'll find when I get up there but I have no choice. Okay, I have a choice but right now, it's not to die.	I just don't know what I'll find when I get up there but I have no choice. Okay, I have a choice but right now, it's not to die.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog5_TS701_17_01_imc_boyle", "diag_sp_BoyleLog5_TS701_17_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 5	So, that's it. This is my final entry. Wish me luck. 	So, that's it. This is my final entry. Wish me luck.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog5_TS701_18_01_imc_boyle", "diag_sp_BoyleLog5_TS701_18_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 5	See you soon, Hope. 	See you soon, Hope.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog5_TS701_19_01_imc_boyle", "diag_sp_BoyleLog5_TS701_19_01_imc_boyle" )
+
+			//Dr. Jefferson Boyle	Log 5	Dr. Jefferson Boyle - Signing Off. Err.. over and out. Is that how you say it? Whatever... bye.	Dr. Jefferson Boyle. Signing Off. Err.. over and out. Is that how you say it? Whatever... bye.
+			RegisterDialogue_Timeshift( "diag_sp_BoyleLog5_TS701_20_01_imc_boyle", "diag_sp_BoyleLog5_TS701_20_01_imc_boyle" )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			//---------------------------------
+			// OLD DIALOGUE
+			//---------------------------------
+
+			//Base Radio: Copy that, reinforcements in route.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS102_03_01_imc_base", "diag_sp_TimeShift_TS102_03_01_imc_base" )
+
+
+			//---------------------------
+			// Bunker Entrance
+			//---------------------------
+			//Loudspeaker: Attention Hammond Employees. Security lockdown measures are being temporarily activated due to a minor security breach in your area. Thank you for your patience.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS102_05_01_imc_pa", "diag_sp_TimeShift_TS102_05_01_imc_pa" )
+
+
+			//Base Radio: Harley 2-2, patrol drones deployed in emergency shelter charlie to see if we can locate the intruder.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_04_01_imc_base", "diag_sp_TimeShift_TS104_04_01_imc_base" )
+
+			//Soldier Radio: Copy base, lock down the lobby and deploy security personnel till we get there.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_05_01_imc_grunt1", "diag_sp_TimeShift_TS104_05_01_imc_grunt1" )
+
+			//Soldier Radio: Copy, locking down lobby
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_06_01_imc_grunt1", "diag_sp_TimeShift_TS104_06_01_imc_grunt1" )
+
+
+			//--------------------
+			// Lobby
+			//--------------------
+			//Loudspeaker: security lockdown for lobby upper level has been lifted.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_07_01_imc_pa", "diag_sp_TimeShift_TS104_07_01_imc_pa" )
+
+			//Loudspeaker: security lockdown for lobby has been lifted.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_08_01_imc_pa", "diag_sp_TimeShift_TS104_08_01_imc_pa" )
+
+			//Loudspeaker: security lockdown for lobby lower level has been lifted.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_09_01_imc_pa", "diag_sp_TimeShift_TS104_09_01_imc_pa" )
+
+
+			//---------------------
+			// Elevator fight
+			//----------------------
+			//Soldier Radio: Stanz to base, lock down elevator bank 3742
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_12_01_imc_grunt1", "diag_sp_TimeShift_TS104_12_01_imc_grunt1" )
+
+			//Soldier Radio: Lost contact with Harley 2-3. Lock down elevator bank 3742
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_13_01_imc_grunt1", "diag_sp_TimeShift_TS104_13_01_imc_grunt1" )
+
+			//Base Radio: Copy that. elevators locked.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_14_01_imc_base", "diag_sp_TimeShift_TS104_14_01_imc_base" )
+
+			//Soldier Radio: He's in the elevators, open fire.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_15_01_imc_grunt1", "diag_sp_TimeShift_TS104_15_01_imc_grunt1" )
+
+			//Soldier Radio: Negative. Lost contact. This is no normal cloaking kit. Looks like he just vanished.
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS104_16_01_imc_grunt1", "diag_sp_TimeShift_TS104_16_01_imc_grunt1" )
+
+			//hammondPA	(Ding) Attention Hammond Employees. Due to a minor security breach, we are asking all employees to proceed to the nearest Emergency Shelter Access Point.
+			//This is only a temporary safety measure. Please remain calm and contact the nearest Automated security personnel for assistance.
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS107_01_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS107_01_01_ntrl_hammondpa" )
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS107_01_01d_ntrl_hammondpa", "diag_sp_ambAnnc_TS107_01_01d_ntrl_hammondpa" ) //DISTRESSED hammondPA	(Ding) Attention Hammond Employees. Due to a minor security breach, we are asking all employees to proceed to the nearest Emergency Shelter Access Point. This is only a temporary safety measure. Please remain calm and contact the nearest Automated security personnel for assistance.	107	01	01
+
+
+			//Loudspeaker: DNA sequence accepted. Thank you, Dr. Altamirano
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS105_12_01_imc_pa", "diag_sp_TimeShift_TS105_12_01_imc_pa" )
+
+			//Soldier Radio: I want these doors cut open, now!
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS106_04_01_imc_grunt1", "diag_sp_TimeShift_TS106_04_01_imc_grunt1" )
+
+			//Base Radio: 2-1 what's your status?
+			//RegisterDialogue_Timeshift( "diag_sp_TimeShift_TS106_05_01_imc_base", "diag_sp_TimeShift_TS106_05_01_imc_base" )
+
+
+
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_04_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_04_01_ntrl_hammondpa" ) 		//hammondPA	Automated security is offline. Auxiliary power required (need normal and jacked-up, slowed-down-record-player version)	101	04	01
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_04_01d_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_04_01d_ntrl_hammondpa" ) 	//DISTRESSED hammondPA	Automated security is offline. Auxiliary power required (need normal and jacked-up, slowed-down-record-player version)	101	04	01
+
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_05_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_05_01_ntrl_hammondpa" ) 		//hammondPA	Auxiliary power restored. Automated security is online (need normal and jacked-up, slowed-down-record-player version)	101	05	01
+
+
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_06_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_06_01_ntrl_hammondpa" ) 		//hammondPA	Primary power source depleted. Manual redirect to auxillary power required (need normal and jacked-up, slowed-down-record-player version)	101	06	01
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_06_01d_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_06_01d_ntrl_hammondpa" ) 	//DISTRESSED hammondPA	Primary power source depleted. Manual redirect to auxillary power required (need normal and jacked-up, slowed-down-record-player version)	101	06	01
+
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_08_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_08_01_ntrl_hammondpa" ) 		//hammondPA	Auxillary power source is online. Please press control confirmation to activate (need normal and jacked-up, slowed-down-record-player version)	101	08	01
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_08_01d_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_08_01d_ntrl_hammondpa" ) 	//DISTRESSED hammondPA	Auxillary power source is online. Please press control confirmation to activate (need normal and jacked-up, slowed-down-record-player version)	101	08	01
+
+
+			//----------------------------
+			// Loudspeaker Dialogue
+			//----------------------------
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_01_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_01_01_ntrl_hammondpa" ) 		//hammondPA	(ding) Employee safety is a primary concern at Hammond Industries. Take the time to locate the nearest emergency shelter access point. Access points can be located on all kiosk maps, emergency signage or by asking any Hammond automated security personnel.	101	01	01
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_01_01d_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_01_01d_ntrl_hammondpa" ) 	//DISTRESSED hammondPA	(ding) Employee safety is a primary concern at Hammond Industries. Take the time to locate the nearest emergency shelter access point. Access points can be located on all kiosk maps, emergency signage or by asking any Hammond automated security personnel.	101	01	01
+
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_02_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_02_01_ntrl_hammondpa" ) 		//hammondPA	In the event of a reactor event or other emergency, please leave all personal belongings behind and proceed directly to the nearest Hammond Emergency Shelter Access Point.	101	02	01
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_02_01d_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_02_01d_ntrl_hammondpa" ) 	//DISTRESSED hammondPA	In the event of a reactor event or other emergency, please leave all personal belongings behind and proceed directly to the nearest Hammond Emergency Shelter Access Point.	101	02	01
+
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_03_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_03_01_ntrl_hammondpa" ) 		//hammondPA	Hammond Emergency Shelters are equipped with all amenities required for your comfort, including a full compliment of automated security personnel for your safety.	101	03	01
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS101_03_01d_ntrl_hammondpa", "diag_sp_ambAnnc_TS101_03_01d_ntrl_hammondpa" ) 	//DISTRESSED hammondPA	Hammond Emergency Shelters are equipped with all amenities required for your comfort, including a full compliment of automated security personnel for your safety.	101	03	01
+
+
+			//---------------------------------------
+			// Lobby fight pristine
+			//---------------------------------------
+			//securityBase	(radio comms, calm): All units. Receptionist and employees in the amenities lobby have reported visual on the unidentified intruder.
+			//Use caution, advanced cloaking or teleportation tech has been observed, consider extremely dangerous.
+			//RegisterDialogue_Timeshift( "diag_sp_securityComs_TS103_01_01_imc_securityBase", "diag_sp_securityComs_TS103_01_01_imc_securityBase" )
+
+			//security2	(radio comms, calm): Copy base, this is Harley 2-3 en route to the lobby to investigate. Standby.
+			//RegisterDialogue_Timeshift( "diag_sp_securityComs_TS103_02_01_imc_security2", "diag_sp_securityComs_TS103_02_01_imc_security2" )
+
+			//hammondPA	(Ding) Hammond automated security personnel are being deployed at your location. Please remain calm and present Hammond identification credentials if asked. Thank you.
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS107_06_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS107_06_01_ntrl_hammondpa" )
+
+
+			//hammondPA	(Ding) Automated security active. Remain calm and proceed to nearest security personnel for identification and escort to the nearest emergency shelter access point
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS107_05_01_ntrl_hammondpa", "diag_sp_ambAnnc_TS107_05_01_ntrl_hammondpa" )
+
+			//---------------------
+			// Lobby fight overgrown
+			//---------------------
+			//DISTRESSED hammondPA	(Ding) Hammond automated security personnel are being deployed at your location. Please remain calm and present Hammond identification credentials if asked. Thank you.
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS107_06_01d_ntrl_hammondpa", "diag_sp_ambAnnc_TS107_06_01d_ntrl_hammondpa" )
+
+			//DISTRESSED hammondPA	(Ding) Automated security active. Remain calm and proceed to nearest security personnel for identification and escort to the nearest emergency shelter access point
+			//RegisterDialogue_Timeshift( "diag_sp_ambAnnc_TS107_05_01d_ntrl_hammondpa", "diag_sp_ambAnnc_TS107_05_01d_ntrl_hammondpa" )
+
+			break
+	}
+
+}
+
+
+#if SERVER
+
+
+	void function Temp_PlayDialogue( entity player, entity speaker, string name, float delay = 0 )
+	{
+		EndSignal( player, "OnDestroy" )
+		EndSignal( speaker, "OnDestroy" )
+
+		Assert( IsValid( player ) )
+		Assert( player.IsPlayer() )
+		Assert( IsValid( speaker ) )
+		Assert( name in file.registeredDialog )
+
+		if ( delay > 0 )
+			wait delay
+
+		if ( !IsValid( player ) || !IsValid( speaker ) )
+			return
+
+		int speakerEHandle = speaker.GetEncodedEHandle()
+		string alias = file.registeredDialog[ name ]
+		int aliasID = file.registeredDialogIDs.find( alias )
+
+		Remote_CallFunction_NonReplay( player, "ServerCallback_Temp_PlayDialogue", speakerEHandle, aliasID )
+
+		while( true )
+		{
+			var signalData = WaitSignal( level, "TempDialogueFinished" )
+			if ( int( signalData.aliasID ) == aliasID )
+				break
+		}
+
+		//printt( "DIALOGUE FINISHED!", file.registeredDialogIDs[ aliasID ] )
+	}
+
+	bool function ClientCommand_TempDialogueFinished( entity player, array<string> args )
+	{
+		string aliasID = args[ 0 ]
+		table signalData = { aliasID = aliasID }
+		Signal( level, "TempDialogueFinished", signalData )
+		return true
+	}
+
+	void function PlayTimeShiftDialogue( entity player, entity speaker, string name, float delay = 0 )
+	{
+		EndSignal( player, "OnDestroy" )
+		EndSignal( speaker, "OnDestroy" )
+
+		Assert( IsValid( player ) )
+		Assert( player.IsPlayer() )
+		Assert( IsValid( speaker ) )
+		Assert( name in file.registeredDialog )
+
+
+		if ( delay > 0 )
+			wait delay
+
+		if ( !IsValid( player ) || !IsValid( speaker ) )
+			return
+
+		int speakerEHandle = speaker.GetEncodedEHandle()
+		string alias = file.registeredDialog[ name ]
+		int aliasID = file.registeredDialogIDs.find( alias )
+
+		Remote_CallFunction_NonReplay( player, "ServerCallback_PlayTimeShiftDialogue", speakerEHandle, aliasID )
+
+		while( true )
+		{
+			var signalData = WaitSignal( level, "TimeShiftDialogueFinished" )
+			if ( int( signalData.aliasID ) == aliasID )
+				break
+		}
+
+		//printt( "DIALOGUE FINISHED!", file.registeredDialogIDs[ aliasID ] )
+	}
+
+	bool function ClientCommand_TimeShiftDialogueFinished( entity player, array<string> args )
+	{
+		string aliasID = args[ 0 ]
+		table signalData = { aliasID = aliasID }
+		Signal( level, "TimeShiftDialogueFinished", signalData )
+		return true
+	}
+
+
+
+
+
+
+
+
+#endif //SERVER
+
+#if CLIENT
+
+	void function ServerCallback_Temp_PlayDialogue( int speakerEHandle, int aliasID )
+	{
+		entity speaker = GetEntityFromEncodedEHandle( speakerEHandle )
+		Assert( IsValid( speaker ) )
+
+		thread Temp_PlayDialogueAndNotifyServer( speaker, aliasID )
+	}
+
+	void function Temp_PlayDialogueAndNotifyServer( entity speaker, int aliasID )
+	{
+		EndSignal( speaker, "OnDeath" )
+		EndSignal( speaker, "OnDestroy" )
+
+		Assert( aliasID < file.registeredDialogIDs.len() )
+		string alias = file.registeredDialogIDs[ aliasID ]
+
+		OnThreadEnd(
+		function() : ( aliasID )
+			{
+				// Notify the server that the alias finished playing
+				entity player = GetLocalClientPlayer()
+				if ( IsValid( player ) )
+					GetLocalClientPlayer().ClientCommand( "TempDialogueFinished " + aliasID )
+			}
+		)
+
+		float duration = GetSoundDuration( alias )
+
+		//printt( "CLIENT TOLD TO PLAY DIALOGUE", alias, "ON ENTITY", speaker, "( duration:", duration, ")" )
+
+		EmitSoundOnEntity( speaker, alias )
+		wait duration
+	}
+
+	void function ServerCallback_PlayTimeShiftDialogue( int speakerEHandle, int aliasID )
+	{
+		entity speaker = GetEntityFromEncodedEHandle( speakerEHandle )
+		if( !IsValid( speaker ) )
+		{
+			printt( "ServerCallback_PlayTimeShiftDialogue failed, speaker not valid. Alias was: ", file.registeredDialogIDs[ aliasID ] )
+			return
+		}
+
+		thread PlayTimeShiftDialogueAndNotifyServer( speaker, aliasID )
+	}
+
+	void function PlayTimeShiftDialogueAndNotifyServer( entity speaker, int aliasID )
+	{
+		EndSignal( speaker, "OnDeath" )
+		EndSignal( speaker, "OnDestroy" )
+
+		entity player = GetLocalClientPlayer()
+		if ( !IsValid( player ) )
+			return
+		EndSignal( player, "OnDestroy" )
+		EndSignal( player, "OnDeath" )
+
+		Assert( aliasID < file.registeredDialogIDs.len() )
+		string alias = file.registeredDialogIDs[ aliasID ]
+
+		OnThreadEnd(
+		function() : ( aliasID, player )
+			{
+				// Notify the server that the alias finished playing
+				if ( IsValid( player ) )
+					GetLocalClientPlayer().ClientCommand( "TimeShiftDialogueFinished " + aliasID )
+			}
+		)
+
+		var speakerTimeZone = GetEntityTimelinePosition( speaker )
+
+		float duration = GetSoundDuration( alias )
+		float timeElapsedSpokenDialogue = 0.0
+		float dialogueStartTime
+		bool initiatedDialogue = false
+
+		while( true )
+		{
+			wait 0.1
+			if ( GetEntityTimelinePosition( player ) != speakerTimeZone )
+			{
+				if ( initiatedDialogue )
+					dialogueStartTime = dialogueStartTime + 0.1
+				continue
+			}
+
+			if ( initiatedDialogue == false )
+			{
+				initiatedDialogue = true
+				dialogueStartTime = Time()
+			}
+
+			waitthread TryToPlayTimeshiftDialogue( player, speaker, alias, timeElapsedSpokenDialogue )
+			timeElapsedSpokenDialogue = Time() - dialogueStartTime
+			if ( duration - timeElapsedSpokenDialogue < 0.1 )
+				break
+
+		}
+
+		wait 0.1
+
+	}
+
+	void function TryToPlayTimeshiftDialogue( entity player, entity speaker, string alias, float seekTime )
+	{
+		if ( !IsValid( player ) )
+			return
+
+		var speakerTimeZone = GetEntityTimelinePosition( speaker )
+		var playerTimeZone = GetEntityTimelinePosition( player )
+		if ( playerTimeZone != speakerTimeZone )
+			return
+
+
+		//----------------------------------------------------------------------
+		// Hack for loudspeaker dialogue so it always plays near the player
+		//----------------------------------------------------------------------
+		if ( speaker.GetScriptName() == "loudspeaker_ent")
+			speaker = GetClosest( file.loudspeakerEnts, player.GetOrigin() )
+
+
+		//----------------------------------------------------------------------
+		// Speaker plays the sound, but is deleted if time flips (or speaker dies)
+		//----------------------------------------------------------------------
+		EmitSoundOnEntityWithSeek( speaker, alias, seekTime )
+
+		float duration = GetSoundDuration( alias )
+		float timeToWaitToKillDialogue = duration - seekTime
+		thread KillDialogueOnSpeaker( speaker, alias, timeToWaitToKillDialogue, player, speakerTimeZone )
+
+
+		//--------------------------------------------------------------------
+		// Fire up a Caller ID element if the line has one associated with it
+		//--------------------------------------------------------------------
+		var callerID_rui
+		if (  Timeshift_DialogHasCallerID( alias ) )
+		{
+			TimeshiftCallerID callerID = Timeshift_GetCallerIDInfoForDialog( alias )
+			if ( callerID.isValid )
+				callerID_rui = CreateWaveform( callerID.nameLocString, callerID.teamIdx, timeToWaitToKillDialogue, null, callerID.isRadioIntercept )
+		}
+
+		//--------------------------------------------------------------------
+		// Don't return to calling function till dialogue ends or is paused
+		//--------------------------------------------------------------------
+		EndSignal( speaker, "OnStopTimeshiftDialogue" )
+
+
+		OnThreadEnd(
+		function() : ( player, speaker, alias, callerID_rui, playerTimeZone )
+			{
+				if ( IsValid( speaker ) )
+				{
+					printt( alias )
+					//StopSoundOnEntity( speaker, alias )
+					//Signal( speaker, "OnStopTimeshiftDialogue" )
+				}
+
+				if ( IsValid( player ) && callerID_rui != null )
+				{
+					bool waitBeforeDestroy = true
+					if ( playerTimeZone != GetEntityTimelinePosition( player ) )
+						waitBeforeDestroy = false
+
+					if ( waitBeforeDestroy )
+						thread DestroyWaveform( callerID_rui )
+					else
+						thread DestroyWaveform_Immediate( callerID_rui )
+				}
+			}
+		)
+
+
+
+
+		WaitForever()
+
+	}
+
+	void function KillDialogueOnSpeaker( entity speaker, string alias, float timeToWaitToKillDialogue, entity player, var speakerTimeZone )
+	{
+		//-----------------------------------------------
+		// Kill dialogueif time flips, speakler dies, etc
+		//-----------------------------------------------
+		if ( speakerTimeZone == TIMEZONE_DAY )
+			EndSignal( player, "OnTimeFlippedTimezoneNight" )
+		else
+			EndSignal( player, "OnTimeFlippedTimezoneDay" )
+
+		EndSignal( speaker, "OnDeath" )
+		EndSignal( speaker, "OnDestroy" )
+
+		OnThreadEnd(
+		function() : ( speaker, alias )
+			{
+				if ( IsValid( speaker ) )
+				{
+					StopSoundOnEntity( speaker, alias )
+					Signal( speaker, "OnStopTimeshiftDialogue" )
+				}
+			}
+		)
+
+		wait timeToWaitToKillDialogue
+	}
+
+
+	bool function Timeshift_DialogHasCallerID( string voName )
+	{
+		return ( voName in file.timeshiftCallerIDs )
+	}
+
+	TimeshiftCallerID function Timeshift_GetCallerIDInfoForDialog( string voName )
+	{
+		Assert( Timeshift_DialogHasCallerID( voName ), "Can't find timeshift caller ID info struct for VO script name " + voName )
+		return file.timeshiftCallerIDs[ voName ]
+	}
+
+#endif // CLIENT
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//				SHARED
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+void function RegisterDialogue_Timeshift( string name, string alias, string callerID_nameLocString = "", int callerID_teamIdx = -1, bool callerID_isRadioIntercept = false )
+{
+	Assert( !( name in file.registeredDialog ) )
+	file.registeredDialog[ name ] <- alias
+	file.registeredDialogIDs.append( alias )
+
+	// Set up caller ID image info if this line has it
+	#if CLIENT
+	// callerID_nameLocString needs to match one of the localized name strings in caller_ids.csv or else it'll pull the default image
+	if ( callerID_nameLocString != "" )
+	{
+		Assert( callerID_teamIdx > -1 )
+		Assert( !Timeshift_DialogHasCallerID( name ) )
+
+		TimeshiftCallerID callerID
+		callerID.nameLocString 		= callerID_nameLocString
+		callerID.teamIdx 			= callerID_teamIdx
+		callerID.isRadioIntercept 	= callerID_isRadioIntercept
+		callerID.isValid 			= true
+
+		file.timeshiftCallerIDs[ name ] <- callerID
+	}
+	#endif
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+#if CLIENT // server equivalent is in sp_timeshift_utility.nut
+var function GetEntityTimelinePosition( ent )
+{
+	//What time period does this ent live in?
+	local z = ent.GetOrigin().z
+	if ( z < -6000 )
+		return TIMEZONE_FROZEN
+	else if ( z < 5300 )
+		return TIMEZONE_NIGHT
+	else
+		return TIMEZONE_DAY
+}
+#endif
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+

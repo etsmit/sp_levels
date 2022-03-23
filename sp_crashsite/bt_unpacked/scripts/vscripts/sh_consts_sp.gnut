@@ -1,0 +1,37 @@
+
+global const bool EARNMETER_ENABLED = true
+global const bool GRUNTCHATTER_ENABLED = true
+global const bool BATTLECHATTER_ENABLED = false
+global const bool FACTION_DIALOGUE_ENABLED = false
+global const bool GRUNT_CHATTER_MP_ENABLED = false
+global const bool SPECTRE_CHATTER_MP_ENABLED = false
+global const bool ANTI_RODEO_SMOKE_ENABLED = false
+global const bool HOLD_BUTTON_FOR_TITAN_EXECUTION = false
+global const bool TITAN_EXECUTION_ATTACKER_IS_INVULNERABLE = true
+global const bool TITAN_EXECUTION_GIVES_BATTERY = false
+
+global const bool HAS_GAMEMODES = false// don't use this too much! I only added this to handle cl_main_hud, which is planned for a bigger refactor in the future
+global const bool HAS_AI_SQUAD_LIMITS = false
+global const bool HAS_EVAC = false
+global const bool HAS_STATS = false
+global const bool HAS_BOSS_AI = true
+
+global const bool HAS_TITAN_EARNING = false
+global const bool HAS_TITAN_WEAPON_SWAPPING = true
+global const bool HAS_TITAN_TELEMETRY = true
+
+global const asset EARN_METER_DATATABLE = $""
+global const bool ANTI_RODEO_MINIGAME_ENABLED = false
+global const bool HAS_RODEO_HOLD_OPTION = false
+
+global const bool HAS_WEAPON_PICKUP_HIGHLIGHT = true
+global const bool HAS_AMMO_FULL_FLYOUT = true
+
+global const bool HAS_PANEL_HIGHLIGHT = true
+
+global const bool HAS_THREAT_SCOPE_SLOT_LOCK = true
+
+global const bool HAS_CAPITAL_SHIP_SKYSHOW = false
+
+global const string OBJECTIVE_HIGHLIGHT = "sp_objective_entity"
+global const string OBJECTIVE_HIGHLIGHT_ALT = "interact_object_always_far"

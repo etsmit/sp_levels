@@ -1,0 +1,178 @@
+// "Gamematerial" "effect_name"
+
+// "B" bloodyflesh
+// "X" plastic box, wade, ladder, woodladdder,
+// "I" player_control_clip
+
+ImpactTable
+{
+	Info
+	{
+		"whizby_sound_from_player"	"Rockets.ArcherNearmiss"
+		"whizby_sound_from_AI"		"Rockets.ArcherNearmiss_AIGruntGenerated"
+		"whizby_maxDistancePilot"	"200"
+		"whizby_maxDistanceTitan"	"500"
+	}
+
+	FX
+	{
+		"C" "P_exp_flak_s2s_light" //Concrete, rock, porcelain, boulder, gravel, asphalt, brick, concrete_block, plaster
+		"D" "P_exp_flak_s2s_light" //Dirt, mud, sand, slipperyslime, snow, carpet, cardboard, floatingstandable, ceiling_tile, papercup
+		"E" "P_exp_flak_s2s_light" // metal_titan
+
+		"F" "P_exp_flak_s2s_light" //flesh
+		"G" "P_exp_flak_s2s_light" //metalgrate, chainlink, chain
+		"H" "P_exp_flak_s2s_light" //alienflesh
+
+		"J" "P_exp_flak_s2s_light" //grass
+		"K" "P_exp_flak_s2s_light" //mud
+		"L" "P_exp_flak_s2s_light" //plastic_barrel, plastic_box, item, rubber, rubbertire, jeeptire, slidingrubbertire, brakingrubbertire, slidingrubbertire_front, slidingrubbertire_rear
+		"M" "P_exp_flak_s2s_light" //Default, metal, metal_box, solidmetal, armorflesh, metal_bouncy, slippery_metal, shellcasing_small, shellcasing_large, metal_barrel, floating_metal_barrel, weapon
+		"N" "P_exp_flak_s2s_light"
+		"O" "P_exp_flak_s2s_light" //Foliage
+		"P" "P_exp_flak_s2s_light" //Computer
+
+		"R" "P_exp_flak_s2s_light" //metalpanel, grenade, canister
+		"S" "P_exp_flak_s2s_light" //water, slime
+		"T" "P_exp_flak_s2s_light" //tile
+		"U" "P_exp_flak_s2s_light" //glass_breakble
+
+		"V" "P_exp_flak_s2s_light" //Metal Vent
+		"W" "P_exp_flak_s2s_light" //Wood, Wood_lowdensity, Wood_Box, Wood_Crate, Wood_Plank, Wood_Solid, Wood_Furniture, Wood_Panel watermelon
+
+		"Y" "P_exp_flak_s2s_light" //glass, brokenglass, glassbottle, pottery
+		"Z" "P_exp_flak_s2s_light"  //sand
+
+		"0" "P_exp_flak_s2s_light"
+		"1" "P_exp_flak_s2s_light"
+		"2" "P_exp_flak_s2s_light"
+		"3" "P_exp_flak_s2s_light"
+		"4" "P_exp_flak_s2s_light"
+		"5" "P_exp_flak_s2s_light"
+		"6" "P_exp_flak_s2s_light"
+		"7" "P_exp_flak_s2s_light"
+		"8" "P_exp_flak_s2s_light"
+		"9" "P_exp_flak_s2s_light" //puddle
+
+		"splash" "P_exp_flak_s2s_light"
+		"slime_splash" "P_exp_flak_s2s_light"
+
+		"airburst" "P_exp_flak_s2s_light"
+//		"airburst" "P_impact_exp_XLG_air"
+		"critical_hit" "P_exp_flak_s2s_light"
+	}
+	Sound
+	{
+		"C" "northstar_rocket_explode"
+		"D" "northstar_rocket_explode"
+		"E" "northstar_rocket_explode"
+
+		"F" "northstar_rocket_explode"
+		"G" "northstar_rocket_explode"
+		"H" "northstar_rocket_explode"
+
+		"J" "northstar_rocket_explode"
+		"K" "northstar_rocket_explode"  // mud?
+		"L" "northstar_rocket_explode"
+		"M" "northstar_rocket_explode"
+		"N" "northstar_rocket_explode"	// sand?
+		"O" "northstar_rocket_explode"
+		"P" "northstar_rocket_explode"
+
+		"R" "northstar_rocket_explode"
+		"S" "northstar_rocket_explode"
+		"T" "northstar_rocket_explode"
+		"U" "northstar_rocket_explode" //glass_breakable
+
+		"V" "northstar_rocket_explode"
+		"W" "northstar_rocket_explode"
+		"X"	"TitanBubbleShield.Explosive.BulletImpact_3P_vs_3P"
+		"Y" "northstar_rocket_explode" //glass
+		"Z" "northstar_rocket_explode"
+
+		//"splash" "Water.BulletImpact"
+		//"slime_splash" "Water.BulletImpact"
+
+		"airburst" "northstar_rocket_explode"
+		"shieldhit" "TitanShield.Explosive.BulletImpact_3P_vs_3P"
+	}
+
+	Sound_attacker
+	{
+		"C" "northstar_rocket_explode"
+		"D" "northstar_rocket_explode"
+		"E" "northstar_rocket_explode"
+
+		"F" "northstar_rocket_explode"
+		"G" "northstar_rocket_explode"
+		"H" "northstar_rocket_explode"
+
+		"J" "northstar_rocket_explode"
+		"K" "northstar_rocket_explode"  // mud?
+		"L" "northstar_rocket_explode"
+		"M" "northstar_rocket_explode"
+		"N" "northstar_rocket_explode"	// sand?
+		"O" "northstar_rocket_explode"
+		"P" "northstar_rocket_explode"
+
+		"R" "northstar_rocket_explode"
+		"S" "northstar_rocket_explode"
+		"T" "northstar_rocket_explode"
+		"U" "northstar_rocket_explode" //glass_breakable
+
+		"V" "northstar_rocket_explode"
+		"W" "northstar_rocket_explode"
+		"X"	"TitanBubbleShield.Explosive.BulletImpact_1P_vs_3P"
+		"Y" "northstar_rocket_explode" //glass
+		"Z" "northstar_rocket_explode"
+
+		//"splash" "Water.BulletImpact"
+		//"slime_splash" "Water.BulletImpact"
+
+		"airburst" "Explo_Archer_Impact_1P"
+		"shieldhit" "TitanShield.Explosive.BulletImpact_1P_vs_3P"
+	}
+
+	Sound_victim
+	{
+		"C" "northstar_rocket_explode"
+		"D" "northstar_rocket_explode"
+		"E" "northstar_rocket_explode"
+
+		"F" "northstar_rocket_explode"
+		"G" "northstar_rocket_explode"
+		"H" "northstar_rocket_explode"
+
+		"J" "northstar_rocket_explode"
+		"K" "northstar_rocket_explode" // mud?
+		"L" "northstar_rocket_explode"
+		"M" "northstar_rocket_explode"
+		"N" "northstar_rocket_explode"// sand?
+		"O" "northstar_rocket_explode"
+		"P" "northstar_rocket_explode"
+
+		"R" "northstar_rocket_explode"
+		"S" "northstar_rocket_explode"
+		"T" "northstar_rocket_explode"
+		"U" "northstar_rocket_explode"//glass_breakable
+
+		"V" "northstar_rocket_explode"
+		"W" "northstar_rocket_explode"
+		"X"	"TitanBubbleShield.Explosive.BulletImpact_3P_vs_3P"
+		"Y" "northstar_rocket_explode" //glass
+		"Z" "northstar_rocket_explode"
+
+		//"splash" "Water.BulletImpact"
+		//"slime_splash" "Water.BulletImpact"
+
+		"airburst" "northstar_rocket_explode"
+		"shieldhit" "TitanShield.Explosive.BulletImpact_3P_vs_1P"
+	}
+
+	Sound_victim_from_AI
+	{
+		"E" "titan_archer_impact_3p_vs_1p_S2S"
+		"F" "Flesh.Shotgun.BulletImpact_AIGrunt3P_vs_1P"
+	}
+}
+

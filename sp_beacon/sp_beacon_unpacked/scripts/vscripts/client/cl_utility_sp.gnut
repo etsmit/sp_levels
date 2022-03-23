@@ -1,0 +1,31 @@
+globalize_all_functions
+
+void function CapturePointLockedFunctions( entity player, entity ent )
+{
+}
+
+void function CapturePointUnlockedFunctions( entity player, entity ent )
+{
+}
+
+int function GetRoundScoreLimit_FromPlaylist()
+{
+	return 0
+}
+
+void function HideFriendlyIndicatorAndCrosshairNames()
+{
+	entity player = GetLocalViewPlayer()
+	player.HideCrosshairNames()
+}
+
+void function ShowFriendlyIndicatorAndCrosshairNames()
+{
+	//Show crosshair names and blue friendly indicators
+	entity player = GetLocalViewPlayer()
+	player.UnhideCrosshairNames()
+}
+
+void function ClientCodeCallback_XPChanged( entity player )
+{
+}
