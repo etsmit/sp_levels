@@ -1,0 +1,24 @@
+"Basic"
+{
+	//"$nodecal" "1"
+	"$additive" "1"
+	"$no_fullbright" 1
+	"$model" "1"
+	"$vertexalpha" "1"
+	"$translucent" "1"
+
+	"$basetexture" "models\weapons\railgun_outpost_207\railgun_heatsink_glow_1"
+
+	"$color" "[1 1 1]"
+		
+	"Proxies"
+	{
+		//flicker
+		"UniformNoise"
+		{
+			"minVal" 1.2
+			"maxVal" 1
+			"resultVar" "$color"
+		}
+	}
+}

@@ -1,0 +1,24 @@
+
+IsTestMap: false
+
+When: "SERVER || CLIENT"
+Scripts:
+[
+	sp/hubs/sh_sp_beacon.gnut
+	sp/sh_sp_beacon_spoke0.nut
+	sp/autoprecache/sp_beacon_spoke0_autoprecache.nut
+]
+
+When: "SERVER"
+Scripts:
+[
+	sp/hubs/sp_beacon_common.nut
+	sp/hubs/sp_beacon_spoke0.nut
+//	_func_drone_platform.gnut
+]
+
+When: "CLIENT"
+Scripts:
+[
+	sp/hubs/cl_sp_beacon_spoke0.nut
+]

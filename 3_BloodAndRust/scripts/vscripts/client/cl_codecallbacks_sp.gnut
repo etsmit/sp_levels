@@ -1,0 +1,430 @@
+untyped
+
+global function ClientCodeCallbacks_Init
+
+global function ClientCodeCallback_HotDropImpactTimeChanged
+global function ClientCodeCallback_DropShipJetWakeFxEnabledChanged
+global function ClientCodeCallback_TurretPanelChanged
+global function ClientCodeCallback_OutOfBoundsDeadTimeChanged
+global function ClientCodeCallback_OnShieldHealthChanged
+global function ClientCodeCallback_OnCinematicEventFlagsChanged
+global function ClientCodeCallback_OnNextCoreChargeAvailableChanged
+global function ClientCodeCallback_OnCoreChargeExpireTimeChanged
+global function ClientCodeCallback_OnEntityCreation
+global function ClientCodeCallback_OnDeath
+global function ClientCodeCallback_OnEntityDestroy
+global function ClientCodeCallback_OnPlayerLifeStateChanged
+global function AddCallback_OnPlayerLifeStateChanged
+global function ClientCodeCallback_KillReplayStarted
+global function ClientCodeCallback_VoicePackChanged
+global function ClientCodeCallback_KillReplayEnded
+global function ClientCodeCallback_SpecReplayStarted
+global function ClientCodeCallback_SpecReplayEnded
+global function ClientCodeCallback_SpectatorModeStarted
+global function ClientCodeCallback_SpectatorModeEnded
+global function ClientCodeCallback_SpectatorTargetChanged
+global function ClientCodeCallback_SaveResumed
+global function ClientCodeCallback_OnSelectedWeaponChanged
+global function CodeCallback_CheckPassThroughAddsMods
+//global function CodeCallback_Ping
+
+function ClientCodeCallbacks_Init()
+{
+    RegisterSignal( "HardpointStateChanged" )
+    RegisterSignal( "PlayerAlive" )
+    RegisterSignal( "PlayerDying" )
+    RegisterSignal( "PlayerDead" )
+    RegisterSignal( "PlayerDiscardBody" )
+    RegisterSignal( "KillReplayStarted" )
+    RegisterSignal( "KillReplayEnded" )
+}
+
+void function ClientCodeCallback_HotDropImpactTimeChanged( entity player )
+{
+	if ( !IsValid( player ) )
+		return
+	thread HotDropImpactTimeChanged( player )
+}
+
+void function ClientCodeCallback_DropShipJetWakeFxEnabledChanged( entity dropship )
+{
+	if ( !IsValid( dropship ) )
+		return
+	thread JetwakeFXChanged( dropship )
+}
+
+void function ClientCodeCallback_TurretPanelChanged( entity turret )
+{
+	if ( !IsValid( turret ) )
+		return
+	thread TurretPanelChanged( turret )
+}
+
+void function ClientCodeCallback_OutOfBoundsDeadTimeChanged( entity player )
+{
+	if ( !IsValid( player ) )
+		return
+	thread OutOfBoundsDeadTime_Changed( player )
+}
+
+
+void function ClientCodeCallback_OnShieldHealthChanged( entity ent )
+{
+	if ( !IsValid( ent ) )
+		return
+
+	if ( IsSoul( ent ) )
+		UpdateSoulShieldHealth( ent )
+	else
+		UpdateShieldHealth( ent )
+
+	int shieldHealth = ent.GetShieldHealth()
+	int maxShieldHealth = ent.GetShieldHealthMax()
+	if ( shieldHealth == 0 && ent.lastShieldHealth && maxShieldHealth > 0 )
+	{
+		PlayShieldBreakEffect( ent )
+	}
+
+	ent.lastShieldHealth = ent.GetShieldHealth()
+}
+
+
+void function ClientCodeCallback_OnCinematicEventFlagsChanged( entity player, int oldFlags )
+{
+	if ( !IsValid( player ) )
+		return
+	//printt( "ClientCodeCallback_OnCinematicEventFlagsChanged for player: " + player.GetEntIndex() )
+
+	//Strangely enough, even though cinematiceventflag data isn't propagated to other clients,
+	//The codecallback for them triggers e.g. when you first connect onto a server.
+	if ( player == GetLocalClientPlayer() )
+	{
+		thread UpdateMainHudFromCEFlags( player )
+		thread CinematicEventFlagsChanged( player )
+	}
+
+	int playerFlags = player.GetCinematicEventFlags()
+
+	int changedFlag = playerFlags ^ oldFlags //Take XOR of old and new flag to get changed flags
+	//printt( "Old flags:" + oldFlags + " , new Flags: " + playerFlags + ", changedFlag " + changedFlag )
+
+	foreach ( flag, callbackInfoArray in clGlobal.onCinematicEventFlagChangedCallback )
+	{
+		if ( !( changedFlag & flag ) )
+			continue
+
+		foreach ( callbackFunc in callbackInfoArray )
+		{
+			callbackFunc( player )
+		}
+	}
+}
+
+void function ClientCodeCallback_OnNextCoreChargeAvailableChanged( entity titansoul )
+{
+	if ( !IsValid( titansoul ) )
+		return
+
+	entity player = GetLocalViewPlayer()
+	if ( !IsValid( player ) )
+		return
+
+	if ( titansoul != player.GetTitanSoul() )
+		return
+
+	local coreTimeRemaining = GetTitanCoreTimeRemaining( player )
+	if ( coreTimeRemaining != null )
+		player.Signal( "ActivateTitanCore" )
+
+	UpdateTitanModeHUD( player )
+}
+
+void function ClientCodeCallback_OnCoreChargeExpireTimeChanged( entity titansoul )
+{
+	if ( !IsValid( titansoul ) )
+		return
+
+	entity player = GetLocalViewPlayer()
+	if ( !IsValid( player ) )
+		return
+
+	if ( titansoul != player.GetTitanSoul() )
+		return
+
+	UpdateTitanModeHUD( player )
+}
+
+void function ClientCodeCallback_OnEntityCreation( entity ent )
+{
+	if ( !IsValid( ent ) )
+		return
+
+	if ( IsLobby() )
+	{
+		if ( ent.GetSignifierName() != "player" )
+			return
+
+        return
+	}
+
+	PerfStart( PerfIndexClient.OnEntityCreation )
+
+	string className = expect string( ent.GetSignifierName() )
+	local targetName = ent.GetTargetName()
+
+	if ( className in _entityClassVars )
+	{
+		if ( !ent._entityVars )
+			InitEntityVars( ent )
+	}
+
+	if ( !("creationCount" in ent.s) )
+	{
+		ent.s.creationCount <- 0
+	}
+
+	if ( className == "player" )
+	{
+		if ( GetLocalClientPlayer() == ent )
+			ent.cv = level.clientVars
+
+		if ( ent == GetLocalViewPlayer() )
+			Init_PlayerScripts( ent )
+
+		ent.SetDoDestroyCallback( true )
+
+		// need this for kill replay.. but it doesn't work yet
+		//if ( ent.IsTitan() )
+		//	HandleDoomedState( GetLocalViewPlayer(), ent )
+	}
+
+	ent.lastShieldHealth = ent.GetShieldHealth()
+
+	ClInitHighlight( ent )
+
+	if ( className in clGlobal.onCreateCallbacks )
+	{
+		foreach ( callbackFunc in clGlobal.onCreateCallbacks[ className ] )
+		{
+			callbackFunc( ent )
+		}
+	}
+
+	if ( className in clGlobal.onTargetNameCreateCallbacks )
+	{
+		foreach ( callbackFunc in clGlobal.onTargetNameCreateCallbacks[ className ] )
+		{
+			callbackFunc( ent )
+		}
+	}
+
+	if ( className in clGlobal.onDestroyedCallbacks )
+		ent.SetDoDestroyCallback( true )
+
+	if ( targetName in clGlobal.onDestroyedCallbacks && targetName != className )
+		ent.SetDoDestroyCallback( true )
+
+	ent.s.creationCount++
+
+	PerfEnd( PerfIndexClient.OnEntityCreation )
+}
+
+void function ClientCodeCallback_OnDeath( entity ent )
+{
+	// AddOnDeathCallback sets DoDeathCallback( true ) in a create callback for the class
+
+	string className = expect string( ent.GetSignifierName() )
+
+	if ( ent.IsTitan() )
+	{
+		entity soul = ent.GetTitanSoul()
+		if ( IsValid( soul ) )
+			soul.Signal( "OnTitanDeath" )
+	}
+
+	ent.Signal( "OnDeath" )
+
+	if ( className in clGlobal.onDeathCallbacks )
+	{
+		foreach ( callbackFunc in clGlobal.onDeathCallbacks[ className ] )
+		{
+			callbackFunc( ent )
+		}
+	}
+
+	__RunOnDeathOrDestroyCallbacks( ent, className, ent.GetTargetName() )
+}
+
+function __RunOnDeathOrDestroyCallbacks( entity ent, string className, string targetName )
+{
+	//do this so they don't run twice
+	if ( ( "ranOnDeathOrDestroyCallbacks" in ent.s ) )
+		return
+
+	if ( className in clGlobal.onDeathOrDestroyCallbacks )
+	{
+		foreach ( callbackFunc in clGlobal.onDeathOrDestroyCallbacks[ className ] )
+		{
+			callbackFunc( ent )
+		}
+	}
+
+	ent.s.ranOnDeathOrDestroyCallbacks <- true
+}
+
+void function ClientCodeCallback_OnEntityDestroy( entity ent )
+{
+	// need to set this OnEntityCreation or somewhere
+	// ent.SetDoDestroyCallback( true )
+
+	string className = expect string( ent.GetSignifierName() )
+
+	if ( className in clGlobal.onDestroyedCallbacks )
+	{
+		foreach ( callbackFunc in clGlobal.onDestroyedCallbacks[ className ] )
+		{
+			callbackFunc( ent )
+		}
+	}
+
+	__RunOnDeathOrDestroyCallbacks( ent, className, ent.GetTargetName() )
+}
+
+
+void function ClientCodeCallback_OnPlayerLifeStateChanged( entity player, int oldLifeState )
+{
+	//printt( player == GetLocalClientPlayer(), oldLifeState, player.GetLifeState(), IsWatchingReplay() )
+	//local isWatchingKillReplay = IsWatchingReplay()
+
+	int newLifeState = player.GetLifeState()
+
+	// Added via AddCallback_OnPlayerLifeStateChanged
+	foreach ( callbackFunc in clGlobal.onPlayerLifeStateChangedCallbacks )
+	{
+		callbackFunc( player, oldLifeState, newLifeState )
+	}
+
+	/*
+	switch( oldLifeState )
+	{
+		case LIFE_ALIVE:
+			printt( player.GetPlayerName(), "LIFE_ALIVE", IsAlive( player ) )
+			if ( player == GetLocalClientPlayer() )
+				thread OnClientPlayerAlive( player )
+			player.Signal( "PlayerAlive" )
+			break
+		case LIFE_DYING:
+			printt( player.GetPlayerName(), "LIFE_DYING", IsAlive( player ) )
+			if ( player == GetLocalClientPlayer() )
+				thread OnClientPlayerDying( player )
+			player.Signal( "PlayerDying" )
+			break
+		case LIFE_DEAD:
+			printt( player.GetPlayerName(), "LIFE_DEAD", IsAlive( player ) )
+			player.Signal( "PlayerDead" )
+			break
+		case LIFE_DISCARDBODY:
+			printt( player.GetPlayerName(), "LIFE_DISCARDBODY", IsAlive( player ) )
+			player.Signal( "PlayerDiscardBody" )
+			break
+	}
+	*/
+}
+
+function AddCallback_OnPlayerLifeStateChanged( void functionref( entity, int, int ) callbackFunc )
+{
+	clGlobal.onPlayerLifeStateChangedCallbacks.append( callbackFunc )
+}
+
+void function ClientCodeCallback_KillReplayStarted()
+{
+	clGlobal.levelEnt.Signal( "KillReplayStarted" )
+	thread RunKillReplayStartedCallbacks()
+}
+
+void function ClientCodeCallback_VoicePackChanged( entity player )
+{
+}
+
+function RunKillReplayStartedCallbacks()
+{
+	WaitFrame()
+	foreach ( callbackFunc in clGlobal.killReplayStartCallbacks )
+	{
+		callbackFunc()
+	}
+}
+
+void function ClientCodeCallback_KillReplayEnded()
+{
+	clGlobal.levelEnt.Signal( "KillReplayEnded" )
+	thread RunKillReplayEndedCallbacks()
+}
+
+void function ClientCodeCallback_SpecReplayStarted()
+{
+	printl( "Spectate replay started" )
+}
+
+void function ClientCodeCallback_SpecReplayEnded()
+{
+	printl( "Spectate replay ended" )
+}
+
+void function ClientCodeCallback_SpectatorModeStarted( entity player, int observerMode )
+{
+	printl( "Spectator mode started: " + observerMode );
+}
+
+void function ClientCodeCallback_SpectatorModeEnded( entity player, int oldObsMode, entity oldTarget )
+{
+	printl( "Spectator mode ended: " + oldObsMode );
+}
+
+void function ClientCodeCallback_SpectatorTargetChanged( entity player, entity prevTarget, entity currTarget )
+{
+	printl( "Spectator target changed: " + currTarget );
+}
+
+function RunKillReplayEndedCallbacks()
+{
+	//WaitFrame() //Think this is no longer needed after net code changes...
+	foreach ( callbackFunc in clGlobal.killReplayEndCallbacks )
+	{
+		callbackFunc()
+	}
+}
+
+void function ClientCodeCallback_SaveResumed()
+{
+}
+
+void function ClientCodeCallback_OnSelectedWeaponChanged( entity selectedWeapon )
+{
+	// Added via AddCallback_OnSelectedWeaponChanged
+	foreach ( callbackFunc in clGlobal.onWeaponChangedCallbacks )
+	{
+		callbackFunc( selectedWeapon )
+	}
+}
+
+string function CodeCallback_CheckPassThroughAddsMods( entity player, entity hitEnt, string currWeaponName )
+{
+	if ( !IsValid( player ) )
+		return ""
+
+	if ( StatusEffect_Get( hitEnt, eStatusEffect.pass_through_amps_weapon ) > 0 )
+	{
+		array<string> mods = GetWeaponBurnMods( currWeaponName )
+		if ( mods.len() > 0 )
+			return mods[0]
+	}
+	return ""
+}
+
+/*
+void function CodeCallback_Ping( entity player )
+{
+
+}
+*/

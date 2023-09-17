@@ -1,0 +1,18 @@
+When: "SERVER || CLIENT"
+Scripts:
+[
+	sp/sh_sp_crashsite.nut
+	sp/autoprecache/sp_crashsite_autoprecache.nut
+]
+
+When: "SERVER"
+Scripts:
+[
+	sp/sp_crashsite.nut
+]
+
+When: "CLIENT"
+Scripts:
+[
+	sp/cl_sp_crashsite.nut
+]

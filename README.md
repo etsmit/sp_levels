@@ -8,7 +8,7 @@ Level scripts are written in [Squirrel](https://noskill.gitbook.io/titanfall2/do
 
 ##### Looking for level scripts?
 
-Go to the '_unpacked' directory for the level you're interested in, then follow the path:  scripts/ -> vscripts/
+Go to the directory for the level you're interested in, then follow the path:  scripts/ -> vscripts/
 
 This folder contains a bunch of general functions that apply to the game as whole. To get to the specific level scripts, continue on to the "sp/" directory. At the bottom of this directory, you should see a file "sp_[levelname].nut" - this is the main script file for the level. You may see another file with the name "sp_[levelname]_utility.nut" - this holds some more useful functions for the main script.
 
@@ -21,7 +21,14 @@ In each main script file, after listing out precaching resources and initializin
 
 ##### Looking for map data?
 
-This is under the "maps/" directory. Unfortunately, a lot of the files are too big to host on Github - so you will have to unpack these yourself. I have instructions to do so [here](https://docs.google.com/document/d/1UGnmYNVHER23qnDqRhvLxgJvm06f9pkj6BJIOyFRtCk/edit?usp=sharing). The blender files are also too large, but the instructions I linked go through the whole process of importing the .bsp's yourself. You may also ping me on the TF2SR discord (SpectralSmitty#4102) and I can send it to you.
+The blender files for each map are in the zipped folder in each level directory. Simply extract and you are good to go!
+
+The ".ent" files in the "maps" directories list out every map geo and trigger object - "[levelname]_script.ent" may be particularly useful to double-check triggers called in your level script against what you see in blender.
 
 
-The ".ent" files in this directory list out every map geo and trigger object - "[levelname]_script.ent" may be particularly useful to double-check triggers called in your level script against what you see in blender.
+##### Want to do this yourself?
+
+I have instructions to extract the vpk's and import the maps into blender [here](https://docs.google.com/document/d/1UGnmYNVHER23qnDqRhvLxgJvm06f9pkj6BJIOyFRtCk/edit?usp=sharing).
+
+
+Any questions? You may ping me in the TF2SR discord (SpectralSmitty)

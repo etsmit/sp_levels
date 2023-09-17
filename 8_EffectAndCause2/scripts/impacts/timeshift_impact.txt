@@ -1,0 +1,165 @@
+// "Gamematerial" "effect_name"
+
+// "B" bloodyflesh
+// "X" plastic box, wade, ladder, woodladdder,
+// "I" player_control_clip
+
+ImpactTable
+{
+	FX
+	{
+		"C" "P_ts_impact_default" //Concrete, rock, porcelain, boulder, gravel, asphalt, brick, concrete_block, plaster
+		"D" "P_ts_impact_grass" //Dirt, slipperyslime, snow, carpet, cardboard, floatingstandable, ceiling_tile, papercup
+		"E" "P_ts_impact_default" // metal_titan
+
+		"F" "P_ts_impact_default" //flesh
+		"G" "P_ts_impact_default" //metalgrate, chainlink, chain
+		"H" "P_ts_impact_default" //alienflesh
+
+		"J" "P_ts_impact_grass" //grass
+		"K" "P_ts_impact_default" //Mud
+		"L" "P_ts_impact_default" //plastic_barrel, plastic_box, item, rubber, rubbertire, jeeptire, slidingrubbertire, brakingrubbertire, slidingrubbertire_front, slidingrubbertire_rear
+		"M" "P_ts_impact_default" //Default, metal, metal_box, solidmetal, armorflesh, metal_bouncy, slippery_metal, shellcasing_small, shellcasing_large, metal_barrel, floating_metal_barrel, weapon
+		"N" "P_ts_impact_default"
+		"O" "P_ts_impact_grass" //Foliage
+		"P" "P_ts_impact_default" //Computer
+
+		"R" "P_ts_impact_default" //metalpanel, grenade, canister
+		"S" "P_ts_impact_water" //water, slime
+		"T" "P_ts_impact_default" //tile
+		"U" "P_ts_impact_default" //glass_breakble
+
+		"V" "P_ts_impact_default" //Metal Vent
+		"W" "P_ts_impact_default" //Wood, Wood_lowdensity, Wood_Box, Wood_Crate, Wood_Plank, Wood_Solid, Wood_Furniture, Wood_Panel watermelon
+
+		"Y" "P_ts_impact_default" //glass, brokenglass, glassbottle, pottery
+		"Z" "P_ts_impact_sand"  //sand
+
+		"0" "P_ts_impact_default"
+		"1" "P_ts_impact_default"
+		"2" "P_ts_impact_default"
+		"3" "P_ts_impact_default"
+		"4" "P_ts_impact_default"
+		"5" "P_ts_impact_default"
+		"6" "P_ts_impact_default"
+		"7" "P_ts_impact_default"
+		"8" "P_ts_impact_default"
+		"9" "P_ts_impact_default" //puddle
+
+		"splash" "P_ts_impact_water"
+		"slime_splash" "P_ts_impact_water"
+
+		"airburst" "P_ts_impact_air"
+		"critical_hit" "P_ts_impact_default"
+	}
+
+Sound
+
+	{
+		"C" "none"
+		"D" "none"
+		"E" "none"
+
+		"F" "none"
+		"G" "none"
+		"H" "none"
+
+		"J" "none"
+		"K" "none"
+		"L" "none"
+		"M" "none"
+		"N" "none"
+		"O" "none"
+		"P" "none"
+
+		"R" "none"
+		"S" "none"
+		"T" "none"
+		"U" "none"
+
+		"V" "none"
+		"W" "none"
+		"X"	"none"
+		"Y" "none"
+		"Z" "none"
+
+		//"splash" "Water.BulletImpact"
+		//"slime_splash" "Water.BulletImpact"
+
+		"airburst" "none"
+		"shieldhit" "none"
+	}
+
+	Sound_attacker
+	{
+		"C" "none"
+		"D" "none"
+		"E" "none"
+
+		"F" "none"
+		"G" "none"
+		"H" "none"
+
+		"J" "none"
+		"K" "none"  // mud?
+		"L" "none"
+		"M" "none"
+		"N" "none"	// sand?
+		"O" "none"
+		"P" "none"
+
+		"R" "none"
+		"S" "none"
+		"T" "none"
+		"U" "none"
+
+		"V" "none"
+		"W" "none"
+		"X"	"none"
+		"Y" "none"
+		"Z" "none"
+
+		//"splash" "Water.BulletImpact"
+		//"slime_splash" "Water.BulletImpact"
+
+		"airburst" "none"
+		"shieldhit" "none"
+	}
+
+	Sound_victim
+	{
+		"C" "none"
+		"D" "none"
+		"E" "none"
+
+		"F" "none"
+		"G" "none"
+		"H" "none"
+
+		"J" "none"
+		"K" "none"
+		"L" "none"
+		"M" "none"
+		"N" "none"
+		"O" "none"
+		"P" "none"
+
+		"R" "none"
+		"S" "none"
+		"T" "none"
+		"U" "none"
+
+		"V" "none"
+		"W" "none"
+		"X"	"none"
+		"Y" "none"
+		"Z" "none"
+
+		//"splash" "Water.BulletImpact"
+		//"slime_splash" "Water.BulletImpact"
+
+		"airburst" "none"
+		"shieldhit" "none"
+	}
+}
+

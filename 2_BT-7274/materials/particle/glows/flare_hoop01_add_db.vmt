@@ -1,0 +1,8 @@
+"spritecard"
+{
+	"$basetexture" "particle\glows\flare_hoop"
+	$translucent 1
+	$additive 1
+	$depthblend 1024
+	$muloutputbyalpha 1
+}

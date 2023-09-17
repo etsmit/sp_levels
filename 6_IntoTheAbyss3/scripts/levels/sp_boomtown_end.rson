@@ -1,0 +1,23 @@
+IsTestMap: false
+
+When: "SERVER || CLIENT"
+Scripts:
+[
+	sp/sh_sp_boomtown.nut
+	sp/autoprecache/SP_BOOMTOWN_END_AutoPrecache.nut
+	sp/sh_sp_boomtown_end.nut
+]
+
+When: "SERVER"
+Scripts:
+[
+	sp/sp_boomtown_end.nut
+	sp/sp_boomtown_utility.nut
+]
+
+When: "CLIENT"
+Scripts:
+[
+	sp/cl_sp_boomtown.nut
+	sp/cl_sp_boomtown_end.nut
+]

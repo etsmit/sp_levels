@@ -1,0 +1,6 @@
+#base "mp_weapon_smart_pistol.txt"
+WeaponData
+{
+	"viewmodel"   									"models/weapons/p2011sp/ptpov_p2011sp_bt_eyeball.mdl"
+	"playermodel" 									"models/weapons/p2011sp/w_p2011sp.mdl"
+}

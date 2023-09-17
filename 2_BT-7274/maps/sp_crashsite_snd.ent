@@ -1,0 +1,5396 @@
+ENTITIES01
+{
+"origin" "-2176 -1792 2048"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_AMB_EXT_GenericOpen"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 9856"
+"*trigger_brush_0_plane_1" "1 -0 0 9856"
+"*trigger_brush_0_plane_2" "-0 -1 -0 13824"
+"*trigger_brush_0_plane_3" "0 1 0 13824"
+"*trigger_brush_0_plane_4" "-0 -0 -1 3072"
+"*trigger_brush_0_plane_5" "0 0 1 3072"
+"*trigger_brush_0_plane_6" "-0.70710677 0.70710677 0 16744.289"
+"*trigger_brush_0_plane_7" "-0.70710677 -0.70710677 -0 16744.289"
+"*trigger_brush_0_plane_8" "0.70710677 -0.70710677 0 16744.289"
+"*trigger_brush_0_plane_9" "0.70710677 0.70710677 0 16744.289"
+"*trigger_bounds_mins" "-9856 -13824 -3072"
+"*trigger_bounds_maxs" "9856 13824 3072"
+}
+{
+"origin" "192 256 0"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_AMB_EXT_GenericOpen"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 704"
+"*trigger_brush_0_plane_1" "1 -0 -0 3648"
+"*trigger_brush_0_plane_2" "-0 -1 -0 3584"
+"*trigger_brush_0_plane_3" "0 1 0 4096"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_0_plane_5" "0 -0 1 1024"
+"*trigger_brush_0_plane_6" "-0.70710677 0.70710677 0 3394.1125"
+"*trigger_brush_0_plane_7" "-0.70710677 -0.70710677 0 3032.074"
+"*trigger_brush_0_plane_8" "0.70710677 -0.70710677 0 5113.7959"
+"*trigger_brush_0_plane_9" "0.70710677 0.70710677 0 5475.835"
+"*trigger_brush_1_plane_0" "-1 0 0 2688"
+"*trigger_brush_1_plane_1" "1 -0 -0 -704"
+"*trigger_brush_1_plane_2" "-0 -1 -0 4096"
+"*trigger_brush_1_plane_3" "-0 1 -0 448"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_1_plane_5" "0 -0 1 1024"
+"*trigger_brush_1_plane_6" "-0.70710677 0.70710677 -0 2217.4868"
+"*trigger_brush_1_plane_7" "-0.70710677 -0.70710677 0 4797.0122"
+"*trigger_brush_1_plane_8" "0.70710677 -0.70710677 0 2398.5061"
+"*trigger_brush_1_plane_9" "0.70710677 0.70710677 -0 -181.01932"
+"*trigger_brush_2_plane_0" "-1 0 0 1984"
+"*trigger_brush_2_plane_1" "1 -0 -0 -704"
+"*trigger_brush_2_plane_2" "0 -1 0 -1536"
+"*trigger_brush_2_plane_3" "0 1 0 4096"
+"*trigger_brush_2_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_2_plane_5" "0 -0 1 1024"
+"*trigger_brush_2_plane_6" "-0.70710677 0.70710677 -0 4299.209"
+"*trigger_brush_2_plane_7" "-0.70710677 -0.70710677 -0 316.78381"
+"*trigger_brush_2_plane_8" "0.70710677 -0.70710677 -0 -1583.9192"
+"*trigger_brush_2_plane_9" "0.70710677 0.70710677 -0 2398.5061"
+"*trigger_brush_3_plane_0" "-1 -0 -0 3648"
+"*trigger_brush_3_plane_1" "1 -0 -0 -704"
+"*trigger_brush_3_plane_2" "0 -1 0 -448"
+"*trigger_brush_3_plane_3" "-0 1 -0 1536"
+"*trigger_brush_3_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_3_plane_5" "0 -0 1 1024"
+"*trigger_brush_3_plane_6" "-0.70710677 0.70710677 0 3665.6414"
+"*trigger_brush_3_plane_7" "-0.70710677 -0.70710677 0 2262.7415"
+"*trigger_brush_3_plane_8" "0.70710677 -0.70710677 0 -814.58704"
+"*trigger_brush_3_plane_9" "0.70710677 0.70710677 0 588.31281"
+"*trigger_bounds_mins" "-3648 -4096 -1024"
+"*trigger_bounds_maxs" "3648 4096 1024"
+}
+{
+"origin" "704 -4864 0"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "9b4aabde"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_GenericCanyon"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 -0 -0 -63.999992"
+"*trigger_brush_0_plane_1" "1 0 0 1216"
+"*trigger_brush_0_plane_2" "0 -1 0 1280"
+"*trigger_brush_0_plane_3" "-0 1 -0 1536"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_0_plane_5" "0 -0 1 1024"
+"*trigger_brush_0_plane_6" "-0.70710677 0.70710677 0 1040.8611"
+"*trigger_brush_0_plane_7" "-0.70710677 -0.70710677 0 859.84186"
+"*trigger_brush_0_plane_8" "0.70710677 -0.70710677 0 1764.9385"
+"*trigger_brush_0_plane_9" "0.70710677 0.70710677 0 1945.9578"
+"*trigger_brush_1_plane_0" "-1 0 0 1216"
+"*trigger_brush_1_plane_1" "1 -0 -0 -448"
+"*trigger_brush_1_plane_2" "-0 -1 -0 1536"
+"*trigger_brush_1_plane_3" "-0 1 -0 1536"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_1_plane_5" "0 -0 1 1024"
+"*trigger_brush_1_plane_6" "-0.80000001 -0.60000002 -0 1280"
+"*trigger_brush_1_plane_7" "-0.70710677 0.70710677 0 1945.9578"
+"*trigger_brush_1_plane_8" "0.31622776 -0.94868332 -0 1315.5076"
+"*trigger_brush_1_plane_9" "0.70710677 0.70710677 0 769.33215"
+"*trigger_brush_2_plane_0" "-1 0 0 448"
+"*trigger_brush_2_plane_1" "1 0 0 63.999992"
+"*trigger_brush_2_plane_2" "-0 -1 -0 1536"
+"*trigger_brush_2_plane_3" "-0 1 -0 1536"
+"*trigger_brush_2_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_2_plane_5" "0 -0 1 1024"
+"*trigger_brush_2_plane_6" "-0.70710677 0.70710677 0 1402.8998"
+"*trigger_brush_2_plane_7" "-0.70710677 -0.70710677 0 1402.8998"
+"*trigger_brush_2_plane_8" "0.70710677 -0.70710677 0 1131.3708"
+"*trigger_brush_2_plane_9" "0.70710677 0.70710677 0 1131.3708"
+"*trigger_bounds_mins" "-1216 -1536 -1024"
+"*trigger_bounds_maxs" "1216 1536 1024"
+}
+{
+"origin" "704 -6592 0"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "c79c33cf"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_GenericOpen"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 448"
+"*trigger_brush_0_plane_1" "1 0 0 63.999992"
+"*trigger_brush_0_plane_2" "0 -1 0 1216"
+"*trigger_brush_0_plane_3" "0 1 0 192"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_0_plane_5" "0 -0 1 1024"
+"*trigger_brush_0_plane_6" "0.60000002 -0.80000001 0 704.00006"
+"*trigger_brush_0_plane_7" "-0.70710677 0.70710677 0 452.54834"
+"*trigger_brush_0_plane_8" "-0.44721359 -0.89442724 0 1287.9752"
+"*trigger_brush_0_plane_9" "0.89442712 -0.44721356 0 429.32504"
+"*trigger_brush_0_plane_10" "0.70710677 0.70710677 0 181.01933"
+"*trigger_brush_1_plane_0" "-1 0 0 1216"
+"*trigger_brush_1_plane_1" "1 -0 -0 -448"
+"*trigger_brush_1_plane_2" "0 -1 0 1216"
+"*trigger_brush_1_plane_3" "0 1 0 1216"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_1_plane_5" "0 -0 1 1024"
+"*trigger_brush_1_plane_6" "0.80000001 0.60000002 -0 -243.19995"
+"*trigger_brush_1_plane_7" "-0.31622776 0.94868332 0 1538.1318"
+"*trigger_brush_1_plane_8" "-0.70710677 -0.70710677 0 1719.6837"
+"*trigger_brush_1_plane_9" "0.70710677 -0.70710677 -0 543.05798"
+"*trigger_brush_2_plane_0" "-1 -0 -0 -63.999992"
+"*trigger_brush_2_plane_1" "1 0 0 1216"
+"*trigger_brush_2_plane_2" "-0 -1 -0 832"
+"*trigger_brush_2_plane_3" "-0 1 -0 448"
+"*trigger_brush_2_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_2_plane_5" "0 -0 1 1024"
+"*trigger_brush_2_plane_6" "-0.70710677 0.70710677 -0 271.52902"
+"*trigger_brush_2_plane_7" "-0.70710677 -0.70710677 0 543.05798"
+"*trigger_brush_2_plane_8" "0.70710677 -0.70710677 0 1448.1547"
+"*trigger_brush_2_plane_9" "0.70710677 0.70710677 0 1176.6257"
+"*trigger_bounds_mins" "-1216 -1216 -1024"
+"*trigger_bounds_maxs" "1216 1216 1024"
+}
+{
+"origin" "1088 -8960 0"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "2bfbd368"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_AMB_EXT_GenericCanyon"
+"environment" "Base_MediumHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 -0 -0 832"
+"*trigger_brush_0_plane_1" "1 -0 0 -320"
+"*trigger_brush_0_plane_2" "0 -1 0 -256"
+"*trigger_brush_0_plane_3" "-0 1 -0 1536"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_0_plane_5" "0 -0 1 1024"
+"*trigger_brush_0_plane_6" "-0.60000002 0.80000001 0 1420.8"
+"*trigger_brush_0_plane_7" "-0.89442712 0.44721356 0 1259.3534"
+"*trigger_brush_0_plane_8" "-0.70710677 -0.70710677 0 407.29346"
+"*trigger_brush_0_plane_9" "0.70710677 -0.70710677 0 -407.29352"
+"*trigger_brush_0_plane_10" "0.44721359 0.89442724 0 1230.7318"
+"*trigger_brush_1_plane_0" "-1 0 -0 320"
+"*trigger_brush_1_plane_1" "1 -0 -0 832"
+"*trigger_brush_1_plane_2" "-0 -1 -0 1536"
+"*trigger_brush_1_plane_3" "-0 1 -0 1536"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_1_plane_5" "0 -0 1 1024"
+"*trigger_brush_1_plane_6" "-0.70710677 0.70710677 -0 1312.3901"
+"*trigger_brush_1_plane_7" "-0.70710677 -0.70710677 -0 1312.3901"
+"*trigger_brush_1_plane_8" "0.70710677 -0.70710677 0 1674.4287"
+"*trigger_brush_1_plane_9" "0.70710677 0.70710677 0 1674.4287"
+"*trigger_bounds_mins" "-832 -1536 -1024"
+"*trigger_bounds_maxs" "832 1536 1024"
+}
+{
+"origin" "-128 -9600 224"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "23cb2c7f"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_AMB_INT_WaterfallCave"
+"environment" "Base_SmallHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 -0 -0 896"
+"*trigger_brush_0_plane_1" "1 -0 0 896"
+"*trigger_brush_0_plane_2" "0 -1 0 896"
+"*trigger_brush_0_plane_3" "0 1 0 896"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1248"
+"*trigger_brush_0_plane_5" "-0 -0 1 1248"
+"*trigger_brush_0_plane_6" "-0.70710677 0.70710677 0 950.35156"
+"*trigger_brush_0_plane_7" "-0.70710683 0.70710683 0 950.35162"
+"*trigger_brush_0_plane_8" "-0.70710677 -0.70710677 -0 1267.1354"
+"*trigger_brush_0_plane_9" "0.70710677 -0.70710677 0 1267.1354"
+"*trigger_brush_0_plane_10" "0.70710677 0.70710677 0 1267.1354"
+"*trigger_bounds_mins" "-896 -896 -1248"
+"*trigger_bounds_maxs" "896 896 1248"
+}
+{
+"origin" "-512 -8928 1568"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "f2bfb26f"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_GenericOpen"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 -0 -0 1280"
+"*trigger_brush_0_plane_1" "1 0 0 1280"
+"*trigger_brush_0_plane_2" "-0 -1 -0 -224.00002"
+"*trigger_brush_0_plane_3" "0 1 0 1568"
+"*trigger_brush_0_plane_4" "-0 0 -1 480"
+"*trigger_brush_0_plane_5" "0 -0 1 480"
+"*trigger_brush_0_plane_6" "-0.86824316 -0.49613893 -0 777.94586"
+"*trigger_brush_0_plane_7" "0.70710677 0.70710677 -0 1063.4886"
+"*trigger_brush_0_plane_8" "-0.59319901 0.80505586 0 1300.2924"
+"*trigger_brush_0_plane_9" "-0.86824322 -0.49613899 0 777.94592"
+"*trigger_brush_0_plane_10" "0.70710683 0.70710683 0 1063.4886"
+"*trigger_brush_0_plane_11" "-0.59319907 0.80505592 0 1300.2924"
+"*trigger_brush_0_plane_12" "-0.50192684 -0.86491013 -0 320.23322"
+"*trigger_brush_0_plane_13" "0.92387956 -0.38268346 -0 1096.8447"
+"*trigger_brush_0_plane_14" "-0.97838145 0.20680845 0 1391.3035"
+"*trigger_brush_1_plane_0" "-1 -0 -0 1024"
+"*trigger_brush_1_plane_1" "1 0 0 -64"
+"*trigger_brush_1_plane_2" "-0 -1 -0 223.99998"
+"*trigger_brush_1_plane_3" "0 1 0 224.00002"
+"*trigger_brush_1_plane_4" "-0 0 -1 480"
+"*trigger_brush_1_plane_5" "0 -0 1 480"
+"*trigger_brush_1_plane_6" "0.70710677 -0.70710677 0 -203.64676"
+"*trigger_brush_1_plane_7" "0.70710683 -0.70710683 0 -203.64676"
+"*trigger_brush_1_plane_8" "-0.70710677 0.70710677 0 882.46924"
+"*trigger_brush_1_plane_9" "-0.70710677 -0.70710677 0 882.46924"
+"*trigger_brush_1_plane_10" "0.92387956 0.38268346 0 26.5928"
+"*trigger_brush_2_plane_0" "-1 -0 -0 1024"
+"*trigger_brush_2_plane_1" "1 -0 -0 -512"
+"*trigger_brush_2_plane_2" "0 -1 0 1568"
+"*trigger_brush_2_plane_3" "0 1 0 -223.99998"
+"*trigger_brush_2_plane_4" "-0 0 -1 480"
+"*trigger_brush_2_plane_5" "0 -0 1 480"
+"*trigger_brush_2_plane_6" "-0.70710677 0.70710677 0 565.68542"
+"*trigger_brush_2_plane_7" "-0.70710677 -0.70710677 0 1832.8208"
+"*trigger_brush_2_plane_8" "0.70710677 -0.70710677 0 746.70471"
+"*trigger_brush_2_plane_9" "0.70710677 0.70710677 0 -520.4306"
+"*trigger_brush_3_plane_0" "-1 0 0 512"
+"*trigger_brush_3_plane_1" "1 0 0 1280"
+"*trigger_brush_3_plane_2" "0 -1 0 1568"
+"*trigger_brush_3_plane_3" "0 1 0 224.00002"
+"*trigger_brush_3_plane_4" "-0 -0 -1 96"
+"*trigger_brush_3_plane_5" "0 -0 1 480"
+"*trigger_brush_3_plane_6" "-0.70710677 0.70710677 -0 203.64676"
+"*trigger_brush_3_plane_7" "-0.70710683 0.70710683 0 203.64676"
+"*trigger_brush_3_plane_8" "-0.70710677 -0.70710677 -0 1470.7821"
+"*trigger_brush_3_plane_9" "0.70710677 -0.70710677 0 2013.8401"
+"*trigger_brush_3_plane_10" "0.70710677 0.70710677 0 1063.4886"
+"*trigger_bounds_mins" "-1280 -1568 -480"
+"*trigger_bounds_maxs" "1280 1568 480"
+}
+{
+"origin" "-2080 -8704 1280"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "1f65f827"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_GenericCanyon"
+"environment" "Base_SmallHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 -0 -0 544"
+"*trigger_brush_0_plane_1" "1 -0 -0 544"
+"*trigger_brush_0_plane_2" "-0 -1 -0 448"
+"*trigger_brush_0_plane_3" "-0 1 -0 448"
+"*trigger_brush_0_plane_4" "0 0 -1 448"
+"*trigger_brush_0_plane_5" "-0 0 1 448"
+"*trigger_brush_0_plane_6" "-0.28216633 -0.95936549 0 276.29727"
+"*trigger_brush_0_plane_7" "-0.56920999 0.82219219 0 204.40964"
+"*trigger_brush_0_plane_8" "0.86824316 0.49613893 0 472.32428"
+"*trigger_brush_0_plane_9" "-0.56920999 0.82219225 0 204.40964"
+"*trigger_brush_0_plane_10" "0.86824322 0.49613899 0 472.32431"
+"*trigger_brush_0_plane_11" "0.59909672 -0.80067676 0 684.61182"
+"*trigger_brush_0_plane_12" "-0.98726761 -0.15906803 0 557.43433"
+"*trigger_brush_0_plane_13" "0.22120781 0.97522676 0 500.60944"
+"*trigger_bounds_mins" "-544 -448 -448"
+"*trigger_bounds_maxs" "544 448 448"
+}
+{
+"origin" "-3968 -9504 992"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "fdb2c38"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_GenericOpen"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 639.99921"
+"*trigger_brush_0_plane_1" "1 0 0 2176"
+"*trigger_brush_0_plane_2" "0 -1 0 -672"
+"*trigger_brush_0_plane_3" "-0 1 -0 2208"
+"*trigger_brush_0_plane_4" "0 -0 -1 736"
+"*trigger_brush_0_plane_5" "-0 -0 1 736"
+"*trigger_brush_0_plane_6" "-0.2788102 -0.96034622 -0 -1020.0736"
+"*trigger_brush_0_plane_7" "0.38461539 0.92307693 -0 1988.9231"
+"*trigger_brush_0_plane_8" "0.56920999 -0.82219219 0 212.50507"
+"*trigger_brush_0_plane_9" "-0.88235295 0.47058824 0 1152"
+"*trigger_brush_0_plane_10" "0.56920999 -0.82219225 0 212.50507"
+"*trigger_brush_0_plane_11" "-0.92139477 -0.38862795 0 104.68494"
+"*trigger_brush_0_plane_12" "0.1607938 -0.98698807 0 -447.14911"
+"*trigger_brush_0_plane_13" "-0.33633637 0.94174188 0 2122.417"
+"*trigger_brush_1_plane_0" "-1 -0 -0 960"
+"*trigger_brush_1_plane_1" "1 -0 -0 1344"
+"*trigger_brush_1_plane_2" "0 -1 0 96"
+"*trigger_brush_1_plane_3" "0 1 0 1248"
+"*trigger_brush_1_plane_4" "0 -0 -1 736"
+"*trigger_brush_1_plane_5" "-0 -0 1 736"
+"*trigger_brush_1_plane_6" "-0.20750421 -0.97823411 0 -145.13438"
+"*trigger_brush_1_plane_7" "0.2788102 0.96034622 0 1020.0736"
+"*trigger_brush_1_plane_8" "-0.94174188 0.3363364 0 1022.4626"
+"*trigger_brush_1_plane_9" "0.97014248 -0.24253562 0 1140.8876"
+"*trigger_brush_1_plane_10" "-0.20750423 -0.97823423 -0 -145.13438"
+"*trigger_brush_1_plane_11" "-0.941742 0.3363364 0 1022.4628"
+"*trigger_brush_1_plane_12" "0.9701426 -0.24253565 0 1140.8877"
+"*trigger_brush_1_plane_13" "-0.87304956 -0.48763141 0 666.48132"
+"*trigger_brush_1_plane_14" "0.52982765 -0.84810537 0 691.77954"
+"*trigger_brush_1_plane_15" "0.86700737 0.49829522 0 1500.1123"
+"*trigger_brush_1_plane_16" "-0.45521057 0.89038378 0 1402.5337"
+"*trigger_brush_2_plane_0" "-1 -0 -0 2176"
+"*trigger_brush_2_plane_1" "1 -0 -0 1152"
+"*trigger_brush_2_plane_2" "0 -1 0 2208"
+"*trigger_brush_2_plane_3" "0 1 0 352"
+"*trigger_brush_2_plane_4" "0 -0 -1 736"
+"*trigger_brush_2_plane_5" "-0 -0 1 736"
+"*trigger_brush_2_plane_6" "0.20750421 0.97823411 -0 145.13438"
+"*trigger_brush_2_plane_7" "-0.59522754 -0.80355722 -0 2040.9163"
+"*trigger_brush_2_plane_8" "0.79709214 -0.6038577 0 976.22046"
+"*trigger_brush_2_plane_9" "-0.72499943 0.68874943 0 938.43927"
+"*trigger_brush_2_plane_10" "0.20750423 0.97823423 -0 145.13438"
+"*trigger_brush_2_plane_11" "-0.59522754 -0.80355716 -0 2040.9161"
+"*trigger_brush_2_plane_12" "-0.72499943 0.68874949 0 938.43921"
+"*trigger_brush_2_plane_13" "0.93704706 0.34920326 0 1045.9547"
+"*trigger_brush_2_plane_14" "-0.29648048 0.95503896 0 620.79492"
+"*trigger_brush_2_plane_15" "0.14197642 -0.98987007 0 2122.0276"
+"*trigger_bounds_mins" "-2176 -2208 -736"
+"*trigger_bounds_maxs" "2176 2208 736"
+}
+{
+"origin" "-6816 -7136 992"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "2f1ca8f5"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_INT_Grotto"
+"environment" "Base_Large_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 1760"
+"*trigger_brush_0_plane_1" "1 -0 -0 96"
+"*trigger_brush_0_plane_2" "-0 -1 -0 1312"
+"*trigger_brush_0_plane_3" "0 1 0 96"
+"*trigger_brush_0_plane_4" "0 -0 -1 736"
+"*trigger_brush_0_plane_5" "-0 -0 1 736"
+"*trigger_brush_0_plane_6" "-0.63323778 -0.77395731 -0 1684.1311"
+"*trigger_brush_0_plane_7" "0.10289915 0.99469179 0 -85.612099"
+"*trigger_brush_0_plane_8" "0.9635179 -0.26764387 0 118.19153"
+"*trigger_brush_0_plane_9" "0.0766965 -0.99705446 0 1227.144"
+"*trigger_brush_0_plane_10" "-0.63323784 -0.77395737 -0 1684.1311"
+"*trigger_brush_0_plane_11" "0.96351796 -0.26764387 0 118.19154"
+"*trigger_brush_0_plane_12" "0.0766965 -0.99705452 0 1227.144"
+"*trigger_brush_0_plane_13" "-0.66973907 0.74259651 0 1250.03"
+"*trigger_brush_0_plane_14" "-0.90366966 -0.4282302 -0 1905.636"
+"*trigger_brush_0_plane_15" "0.82624698 0.56330788 0 25.242153"
+"*trigger_brush_0_plane_16" "0.63523346 -0.77232027 0 821.56342"
+"*trigger_brush_1_plane_0" "-1 -0 -0 224"
+"*trigger_brush_1_plane_1" "1 0 0 1376"
+"*trigger_brush_1_plane_2" "0 -1 0 1824"
+"*trigger_brush_1_plane_3" "-0 1 -0 -96"
+"*trigger_brush_1_plane_4" "0 -0 -1 736"
+"*trigger_brush_1_plane_5" "-0 -0 1 736"
+"*trigger_brush_1_plane_6" "-0.9635179 0.26764387 -0 -118.19153"
+"*trigger_brush_1_plane_7" "-0.33871946 -0.94088739 -0 1250.1006"
+"*trigger_brush_1_plane_8" "0.33035043 0.94385839 -0 -58.89679"
+"*trigger_brush_1_plane_9" "-0.96351796 0.26764387 0 -118.19154"
+"*trigger_brush_1_plane_10" "-0.33871949 -0.94088745 -0 1250.1007"
+"*trigger_brush_1_plane_11" "0.33035043 0.94385844 -0 -58.89677"
+"*trigger_brush_1_plane_12" "0.57501328 -0.81814408 0 2283.5132"
+"*trigger_brush_1_plane_13" "0.81558269 0.57864046 0 807.46143"
+"*trigger_brush_1_plane_14" "-0.4631865 0.88626075 -0 -129.54694"
+"*trigger_brush_1_plane_15" "-0.88830882 -0.45924667 -0 772.12097"
+"*trigger_brush_2_plane_0" "-1 0 0 1760"
+"*trigger_brush_2_plane_1" "1 0 0 1760"
+"*trigger_brush_2_plane_2" "0 -1 0 96"
+"*trigger_brush_2_plane_3" "0 1 0 1824"
+"*trigger_brush_2_plane_4" "0 -0 -1 736"
+"*trigger_brush_2_plane_5" "-0 -0 1 736"
+"*trigger_brush_2_plane_6" "0.66436386 -0.74740934 0 475.68451"
+"*trigger_brush_2_plane_7" "0.48860338 0.87250602 0 1669.6274"
+"*trigger_brush_2_plane_8" "-0.89442718 0.44721359 0 1617.1243"
+"*trigger_brush_2_plane_9" "-0.10289915 -0.99469179 0 85.612099"
+"*trigger_brush_2_plane_10" "0.42579705 -0.90481871 0 127.73914"
+"*trigger_brush_2_plane_11" "-0.2544933 0.96707451 0 1723.2251"
+"*trigger_brush_2_plane_12" "0.48860335 0.87250602 -0 1669.6274"
+"*trigger_brush_2_plane_13" "-0.8944273 0.44721365 0 1617.1245"
+"*trigger_brush_2_plane_14" "-0.25449333 0.96707463 0 1723.2252"
+"*trigger_brush_2_plane_15" "-0.6305303 0.77616465 0 1833.1917"
+"*trigger_brush_2_plane_16" "-0.87660581 -0.48120916 0 1496.6301"
+"*trigger_bounds_mins" "-1760 -1824 -736"
+"*trigger_bounds_maxs" "1760 1824 736"
+}
+{
+"origin" "-5024 -8420.57 992"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "85aaebc4"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_GenericOpen"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 -96"
+"*trigger_brush_0_plane_1" "1 0 0 416"
+"*trigger_brush_0_plane_2" "-0 -1 -0 731.42969"
+"*trigger_brush_0_plane_3" "0 1 0 548.57031"
+"*trigger_brush_0_plane_4" "0 -0 -1 736"
+"*trigger_brush_0_plane_5" "-0 -0 1 736"
+"*trigger_brush_0_plane_6" "0.94174188 -0.3363364 0 336.41364"
+"*trigger_brush_0_plane_7" "0.76822126 0.6401844 -0 424.93539"
+"*trigger_brush_0_plane_8" "0.941742 -0.3363364 0 336.41367"
+"*trigger_brush_0_plane_9" "0.76822138 0.6401844 0 424.93542"
+"*trigger_brush_0_plane_10" "-0.34042528 0.94027156 -0 483.12424"
+"*trigger_brush_0_plane_11" "-0.17067239 -0.98532778 0 704.31348"
+"*trigger_brush_0_plane_12" "0.984577 0.17495216 0 438.37598"
+"*trigger_brush_1_plane_0" "-1 -0 -0 416"
+"*trigger_brush_1_plane_1" "1 -0 -0 96"
+"*trigger_brush_1_plane_2" "-0 -1 -0 731.42969"
+"*trigger_brush_1_plane_3" "0 1 0 731.42725"
+"*trigger_brush_1_plane_4" "0 -0 -1 736"
+"*trigger_brush_1_plane_5" "-0 -0 1 736"
+"*trigger_brush_1_plane_6" "-0.34174278 -0.93979353 0 654.58557"
+"*trigger_brush_1_plane_7" "0.33633605 0.94174206 0 548.90002"
+"*trigger_brush_1_plane_8" "-0.34174278 -0.93979359 -0 654.58557"
+"*trigger_brush_1_plane_9" "0.33633608 0.94174206 -0 548.90002"
+"*trigger_brush_1_plane_10" "-0.57604861 0.81741548 0 837.51617"
+"*trigger_brush_1_plane_11" "-0.81906736 -0.57369733 0 653.53937"
+"*trigger_brush_1_plane_12" "0.57369733 -0.81906736 0 654.16516"
+"*trigger_brush_1_plane_13" "0.81741548 0.57604861 0 394.47507"
+"*trigger_bounds_mins" "-416 -731.42969 -736"
+"*trigger_bounds_maxs" "416 731.42725 736"
+}
+{
+"origin" "-5536 -4768 992"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "f5608e5c"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_GenericWooded"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 1120"
+"*trigger_brush_0_plane_1" "1 -0 -0 1120"
+"*trigger_brush_0_plane_2" "0 -1 0 1440"
+"*trigger_brush_0_plane_3" "-0 1 -0 1440"
+"*trigger_brush_0_plane_4" "0 -0 -1 736"
+"*trigger_brush_0_plane_5" "-0 -0 1 736"
+"*trigger_brush_0_plane_6" "-0.48860338 -0.87250602 -0 1021.879"
+"*trigger_brush_0_plane_7" "0.52144998 0.85328186 -0 1212.0394"
+"*trigger_brush_0_plane_8" "0.95936549 -0.28216633 0 866.81494"
+"*trigger_brush_0_plane_9" "-0.8768124 0.48083261 0 720.45697"
+"*trigger_brush_0_plane_10" "-0.48860335 -0.87250602 -0 1021.879"
+"*trigger_brush_0_plane_11" "0.52144998 0.8532818 -0 1212.0394"
+"*trigger_brush_0_plane_12" "-0.87681246 0.48083264 0 720.45703"
+"*trigger_brush_0_plane_13" "-0.96123427 -0.27573279 0 1226.5811"
+"*trigger_brush_0_plane_14" "0.37753075 -0.92599708 0 1514.6505"
+"*trigger_brush_0_plane_15" "0.9330135 0.35984126 0 1309.8182"
+"*trigger_brush_0_plane_16" "-0.25739115 0.96630722 0 1399.719"
+"*trigger_bounds_mins" "-1120 -1440 -736"
+"*trigger_bounds_maxs" "1120 1440 736"
+}
+{
+"origin" "-4576 -2880 1952"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "d26cb547"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_INT_ShipInterior"
+"environment" "Base_Medium_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 -0 1184"
+"*trigger_brush_0_plane_1" "1 -0 -0 608"
+"*trigger_brush_0_plane_2" "0 -1 0 1152"
+"*trigger_brush_0_plane_3" "0 1 0 512"
+"*trigger_brush_0_plane_4" "0 -0 -1 736"
+"*trigger_brush_0_plane_5" "-0 -0 1 736"
+"*trigger_brush_0_plane_6" "0.52635461 0.85026515 0 47.938751"
+"*trigger_brush_0_plane_7" "-0.52635461 -0.85026515 0 895.2887"
+"*trigger_brush_0_plane_8" "-0.88047111 0.47409981 0 890.76587"
+"*trigger_brush_0_plane_9" "0.88047111 -0.47409981 0 687.03833"
+"*trigger_brush_0_plane_10" "-0.88047111 0.47409984 0 890.76587"
+"*trigger_brush_0_plane_11" "0.88047111 -0.47409984 0 687.03839"
+"*trigger_brush_0_plane_12" "0.96606177 0.25831127 0 504.70593"
+"*trigger_brush_0_plane_13" "-0.2583113 0.96606177 0 684.74072"
+"*trigger_brush_0_plane_14" "-0.96606177 -0.25831127 0 1226.4768"
+"*trigger_brush_0_plane_15" "0.2583113 -0.96606177 0 1154.233"
+"*trigger_brush_1_plane_0" "-1 0 -0 736"
+"*trigger_brush_1_plane_1" "1 0 0 480"
+"*trigger_brush_1_plane_2" "0 -1 0 -448"
+"*trigger_brush_1_plane_3" "-0 1 -0 1152"
+"*trigger_brush_1_plane_4" "-0 0 -1 416"
+"*trigger_brush_1_plane_5" "-0 -0 1 736"
+"*trigger_brush_1_plane_6" "-0.052558832 -0.99861783 0 -472.60904"
+"*trigger_brush_1_plane_7" "-0.70710677 0.70710677 0 882.46924"
+"*trigger_brush_1_plane_8" "0.77395731 0.63323778 -0 655.19006"
+"*trigger_brush_1_plane_9" "-0.70710683 0.70710683 0 882.4693"
+"*trigger_brush_1_plane_10" "0.77395737 0.63323784 0 655.19006"
+"*trigger_brush_1_plane_11" "-0.93362039 -0.35826379 0 503.71353"
+"*trigger_brush_1_plane_12" "0.8920998 -0.45183831 0 225.78435"
+"*trigger_brush_2_plane_0" "-1 0 -0 736"
+"*trigger_brush_2_plane_1" "1 -0 -0 608"
+"*trigger_brush_2_plane_2" "-0 -1 -0 320"
+"*trigger_brush_2_plane_3" "0 1 0 512"
+"*trigger_brush_2_plane_4" "0 -0 -1 608"
+"*trigger_brush_2_plane_5" "-0 -0 1 736"
+"*trigger_brush_2_plane_6" "0.98639393 0.16439898 -0 547.11981"
+"*trigger_brush_2_plane_7" "-0.52635461 -0.85026515 0 -47.938751"
+"*trigger_brush_2_plane_8" "0.052558832 0.99861783 -0 472.60904"
+"*trigger_brush_2_plane_9" "0.55704117 -0.83048493 0 604.43622"
+"*trigger_brush_2_plane_10" "0.66621017 0.74576408 -0 653.88318"
+"*trigger_brush_2_plane_11" "-0.95431262 0.29880986 0 855.36475"
+"*trigger_brush_3_plane_0" "-1 -0 -0 -480"
+"*trigger_brush_3_plane_1" "1 -0 -0 1184"
+"*trigger_brush_3_plane_2" "-0 -1 -0 320"
+"*trigger_brush_3_plane_3" "-0 1 -0 640"
+"*trigger_brush_3_plane_4" "0 -0 -1 608"
+"*trigger_brush_3_plane_5" "-0 -0 1 736"
+"*trigger_brush_3_plane_6" "-0.98639393 -0.16439898 -0 -547.11981"
+"*trigger_brush_3_plane_7" "-0.39391929 0.91914505 0 222.69572"
+"*trigger_brush_3_plane_8" "0.48564294 -0.87415725 0 575.00122"
+"*trigger_brush_3_plane_9" "0.92847669 0.37139067 -0 1099.3164"
+"*trigger_brush_3_plane_10" "-0.39391935 0.91914511 0 222.69572"
+"*trigger_brush_3_plane_11" "0.48564297 -0.87415737 0 575.00128"
+"*trigger_brush_3_plane_12" "-0.87740129 0.47975722 0 -206.22139"
+"*trigger_brush_3_plane_13" "-0.43431225 -0.90076238 0 24.182098"
+"*trigger_brush_3_plane_14" "0.38268346 0.92387956 0 946.41315"
+"*trigger_brush_3_plane_15" "0.94222122 -0.33499104 0 1115.59"
+"*trigger_bounds_mins" "-1184 -1152 -736"
+"*trigger_bounds_maxs" "1184 1152 736"
+}
+{
+"origin" "-3520 -2560 800"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"play_event" "wilds_amb_ext_genericcanyon"
+"environment" "Base_MediumHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 128"
+"*trigger_brush_0_plane_1" "1 -0 -0 576"
+"*trigger_brush_0_plane_2" "-0 -1 -0 320"
+"*trigger_brush_0_plane_3" "0 1 0 320"
+"*trigger_brush_0_plane_4" "0 -0 -1 544"
+"*trigger_brush_0_plane_5" "-0 -0 1 544"
+"*trigger_brush_0_plane_6" "0.91914505 0.39391929 -0 479.00589"
+"*trigger_brush_0_plane_7" "-0.92847669 -0.37139067 -0 0"
+"*trigger_brush_0_plane_8" "0.39391929 -0.91914505 0 344.54807"
+"*trigger_brush_0_plane_9" "0.91914511 0.39391935 0 479.00592"
+"*trigger_brush_0_plane_10" "0.39391935 -0.91914511 0 344.5481"
+"*trigger_brush_0_plane_11" "0.55049103 0.83484113 0 478.53772"
+"*trigger_brush_0_plane_12" "-0.8280673 0.56062883 0 285.39386"
+"*trigger_brush_0_plane_13" "0.92847669 -0.3713907 0 582.34058"
+"*trigger_brush_0_plane_14" "-0.38268346 -0.92387956 0 246.65796"
+"*trigger_brush_1_plane_0" "-1 0 0 576"
+"*trigger_brush_1_plane_1" "1 0 0 128"
+"*trigger_brush_1_plane_2" "0 -1 0 640"
+"*trigger_brush_1_plane_3" "0 1 0 320"
+"*trigger_brush_1_plane_4" "0 -0 -1 544"
+"*trigger_brush_1_plane_5" "-0 -0 1 544"
+"*trigger_brush_1_plane_6" "0.48564294 -0.87415725 0 341.89258"
+"*trigger_brush_1_plane_7" "0.92847669 0.37139067 0 0"
+"*trigger_brush_1_plane_8" "-0.39391929 0.91914505 0 344.54807"
+"*trigger_brush_1_plane_9" "-0.98639393 -0.16439898 0 547.11981"
+"*trigger_brush_1_plane_10" "0.48564297 -0.87415737 0 341.89264"
+"*trigger_brush_1_plane_11" "-0.39391935 0.91914511 0 344.54813"
+"*trigger_brush_1_plane_12" "-0.43431225 -0.90076238 0 771.05981"
+"*trigger_brush_1_plane_13" "0.94222122 -0.33499104 0 227.80145"
+"*trigger_brush_1_plane_14" "0.38268346 0.92387956 0 246.65796"
+"*trigger_brush_1_plane_15" "-0.87740129 0.47975722 0 566.79205"
+"*trigger_brush_2_plane_0" "-1 -0 -0 191.99998"
+"*trigger_brush_2_plane_1" "1 0 0 384"
+"*trigger_brush_2_plane_2" "-0 -1 -0 -320"
+"*trigger_brush_2_plane_3" "-0 1 -0 640"
+"*trigger_brush_2_plane_4" "0 -0 -1 544"
+"*trigger_brush_2_plane_5" "-0 -0 1 544"
+"*trigger_brush_2_plane_6" "-0.98058069 -0.19611613 0 62.757156"
+"*trigger_brush_2_plane_7" "0.70710677 -0.70710677 0 45.254822"
+"*trigger_brush_2_plane_8" "0.70710677 0.70710677 0 724.07733"
+"*trigger_brush_2_plane_9" "-0.63398898 -0.77334213 0 -166.31889"
+"*trigger_brush_2_plane_10" "-0.77334213 0.63398886 0 554.23456"
+"*trigger_bounds_mins" "-576 -640 -544"
+"*trigger_bounds_maxs" "576 640 544"
+}
+{
+"origin" "-3328 -1312 480"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "4d89f9d6"
+"triggerFilterUseNew" "1"
+"play_event" "wilds_amb_ext_genericcanyon"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 -0 -0 832"
+"*trigger_brush_0_plane_1" "1 0 0 320"
+"*trigger_brush_0_plane_2" "-0 -1 -0 608"
+"*trigger_brush_0_plane_3" "0 1 0 224.00002"
+"*trigger_brush_0_plane_4" "0 -0 -1 544"
+"*trigger_brush_0_plane_5" "-0 -0 1 544"
+"*trigger_brush_0_plane_6" "0.66436386 0.74740934 0 -2.6574554"
+"*trigger_brush_0_plane_7" "-0.31622776 0.94868332 0 293.45938"
+"*trigger_brush_0_plane_8" "-0.81923193 -0.57346237 -0 663.25018"
+"*trigger_brush_0_plane_9" "0.92847669 -0.37139067 0 404.07306"
+"*trigger_brush_0_plane_10" "-0.46181038 -0.88697869 0 716.61823"
+"*trigger_brush_0_plane_11" "0.56062877 -0.82806718 0 611.10559"
+"*trigger_brush_0_plane_12" "0.97324902 0.22975294 0 245.27084"
+"*trigger_brush_0_plane_13" "0.2010659 0.97957778 0 167.95255"
+"*trigger_brush_0_plane_14" "-0.94949931 0.31376901 0 800.02399"
+"*trigger_brush_1_plane_0" "-1 -0 -0 256"
+"*trigger_brush_1_plane_1" "1 -0 -0 832"
+"*trigger_brush_1_plane_2" "-0 -1 -0 288"
+"*trigger_brush_1_plane_3" "-0 1 -0 608"
+"*trigger_brush_1_plane_4" "0 -0 -1 544"
+"*trigger_brush_1_plane_5" "-0 -0 1 544"
+"*trigger_brush_1_plane_6" "-0.66436386 -0.74740934 -0 2.6574554"
+"*trigger_brush_1_plane_7" "-0.33282012 0.94299036 0 296.43179"
+"*trigger_brush_1_plane_8" "-0.33282015 0.94299042 0 296.43182"
+"*trigger_brush_1_plane_9" "0.70710677 -0.70710677 0 791.95953"
+"*trigger_brush_1_plane_10" "0.57757246 0.81633943 0 976.87463"
+"*trigger_brush_1_plane_11" "-0.98130351 0.19246633 0 294.32617"
+"*trigger_bounds_mins" "-832 -608 -544"
+"*trigger_bounds_maxs" "832 608 544"
+}
+{
+"origin" "-4704 672 0"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_Canyon_Shipside"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 -0 -0 2208"
+"*trigger_brush_0_plane_1" "1 0 0 -544"
+"*trigger_brush_0_plane_2" "0 -1 0 -31.999998"
+"*trigger_brush_0_plane_3" "-0 1 -0 1312"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_0_plane_5" "0 -0 1 1024"
+"*trigger_brush_0_plane_6" "0.68965518 0.7241379 0 -352"
+"*trigger_brush_0_plane_7" "-0.84799832 0.52999896 0 2296.3794"
+"*trigger_brush_0_plane_8" "-0.94868332 -0.31622776 -0 1841.7106"
+"*trigger_brush_0_plane_9" "0.68965524 0.72413796 -0 -352.00006"
+"*trigger_brush_0_plane_10" "-0.94868338 -0.31622779 0 1841.7107"
+"*trigger_brush_0_plane_11" "-0.5847103 -0.81124216 0 1115.3948"
+"*trigger_brush_0_plane_12" "0.92847669 -0.3713907 0 -516.97583"
+"*trigger_brush_1_plane_0" "-1 -0 -0 544"
+"*trigger_brush_1_plane_1" "1 0 0 2208"
+"*trigger_brush_1_plane_2" "-0 -1 -0 1312"
+"*trigger_brush_1_plane_3" "-0 1 -0 31.999998"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_1_plane_5" "0 -0 1 1024"
+"*trigger_brush_1_plane_6" "-0.70710677 0.70710677 0 407.29349"
+"*trigger_brush_1_plane_7" "-0.70710677 -0.70710677 0 1312.3901"
+"*trigger_brush_1_plane_8" "0.70710677 -0.70710677 0 2489.0159"
+"*trigger_brush_1_plane_9" "0.70710677 0.70710677 0 1583.9192"
+"*trigger_brush_2_plane_0" "-1 -0 -0 1952"
+"*trigger_brush_2_plane_1" "1 0 0 -544"
+"*trigger_brush_2_plane_2" "-0 -1 -0 1312"
+"*trigger_brush_2_plane_3" "-0 1 -0 31.999998"
+"*trigger_brush_2_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_2_plane_5" "0 -0 1 1024"
+"*trigger_brush_2_plane_6" "-0.70710677 0.70710677 0 1402.8999"
+"*trigger_brush_2_plane_7" "-0.70710677 -0.70710677 0 2307.9966"
+"*trigger_brush_2_plane_8" "0.70710677 -0.70710677 0 543.05798"
+"*trigger_brush_2_plane_9" "0.70710677 0.70710677 -0 -362.03867"
+"*trigger_bounds_mins" "-2208 -1312 -1024"
+"*trigger_bounds_maxs" "2208 1312 1024"
+}
+{
+"origin" "-8992 3488 352"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "975fd11a"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_Canyon_Shipside"
+"environment" "Base_MediumHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 2400"
+"*trigger_brush_0_plane_1" "1 0 0 -800"
+"*trigger_brush_0_plane_2" "0 -1 0 -1312"
+"*trigger_brush_0_plane_3" "-0 1 -0 2784"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_0_plane_5" "-0 -0 1 1376"
+"*trigger_brush_0_plane_6" "0.78086883 -0.62469506 0 -2044.0022"
+"*trigger_brush_0_plane_7" "0.66436386 0.74740934 -0 1166.6229"
+"*trigger_brush_0_plane_8" "-0.062378287 0.9980526 0 2864.4109"
+"*trigger_brush_0_plane_9" "-0.86092651 -0.50872934 -0 682.47986"
+"*trigger_brush_0_plane_10" "0.78086889 -0.62469506 0 -2044.0024"
+"*trigger_brush_0_plane_11" "-0.86092663 -0.50872934 0 682.4801"
+"*trigger_brush_0_plane_12" "-0.88358408 0.46827251 0 3394.303"
+"*trigger_brush_1_plane_0" "-1 -0 -0 -1440"
+"*trigger_brush_1_plane_1" "1 0 0 2336"
+"*trigger_brush_1_plane_2" "0 -1 0 2784"
+"*trigger_brush_1_plane_3" "-0 1 -0 -2016"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_1_plane_5" "-0 -0 1 1376"
+"*trigger_brush_1_plane_6" "-0.62469506 0.78086883 0 -2873.5972"
+"*trigger_brush_1_plane_7" "-0.97014248 -0.24253562 -0 -783.87506"
+"*trigger_brush_1_plane_8" "0.94868332 0.31622776 0 1335.7461"
+"*trigger_brush_1_plane_9" "-0.97014254 -0.24253564 0 -783.87512"
+"*trigger_brush_1_plane_10" "0.94868338 0.31622779 0 1335.7461"
+"*trigger_brush_1_plane_11" "-0.61541218 -0.78820544 0 1268.7842"
+"*trigger_brush_1_plane_12" "0.81124216 -0.58471024 0 3522.895"
+"*trigger_brush_1_plane_13" "0.28322238 0.95905423 0 -1344.3508"
+"*trigger_brush_1_plane_14" "-0.94747865 0.31981888 0 -2172.8713"
+"*trigger_brush_2_plane_0" "-1 0 -0 288"
+"*trigger_brush_2_plane_1" "1 -0 -0 2400"
+"*trigger_brush_2_plane_2" "0 -1 0 2528"
+"*trigger_brush_2_plane_3" "0 1 0 2272"
+"*trigger_brush_2_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_2_plane_5" "-0 -0 1 1376"
+"*trigger_brush_2_plane_6" "-0.99905616 0.043437224 0 258.53836"
+"*trigger_brush_2_plane_7" "0.84799832 -0.52999896 0 2832.3145"
+"*trigger_brush_2_plane_8" "0.62469506 -0.78086883 -0 2873.5972"
+"*trigger_brush_2_plane_9" "-0.73189396 -0.68141854 -0 668.69885"
+"*trigger_brush_2_plane_10" "0.82770848 0.5611583 0 1142.5183"
+"*trigger_brush_2_plane_11" "-0.73189402 -0.68141854 0 668.69873"
+"*trigger_brush_2_plane_12" "-0.27266976 0.96210766 0 2229.5359"
+"*trigger_brush_3_plane_0" "-1 -0 -0 1568"
+"*trigger_brush_3_plane_1" "1 -0 -0 -160"
+"*trigger_brush_3_plane_2" "0 -1 -0 672"
+"*trigger_brush_3_plane_3" "0 1 0 2272"
+"*trigger_brush_3_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_3_plane_5" "-0 -0 1 1376"
+"*trigger_brush_3_plane_6" "-0.78086883 0.62469506 0 2044.0022"
+"*trigger_brush_3_plane_7" "-0.84029663 -0.54212689 -0 606.3147"
+"*trigger_brush_3_plane_8" "0.99905616 -0.043437224 0 -258.53836"
+"*trigger_brush_3_plane_9" "-0.78086889 0.62469506 0 2044.0024"
+"*trigger_brush_3_plane_10" "-0.84029675 -0.54212689 0 606.3147"
+"*trigger_brush_3_plane_11" "0.72230095 0.69157892 0 1455.6992"
+"*trigger_brush_3_plane_12" "-0.43318874 0.90130323 0 2394.312"
+"*trigger_brush_3_plane_13" "0.26167536 -0.96515596 0 573.22229"
+"*trigger_bounds_mins" "-2400 -2784 -1376"
+"*trigger_bounds_maxs" "2400 2784 1376"
+}
+{
+"origin" "-7072 5312 352"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "de519b78"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_AMB_EXT_GenericOpen"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 -0 -0 2528"
+"*trigger_brush_0_plane_1" "1 -0 -0 544"
+"*trigger_brush_0_plane_2" "0 -1 0 -448"
+"*trigger_brush_0_plane_3" "0 1 0 3328"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_0_plane_5" "-0 -0 1 1376"
+"*trigger_brush_0_plane_6" "0.38301504 -0.92374212 0 -1210.5077"
+"*trigger_brush_0_plane_7" "0.90700895 0.42111132 -0 1140.2399"
+"*trigger_brush_0_plane_8" "-0.43690395 0.89950818 0 3119.3916"
+"*trigger_brush_0_plane_9" "-0.97014248 -0.24253562 -0 1909.2405"
+"*trigger_brush_0_plane_10" "0.38301501 -0.92374212 0 -1210.5077"
+"*trigger_brush_0_plane_11" "0.90700907 0.42111135 0 1140.24"
+"*trigger_brush_0_plane_12" "-0.43690398 0.89950818 0 3119.3916"
+"*trigger_brush_0_plane_13" "-0.9701426 -0.24253565 0 1909.2406"
+"*trigger_brush_0_plane_14" "-0.44965568 -0.89320207 0 535.12927"
+"*trigger_brush_0_plane_15" "0.93177152 -0.36304525 0 -50.753815"
+"*trigger_brush_0_plane_16" "0.33535886 0.94209051 0 3038.6941"
+"*trigger_brush_0_plane_17" "-0.90609646 0.42307097 0 3238.2908"
+"*trigger_brush_1_plane_0" "-1 0 0 3296"
+"*trigger_brush_1_plane_1" "1 -0 -0 -2080"
+"*trigger_brush_1_plane_2" "0 -1 0 -448"
+"*trigger_brush_1_plane_3" "-0 1 -0 2240"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_1_plane_5" "-0 -0 1 1376"
+"*trigger_brush_1_plane_6" "-0.85749292 0.51449573 0 3320.2126"
+"*trigger_brush_1_plane_7" "-0.66436386 -0.74740934 0 1472.2302"
+"*trigger_brush_1_plane_8" "0.97014248 0.24253562 0 -1909.2405"
+"*trigger_brush_1_plane_9" "-0.85749298 0.51449579 0 3320.2129"
+"*trigger_brush_1_plane_10" "0.9701426 0.24253565 0 -1909.2406"
+"*trigger_brush_1_plane_11" "0.78820539 -0.61541218 0 -1915.1719"
+"*trigger_brush_1_plane_12" "0.14718376 0.98910922 0 1843.5242"
+"*trigger_brush_1_plane_13" "-0.98849028 -0.15128417 0 3112.8311"
+"*trigger_brush_2_plane_0" "-1 0 0 2080"
+"*trigger_brush_2_plane_1" "1 -0 -0 1184"
+"*trigger_brush_2_plane_2" "-0 -1 -0 3328"
+"*trigger_brush_2_plane_3" "-0 1 -0 1536"
+"*trigger_brush_2_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_2_plane_5" "-0 -0 1 1376"
+"*trigger_brush_2_plane_6" "-0.38301504 0.92374212 0 1210.5077"
+"*trigger_brush_2_plane_7" "-0.82770848 -0.5611583 -0 1470.2347"
+"*trigger_brush_2_plane_8" "0.8654263 -0.50103629 0 2082.8535"
+"*trigger_brush_2_plane_9" "0.98495704 0.17279948 0 801.23657"
+"*trigger_brush_2_plane_10" "-0.38301501 0.92374212 0 1210.5077"
+"*trigger_brush_2_plane_11" "0.9849571 0.17279948 0 801.23669"
+"*trigger_brush_2_plane_12" "0.48120913 0.87660581 0 1608.2444"
+"*trigger_brush_2_plane_13" "-0.95796412 0.28688818 0 2121.0913"
+"*trigger_brush_3_plane_0" "-1 0 0 -544"
+"*trigger_brush_3_plane_1" "1 0 0 2656"
+"*trigger_brush_3_plane_2" "-0 -1 -0 2112"
+"*trigger_brush_3_plane_3" "-0 1 -0 1536"
+"*trigger_brush_3_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_3_plane_5" "-0 -0 1 1376"
+"*trigger_brush_3_plane_6" "-0.98495704 -0.17279948 -0 -801.23657"
+"*trigger_brush_3_plane_7" "0.83205032 -0.5547002 0 2529.4331"
+"*trigger_brush_3_plane_8" "0.70710677 0.70710677 0 1470.782"
+"*trigger_brush_3_plane_9" "-0.9849571 -0.17279948 0 -801.23669"
+"*trigger_brush_3_plane_10" "0.70710683 0.70710683 0 1470.7822"
+"*trigger_brush_3_plane_11" "-0.64311767 -0.76576746 0 855.84961"
+"*trigger_brush_3_plane_12" "0.47185796 -0.88167459 0 2632.1689"
+"*trigger_brush_3_plane_13" "-0.46136642 0.88720965 0 1111.7708"
+"*trigger_brush_4_plane_0" "-1 0 0 -544"
+"*trigger_brush_4_plane_1" "1 0 0 2656"
+"*trigger_brush_4_plane_2" "0 -1 0 576"
+"*trigger_brush_4_plane_3" "0 1 0 1728"
+"*trigger_brush_4_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_4_plane_5" "-0 -0 1 1376"
+"*trigger_brush_4_plane_6" "0.99961442 0.027767068 -0 2638.9819"
+"*trigger_brush_4_plane_7" "-0.70710677 -0.70710677 -0 -1470.7821"
+"*trigger_brush_4_plane_8" "-0.09334071 0.9956342 0 1478.5168"
+"*trigger_brush_4_plane_9" "0.99961454 0.027767072 0 2638.9824"
+"*trigger_brush_4_plane_10" "-0.70710683 -0.70710683 0 -1470.7822"
+"*trigger_brush_4_plane_11" "-0.09334071 0.99563426 0 1478.5168"
+"*trigger_brush_4_plane_12" "0.39547449 -0.91847694 -0 1579.423"
+"*trigger_brush_4_plane_13" "0.66296667 0.748649 0 3012.0752"
+"*trigger_brush_4_plane_14" "-0.94075006 0.33910057 0 9.0904236"
+"*trigger_brush_5_plane_0" "-1 -0 -0 -2592"
+"*trigger_brush_5_plane_1" "1 -0 -0 3296"
+"*trigger_brush_5_plane_2" "0 -1 0 576"
+"*trigger_brush_5_plane_3" "0 1 0 1728"
+"*trigger_brush_5_plane_4" "-0 -0 -1 1376"
+"*trigger_brush_5_plane_5" "-0 -0 1 1376"
+"*trigger_brush_5_plane_6" "-0.99961442 -0.027767068 0 -2638.9819"
+"*trigger_brush_5_plane_7" "0.92609239 0.37729689 0 3052.4004"
+"*trigger_brush_5_plane_8" "0.66896474 -0.74329412 0 2204.9077"
+"*trigger_brush_5_plane_9" "-0.99961454 -0.027767072 0 -2638.9824"
+"*trigger_brush_5_plane_10" "0.92609245 0.37729692 0 3052.4006"
+"*trigger_brush_5_plane_11" "0.6689648 -0.74329418 0 2204.908"
+"*trigger_brush_5_plane_12" "-0.20584105 0.97858542 0 1157.4556"
+"*trigger_brush_5_plane_13" "-0.39411554 -0.91906095 0 -517.39178"
+"*trigger_brush_5_plane_14" "0.97467059 -0.22364512 0 3212.5142"
+"*trigger_bounds_mins" "-3296 -3328 -1376"
+"*trigger_bounds_maxs" "3296 3328 1376"
+}
+{
+"origin" "-5824 3712 1152"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"environment" "Base_SmallHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 448"
+"*trigger_brush_0_plane_1" "1 0 0 448"
+"*trigger_brush_0_plane_2" "-0 -1 -0 256"
+"*trigger_brush_0_plane_3" "-0 1 -0 256"
+"*trigger_brush_0_plane_4" "-0 -0 -1 96"
+"*trigger_brush_0_plane_5" "-0 -0 1 96"
+"*trigger_brush_0_plane_6" "-0.70710677 0.70710677 0 497.80316"
+"*trigger_brush_0_plane_7" "-0.70710677 -0.70710677 0 497.80316"
+"*trigger_brush_0_plane_8" "0.70710677 -0.70710677 0 497.80316"
+"*trigger_brush_0_plane_9" "0.70710677 0.70710677 0 497.80316"
+"*trigger_bounds_mins" "-448 -256 -96"
+"*trigger_bounds_maxs" "448 256 96"
+}
+{
+"origin" "-4976 3360 224"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "6b15d42a"
+"triggerFilterUseNew" "1"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 912"
+"*trigger_brush_0_plane_1" "1 0 0 624"
+"*trigger_brush_0_plane_2" "-0 -1 -0 1376"
+"*trigger_brush_0_plane_3" "0 1 0 -160"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1248"
+"*trigger_brush_0_plane_5" "-0 -0 1 1248"
+"*trigger_brush_0_plane_6" "-0.70710677 0.70710677 -0 531.74426"
+"*trigger_brush_0_plane_7" "-0.70710677 -0.70710677 0 1617.8604"
+"*trigger_brush_0_plane_8" "0.70710677 -0.70710677 0 1414.2136"
+"*trigger_brush_0_plane_9" "0.70710677 0.70710677 -0 328.09753"
+"*trigger_brush_1_plane_0" "-1 0 0 464"
+"*trigger_brush_1_plane_1" "1 0 0 624"
+"*trigger_brush_1_plane_2" "-0 -1 -0 160"
+"*trigger_brush_1_plane_3" "-0 1 -0 1376"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1248"
+"*trigger_brush_1_plane_5" "-0 -0 1 1248"
+"*trigger_brush_1_plane_6" "0.99913305 0.041630544 -0 616.79816"
+"*trigger_brush_1_plane_7" "-0.83205032 0.5547002 -0 297.31934"
+"*trigger_brush_1_plane_8" "-0.88167465 -0.47185794 0 484.5943"
+"*trigger_brush_1_plane_9" "0.72167528 -0.69223166 0 561.08246"
+"*trigger_brush_1_plane_10" "0.26979479 0.9629178 -0 1476.0599"
+"*trigger_brush_2_plane_0" "-1 -0 -0 -560"
+"*trigger_brush_2_plane_1" "1 0 0 912"
+"*trigger_brush_2_plane_2" "-0 -1 -0 160"
+"*trigger_brush_2_plane_3" "-0 1 -0 1376"
+"*trigger_brush_2_plane_4" "-0 -0 -1 1248"
+"*trigger_brush_2_plane_5" "-0 -0 1 1248"
+"*trigger_brush_2_plane_6" "-0.99913305 -0.041630544 0 -616.79816"
+"*trigger_brush_2_plane_7" "0.95853633 0.28497025 0 928.89941"
+"*trigger_brush_2_plane_8" "0.77395731 -0.63323778 0 584.2674"
+"*trigger_brush_2_plane_9" "0.95853645 0.28497028 0 928.89954"
+"*trigger_brush_2_plane_10" "0.77395737 -0.63323784 0 584.26746"
+"*trigger_brush_2_plane_11" "-0.16455716 0.98636758 0 1265.0898"
+"*trigger_brush_2_plane_12" "-0.31650558 -0.94859064 0 -45.724976"
+"*trigger_brush_2_plane_13" "0.98038775 -0.19707848 0 856.2746"
+"*trigger_bounds_mins" "-912 -1376 -1248"
+"*trigger_bounds_maxs" "912 1376 1248"
+}
+{
+"origin" "-6176 5056 672"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "2a1ec0ed"
+"triggerFilterUseNew" "1"
+"environment" "Base_SmallHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 128"
+"*trigger_brush_0_plane_1" "1 0 0 352"
+"*trigger_brush_0_plane_2" "-0 -1 -0 -128"
+"*trigger_brush_0_plane_3" "-0 1 -0 608"
+"*trigger_brush_0_plane_4" "0 -0 -1 160"
+"*trigger_brush_0_plane_5" "0 0 1 0"
+"*trigger_brush_0_plane_6" "-0.39391929 -0.91914505 -0 -155.46683"
+"*trigger_brush_0_plane_7" "0.85165834 -0.52409744 0 14.674728"
+"*trigger_brush_0_plane_8" "-0.76822126 0.6401844 0 241.73364"
+"*trigger_brush_0_plane_9" "0.37139067 0.92847669 0 635.8208"
+"*trigger_brush_0_plane_10" "-0.39391935 -0.91914511 -0 -155.46683"
+"*trigger_brush_0_plane_11" "-0.76822138 0.6401844 0 241.73364"
+"*trigger_brush_0_plane_12" "-0.97237837 -0.23341005 0 72.18058"
+"*trigger_brush_0_plane_13" "0.3023192 -0.95320672 0 -92.987816"
+"*trigger_brush_0_plane_14" "0.94944984 0.31391859 0 504.97803"
+"*trigger_brush_0_plane_15" "-0.24524832 0.96946031 0 542.34424"
+"*trigger_brush_1_plane_0" "-1 0 0 352"
+"*trigger_brush_1_plane_1" "1 -0 -0 96"
+"*trigger_brush_1_plane_2" "-0 -1 -0 608"
+"*trigger_brush_1_plane_3" "-0 1 -0 -96"
+"*trigger_brush_1_plane_4" "0 -0 -1 160"
+"*trigger_brush_1_plane_5" "0 -0 1 160"
+"*trigger_brush_1_plane_6" "0.3363364 0.94174188 0 -208.79762"
+"*trigger_brush_1_plane_7" "0.97014248 -0.24253562 0 155.22279"
+"*trigger_brush_1_plane_8" "-0.95447999 -0.29827499 -0 364.61136"
+"*trigger_brush_1_plane_9" "0.39391929 -0.91914505 0 483.20767"
+"*trigger_brush_1_plane_10" "0.3363364 0.941742 -0 -208.79764"
+"*trigger_brush_1_plane_11" "0.97014254 -0.24253564 0 155.22281"
+"*trigger_brush_1_plane_12" "0.39391935 -0.91914511 0 483.2077"
+"*trigger_brush_1_plane_13" "0.88167459 0.47185791 0 -36.154861"
+"*trigger_brush_1_plane_14" "-0.69277406 0.72115475 0 174.62561"
+"*trigger_brush_1_plane_15" "0.76132524 -0.64837003 0 356.32785"
+"*trigger_brush_1_plane_16" "-0.41824269 -0.90833527 0 632.57043"
+"*trigger_brush_2_plane_0" "-1 0 0 352"
+"*trigger_brush_2_plane_1" "1 -0 -0 96"
+"*trigger_brush_2_plane_2" "-0 -1 -0 256"
+"*trigger_brush_2_plane_3" "0 1 0 224.00002"
+"*trigger_brush_2_plane_4" "0 -0 -1 160"
+"*trigger_brush_2_plane_5" "-0 -0 1 64"
+"*trigger_brush_2_plane_6" "0.39391929 0.91914505 0 155.46683"
+"*trigger_brush_2_plane_7" "-0.3363364 -0.94174188 -0 208.79762"
+"*trigger_brush_2_plane_8" "-0.81923193 0.57346237 0 233.31725"
+"*trigger_brush_2_plane_9" "0.39391935 0.91914511 -0 155.46683"
+"*trigger_brush_2_plane_10" "-0.3363364 -0.941742 -0 208.79764"
+"*trigger_brush_2_plane_11" "0.57604843 -0.81741554 0 264.55902"
+"*trigger_brush_2_plane_12" "0.83484113 0.55049103 0 150.6076"
+"*trigger_brush_2_plane_13" "-0.27403805 0.96171892 0 250.50191"
+"*trigger_brush_2_plane_14" "-0.95278299 -0.30365184 0 364.53018"
+"*trigger_bounds_mins" "-352 -608 -160"
+"*trigger_bounds_maxs" "352 608 160"
+}
+{
+"origin" "-4672 4336 704"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "7ab47229"
+"triggerFilterUseNew" "1"
+"environment" "Base_SmallHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 -0 288"
+"*trigger_brush_0_plane_1" "1 0 0 288"
+"*trigger_brush_0_plane_2" "-0 -1 -0 496"
+"*trigger_brush_0_plane_3" "-0 1 -0 496"
+"*trigger_brush_0_plane_4" "-0 -0 -1 128"
+"*trigger_brush_0_plane_5" "0 -0 1 128"
+"*trigger_brush_0_plane_6" "0.19611613 0.98058069 0 429.8866"
+"*trigger_brush_0_plane_7" "0.93979341 0.34174305 0 177.70639"
+"*trigger_brush_0_plane_8" "-0.98724115 -0.15923244 -0 205.34616"
+"*trigger_brush_0_plane_9" "0.47409981 -0.88047111 0 376.0289"
+"*trigger_brush_0_plane_10" "0.93979347 0.34174308 0 177.70641"
+"*trigger_brush_0_plane_11" "-0.98724121 -0.15923245 0 205.34616"
+"*trigger_brush_0_plane_12" "0.47409984 -0.88047111 0 376.0289"
+"*trigger_brush_0_plane_13" "0.65161413 0.75855058 0 348.5455"
+"*trigger_brush_0_plane_14" "-0.69373137 0.72023386 0 557.03064"
+"*trigger_brush_0_plane_15" "0.93446529 -0.35605425 0 365.97278"
+"*trigger_brush_0_plane_16" "-0.44257745 -0.8967303 0 501.42813"
+"*trigger_bounds_mins" "-288 -496 -128"
+"*trigger_bounds_maxs" "288 496 128"
+}
+{
+"origin" "-3008 3488 320"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_GenericOpen"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 448"
+"*trigger_brush_0_plane_1" "1 0 0 1216"
+"*trigger_brush_0_plane_2" "0 -1 0 1696"
+"*trigger_brush_0_plane_3" "0 1 -0 1504"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1344"
+"*trigger_brush_0_plane_5" "-0 0 1 1344"
+"*trigger_brush_0_plane_6" "-0.88721681 0.46135274 0 -384.98108"
+"*trigger_brush_0_plane_7" "0 -0.19611613 0.98058069 1022.9418"
+"*trigger_brush_0_plane_8" "0.70710677 -0.70710677 0 2059.095"
+"*trigger_brush_0_plane_9" "0.23746915 0.97139513 0 1749.7407"
+"*trigger_brush_0_plane_10" "-0.85479611 -0.51896405 0 1263.1117"
+"*trigger_brush_1_plane_0" "-1 0 0 704"
+"*trigger_brush_1_plane_1" "1 0 0 1216"
+"*trigger_brush_1_plane_2" "0 -1 0 1696"
+"*trigger_brush_1_plane_3" "-0 1 -0 1696"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1344"
+"*trigger_brush_1_plane_5" "-0 0 1 1344"
+"*trigger_brush_1_plane_6" "0.88721681 -0.46135274 0 384.98108"
+"*trigger_brush_1_plane_7" "0.099503718 0.9950372 -0 1617.5325"
+"*trigger_brush_1_plane_8" "-0.99716413 -0.075257666 -0 574.36652"
+"*trigger_brush_1_plane_9" "-0.018673623 -0.18673624 0.98223257 1016.5621"
+"*trigger_brush_1_plane_10" "0 -0.19611615 0.98058063 1022.9417"
+"*trigger_brush_1_plane_11" "-0.99716419 -0.075257674 0 574.36658"
+"*trigger_brush_1_plane_12" "-0.99716407 -0.075257666 -0 574.36646"
+"*trigger_brush_1_plane_13" "-0.20072232 -0.97964811 0 1751.4067"
+"*trigger_brush_1_plane_14" "0.8795864 0.47573921 0 1785.0889"
+"*trigger_brush_1_plane_15" "-0.69844919 0.71565956 -0 1705.4669"
+"*trigger_brush_2_plane_0" "-1 0 0 1216"
+"*trigger_brush_2_plane_1" "1 -0 -0 -448"
+"*trigger_brush_2_plane_2" "0 -1 0 1696"
+"*trigger_brush_2_plane_3" "-0 1 -0 1696"
+"*trigger_brush_2_plane_4" "-0 -0 -1 1344"
+"*trigger_brush_2_plane_5" "-0 0 1 1344"
+"*trigger_brush_2_plane_6" "0.99716413 0.075257666 -0 -574.36652"
+"*trigger_brush_2_plane_7" "-0.70710677 0.70710677 0 1697.0562"
+"*trigger_brush_2_plane_8" "-0.96623492 -0.25766265 -0 869.86908"
+"*trigger_brush_2_plane_9" "0.17027599 -0.17027599 0.97057313 895.78796"
+"*trigger_brush_2_plane_10" "0.99716407 0.075257666 0 -574.36652"
+"*trigger_brush_2_plane_11" "0.99716419 0.075257674 -0 -574.36658"
+"*trigger_brush_2_plane_12" "-0.70710683 0.70710683 0 1697.0564"
+"*trigger_brush_2_plane_13" "-0.96623504 -0.25766268 0 869.8692"
+"*trigger_brush_2_plane_14" "0 -0.21693045 0.97618705 1055.1497"
+"*trigger_brush_2_plane_15" "0.1671771 -0.98592687 -0 1597.2366"
+"*trigger_brush_2_plane_16" "0.34762287 0.93763441 0 1345.5015"
+"*trigger_brush_2_plane_17" "-0.96577078 0.25939709 0 1481.5034"
+"*trigger_bounds_mins" "-1216 -1696 -1344"
+"*trigger_bounds_maxs" "1216 1696 1344"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1240 -7368 1416"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1251.59 -7471.77 698.394"
+"soundName" "Wilds_Emit_Waterfall_Canyon_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1298.61 -7540.78 10.666"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "908.821 -7327.69 143.962"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-263.339 -9478.48 384.214"
+"soundName" "Wilds_Emit_Waterfall_Cave_CloseSplats_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-352.659 -9536.04 1194.46"
+"soundName" "Wilds_Emit_Waterfall_Cave_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-394.777 -9553.2 1607.27"
+"soundName" "Wilds_Emit_Waterfall_Cave_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-440.695 -9470.95 486.269"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6900.97 -6078.98 1365.63"
+"soundName" "Wilds_Emit_Waterfall_Grotto_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6902.81 -6082.22 1394.66"
+"soundName" "Wilds_Emit_Waterfall_Grotto_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6955.45 -6119.68 885.255"
+"soundName" "Wilds_Emit_Waterfall_Grotto_CloseSplats_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-406.848 -9524.88 795.72"
+"soundName" "Wilds_Emit_WaterfallOnFoliage_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1812.55 -351.05 -204.646"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1833.78 81.755 -207.991"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1852.48 409.451 -208.004"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1898.84 763.303 -207.97"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1956.85 1067.16 -207.969"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1692.41 -2347.82 -220.634"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1713.64 -1915.02 -223.979"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1732.34 -1587.32 -223.992"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1868.7 -1221.47 -217.958"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1836.71 -929.61 -223.957"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1394.15 -3982.92 -204.636"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1535.38 -3678.12 -223.981"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1554.08 -3350.42 -223.994"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1600.44 -2996.57 -223.96"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1658.45 -2692.71 -223.959"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4042.06 439.446 -208.002"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3702.54 523.161 -208.002"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3301.01 527.882 -208.006"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2878.1 526.618 -207.992"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2348.36 532.645 -208.002"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4448.73 461.755 -207.994"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4940.12 626.17 -207.992"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5396.8 930.464 -208.003"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5725.32 1265.87 -208.001"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6072.41 1738.45 -216"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6295.71 2258.25 -167.997"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6423.56 2896.49 -49.996"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6990.75 3015.26 48.009"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7318.84 2919.48 233.679"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7784.77 2953.02 232.001"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1398.67 -4197.23 -203.122"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1369.2 -4537.55 -135.573"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1428.17 -5947.85 -90.92"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1446.87 -5508.15 -114.933"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1357.23 -5194.3 -122.899"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1383.24 -4874.44 -130.898"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1764.02 -5805.24 -86.91"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1373.65 -6276.11 -183.255"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1288.18 -6632.43 -139.706"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1204.21 -7241.18 -103.032"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1230.22 -6921.32 -111.031"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1174.32 -5975.05 -309.635"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-224.831 -6966 -272.817"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1231.24 -7730.33 954.96"
+"soundName" "Wilds_Emit_Waterfall_Canyon_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1256.61 -7688.07 257.956"
+"soundName" "Wilds_Emit_Waterfall_Canyon_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "255.707 -7266.71 -292.775"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "442.048 -7407.26 -333.877"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "75.722 -7154.93 -294.154"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "732.709 -7452.36 -303.574"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-132.375 -7098.24 -293.292"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-13.4169 -7041.36 -308.615"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "280.556 -7073.09 -308.672"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "804.979 -7093.63 -355.565"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "520.314 -7105.02 -347.748"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1060.78 -7333.2 -330.848"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-383.307 -6916.65 -295.756"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "137.231 -7145.36 -283.714"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-58.754 -7041.58 -293.093"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "398.233 -7203.01 -326.513"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-163.893 -7008.01 -291.554"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "762.43 -7313.6 -329.181"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "943.196 -7405.89 -312.883"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1195.56 -7522.94 -317.271"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1515.07 -7122.47 -110.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1632.1 -7461.86 -64.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2091.52 -7504.96 -102.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2536.19 -7369.9 -176.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3007.79 -7283.18 -102.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3295.51 -7329.59 -102.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3492.04 -7081.57 -102.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3684.07 -6856.13 -102.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3929.91 -6754.71 -102.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4227.16 -6607.49 -102.729"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2246.16 -7811.09 -102.729"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2421.68 -7742.31 -102.729"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-990.655 -7038.28 -103.032"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3345.7 -7802.95 310.073"
+"soundName" "Wilds_Emit_Waterfall_Canyon_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3304.21 -7747.01 -19.2699"
+"soundName" "Wilds_Emit_Waterfall_Canyon_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2476.57 -7993 278.226"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4469.05 -6569.72 1703.85"
+"soundName" "Wilds_Emit_Waterfall_Canyon_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4401.53 -6553.72 1198.04"
+"soundName" "Wilds_Emit_Waterfall_Canyon_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4369.02 -6545.72 767.78"
+"soundName" "Wilds_Emit_Waterfall_Canyon_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4481.77 -6598.73 448.108"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4402.28 -6791.94 423.752"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3552.62 -8352.53 516.471"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3736.62 -8638.96 533.955"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3364.45 -8055.68 504"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3931.88 -8954.4 506.442"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4080.5 -9186.16 537.723"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4231.78 -9372.31 570.442"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4290.08 -9608.98 585.442"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4307.43 -9767.76 1025.72"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4458.71 -9953.9 1026.44"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4600.01 -10099.6 1002.44"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4770.7 -10281.8 1057.72"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4921.98 -10467.9 1058.44"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5063.28 -10613.6 1058.44"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5122.26 -10809.4 1082.44"
+"soundName" "Wilds_Emit_Waterfall_Canyon_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5202.26 -10882.5 1396.49"
+"soundName" "Wilds_Emit_Waterfall_Canyon_G"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5277.14 -10887.2 2188.25"
+"soundName" "Wilds_Emit_Waterfall_Canyon_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5275.68 -10770.5 1125.02"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5038.13 -10916.8 1119.04"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1517.64 -300 -252.229"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1538.87 132.805 -255.574"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1557.57 460.5 -255.587"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1603.93 814.35 -255.553"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1661.94 1118.21 -255.552"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1702.47 1368.91 -229.699"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1652.41 2165.29 -260.637"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1673.64 2598.1 -263.982"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1692.34 2925.79 -263.995"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1738.7 3279.64 -263.961"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1796.71 3583.5 -263.96"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1519.93 1924.04 -232.615"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1479.16 -2085.48 -269.734"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1500.39 -1652.67 -273.079"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1543.09 -1308.98 -265.092"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1613.45 -979.127 -257.058"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1599.46 -691.267 -249.057"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1241 -3375.87 -238.433"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1387.7 -3144.18 -246.446"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1506.06 -2846.32 -262.412"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1492.07 -2558.46 -254.411"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2453.36 341.557 -231.61"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2788.92 344.247 -231.61"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3096.09 344.97 -231.61"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3316.54 344.97 -231.61"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3607.61 290.79 -207.61"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3858 281.88 -183.61"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4434.78 -10049.4 1012.69"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4577.11 -9854.39 1032.83"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4764.37 -10190.8 1034.11"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6287.9 -6258.63 921.854"
+"soundName" "wilds_emit_grotto_waterlaps_a_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6578.48 -6249.76 896.051"
+"soundName" "wilds_emit_grotto_waterlaps_b_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6817.86 -6612.97 930.959"
+"soundName" "wilds_emit_grotto_waterlaps_c_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6865.9 -6234.17 890.28"
+"soundName" "wilds_emit_grotto_waterlaps_a_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7169.63 -6645.11 930.995"
+"soundName" "wilds_emit_grotto_waterlaps_b_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7345.6 -6939.67 931.209"
+"soundName" "wilds_emit_grotto_waterlaps_c_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7383.63 -7241.63 919.322"
+"soundName" "wilds_emit_grotto_waterlaps_a_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7582.76 -7157.81 932.594"
+"soundName" "wilds_emit_grotto_waterlaps_b_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7315.76 -7417.45 932.59"
+"soundName" "wilds_emit_grotto_waterlaps_c_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7486.57 -7621.14 945.469"
+"soundName" "wilds_emit_grotto_waterlaps_a_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7317.06 -7742.82 946.112"
+"soundName" "wilds_emit_grotto_waterlaps_b_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7600.4 -7849.28 959.855"
+"soundName" "wilds_emit_grotto_waterlaps_c_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7869.27 -7916.79 962.636"
+"soundName" "wilds_emit_grotto_waterlaps_a_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8046.39 -7830.9 967.84"
+"soundName" "wilds_emit_grotto_waterlaps_b_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8130.23 -6959.24 857.359"
+"soundName" "wilds_emit_grotto_waterlaps_c_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7854.58 -7034.94 886.36"
+"soundName" "wilds_emit_grotto_waterlaps_a_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7045.04 -5784.19 865.689"
+"soundName" "wilds_emit_grotto_waterlaps_a_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6860.47 -6440.38 906.062"
+"soundName" "wilds_emit_grotto_waterlaps_b_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6062.57 -8489.15 779.688"
+"soundName" "wilds_emit_grotto_waterlaps_a_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6403.03 -8384.59 788.4"
+"soundName" "wilds_emit_grotto_waterlaps_b_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6438.98 -8051.58 769.285"
+"soundName" "wilds_emit_grotto_waterlaps_c_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5741.57 -8498.92 769.386"
+"soundName" "wilds_emit_grotto_waterlaps_c_lp"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6226.05 -8217.06 768.86"
+"soundName" "wilds_emit_grotto_waterlaps_c_lp"
+"classname" "ambient_generic"
+}
+{
+"origin" "-3808 3392 1856"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"play_event" "wilds_amb_int_shipinterior"
+"environment" "Base_Medium_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 -0 736"
+"*trigger_brush_0_plane_1" "1 -0 -0 736"
+"*trigger_brush_0_plane_2" "-0 -1 -0 1408"
+"*trigger_brush_0_plane_3" "0 1 0 -320"
+"*trigger_brush_0_plane_4" "0 0 -1 768"
+"*trigger_brush_0_plane_5" "-0 -0 1 768"
+"*trigger_brush_0_plane_6" "0 0.12403473 -0.99227786 595.3667"
+"*trigger_brush_0_plane_7" "0 -0.99913305 -0.041630544 1374.807"
+"*trigger_brush_0_plane_8" "-0.70710677 -0.70649374 -0.02943724 1492.566"
+"*trigger_brush_0_plane_9" "-0.70710677 0.70710677 0 294.15643"
+"*trigger_brush_0_plane_10" "0.70710677 -0.70649374 -0.02943724 1492.566"
+"*trigger_brush_0_plane_11" "0.70710677 0.70710677 0 294.15643"
+"*trigger_brush_1_plane_0" "-1 -0 -0 672"
+"*trigger_brush_1_plane_1" "1 -0 -0 736"
+"*trigger_brush_1_plane_2" "-0 -1 -0 320"
+"*trigger_brush_1_plane_3" "0 1 0 1408"
+"*trigger_brush_1_plane_4" "-0 0 -1 640"
+"*trigger_brush_1_plane_5" "-0 -0 1 768"
+"*trigger_brush_1_plane_6" "0 0.18208925 -0.98328203 571.03192"
+"*trigger_brush_1_plane_7" "-0.99726778 -0.073871687 -0 566.15259"
+"*trigger_brush_1_plane_8" "-0.99726772 -0.073871687 -0 566.15259"
+"*trigger_brush_1_plane_9" "0.70710677 -0.70710677 -0 746.70477"
+"*trigger_brush_1_plane_10" "0.70710677 0.70710677 0 1516.0369"
+"*trigger_brush_1_plane_11" "-0.68048823 -0.73275912 -0 604.66852"
+"*trigger_brush_1_plane_12" "-0.732759 0.68048811 0 1450.5413"
+"*trigger_bounds_mins" "-736 -1408 -768"
+"*trigger_bounds_maxs" "736 1408 768"
+}
+{
+"origin" "-5592 4784 956"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"environment" "Base_SmallHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 -0 -0 200"
+"*trigger_brush_0_plane_1" "1 0 0 200"
+"*trigger_brush_0_plane_2" "-0 -1 -0 48"
+"*trigger_brush_0_plane_3" "0 1 0 48.000008"
+"*trigger_brush_0_plane_4" "0 0 -1 60"
+"*trigger_brush_0_plane_5" "-0 0 1 59.999599"
+"*trigger_brush_0_plane_6" "-0.70710677 0.70710677 0 175.36249"
+"*trigger_brush_0_plane_7" "-0.70710677 -0.70710677 0 175.36249"
+"*trigger_brush_0_plane_8" "0.70710677 -0.70710677 -0 175.36249"
+"*trigger_brush_0_plane_9" "0.70710677 0.70710677 0 175.36249"
+"*trigger_bounds_mins" "-200 -48 -60"
+"*trigger_bounds_maxs" "200 48.000008 59.999599"
+}
+{
+"origin" "-4820 5520 692"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"environment" "Base_SmallHalfOpen_Room"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 220"
+"*trigger_brush_0_plane_1" "1 -0 -0 220"
+"*trigger_brush_0_plane_2" "-0 -1 -0 208"
+"*trigger_brush_0_plane_3" "0 1 0 208"
+"*trigger_brush_0_plane_4" "0 0 -1 60"
+"*trigger_brush_0_plane_5" "-0 0 1 59.999599"
+"*trigger_brush_0_plane_6" "-0.73480344 -0.67828012 -0 232.19788"
+"*trigger_brush_0_plane_7" "-0.67181492 0.74071902 0 70.764496"
+"*trigger_brush_0_plane_8" "0.73480344 0.67828012 0 232.19788"
+"*trigger_brush_0_plane_9" "0.67181492 -0.74071902 0 70.764496"
+"*trigger_bounds_mins" "-220 -208 -60"
+"*trigger_bounds_maxs" "220 208 59.999599"
+}
+{
+"origin" "192 256 -12288"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_Night"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 704"
+"*trigger_brush_0_plane_1" "1 -0 -0 3648"
+"*trigger_brush_0_plane_2" "-0 -1 -0 3584"
+"*trigger_brush_0_plane_3" "0 1 0 4096"
+"*trigger_brush_0_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_0_plane_5" "0 -0 1 1024"
+"*trigger_brush_0_plane_6" "-0.70710677 0.70710677 0 3394.1125"
+"*trigger_brush_0_plane_7" "-0.70710677 -0.70710677 0 3032.074"
+"*trigger_brush_0_plane_8" "0.70710677 -0.70710677 0 5113.7959"
+"*trigger_brush_0_plane_9" "0.70710677 0.70710677 0 5475.835"
+"*trigger_brush_1_plane_0" "-1 0 0 2688"
+"*trigger_brush_1_plane_1" "1 -0 -0 -704"
+"*trigger_brush_1_plane_2" "-0 -1 -0 4096"
+"*trigger_brush_1_plane_3" "-0 1 -0 448"
+"*trigger_brush_1_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_1_plane_5" "0 -0 1 1024"
+"*trigger_brush_1_plane_6" "-0.70710677 0.70710677 -0 2217.4868"
+"*trigger_brush_1_plane_7" "-0.70710677 -0.70710677 0 4797.0122"
+"*trigger_brush_1_plane_8" "0.70710677 -0.70710677 0 2398.5061"
+"*trigger_brush_1_plane_9" "0.70710677 0.70710677 -0 -181.01932"
+"*trigger_brush_2_plane_0" "-1 0 0 1984"
+"*trigger_brush_2_plane_1" "1 -0 -0 -704"
+"*trigger_brush_2_plane_2" "0 -1 0 -1536"
+"*trigger_brush_2_plane_3" "0 1 0 4096"
+"*trigger_brush_2_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_2_plane_5" "0 -0 1 1024"
+"*trigger_brush_2_plane_6" "-0.70710677 0.70710677 -0 4299.209"
+"*trigger_brush_2_plane_7" "-0.70710677 -0.70710677 -0 316.78381"
+"*trigger_brush_2_plane_8" "0.70710677 -0.70710677 -0 -1583.9192"
+"*trigger_brush_2_plane_9" "0.70710677 0.70710677 -0 2398.5061"
+"*trigger_brush_3_plane_0" "-1 -0 -0 3648"
+"*trigger_brush_3_plane_1" "1 -0 -0 -704"
+"*trigger_brush_3_plane_2" "0 -1 0 -448"
+"*trigger_brush_3_plane_3" "-0 1 -0 1536"
+"*trigger_brush_3_plane_4" "-0 -0 -1 1024"
+"*trigger_brush_3_plane_5" "0 -0 1 1024"
+"*trigger_brush_3_plane_6" "-0.70710677 0.70710677 0 3665.6414"
+"*trigger_brush_3_plane_7" "-0.70710677 -0.70710677 0 2262.7415"
+"*trigger_brush_3_plane_8" "0.70710677 -0.70710677 0 -814.58704"
+"*trigger_brush_3_plane_9" "0.70710677 0.70710677 0 588.31281"
+"*trigger_bounds_mins" "-3648 -4096 -1024"
+"*trigger_bounds_maxs" "3648 4096 1024"
+}
+{
+"radius" "0"
+"origin" "433.982 4359.8 -11815"
+"soundName" "Wilds_Scr_NightBattle_Rear"
+"script_name" "AMB_NightBattle_Rear"
+"enabled" "0"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"origin" "-701.737 -2479.17 -11374.9"
+"soundName" "Wilds_Scr_NightBattle_Front"
+"script_name" "AMB_NightBattle_Front"
+"enabled" "0"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"origin" "462.776 4362.08 -11813.8"
+"soundName" "Wilds_Scr_NightBattle_Distant_Rear"
+"script_name" "AMB_NightBattle_Distant_Rear"
+"enabled" "0"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"origin" "-735.786 -2480.48 -11364.5"
+"soundName" "Wilds_Scr_NightBattle_Distant_Front"
+"script_name" "AMB_NightBattle_Distant_Front"
+"enabled" "0"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "685.592 3420.84 -12278.9"
+"soundName" "Wilds_Emit_Fire_Small_Metal_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "573.399 2841.58 -12337.3"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "575.036 2627.02 -12354.9"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "501.663 2232.64 -12332.8"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-200.027 2059.06 -12319.1"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "585.388 1656.64 -12303.6"
+"soundName" "Wilds_Emit_Fire_Small_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-16.5279 1193.93 -12343.2"
+"soundName" "Wilds_Emit_Fire_Small_Metal_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-533.531 1231 -12387.5"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-456.461 1200.67 -12390.2"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-496.527 1272.57 -12395.4"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-470.098 1355.87 -12386.4"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-607.95 1400.37 -12412.9"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-399.842 1086.43 -12379"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-331.074 959.582 -12377.7"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "642.357 1671.75 -12341.1"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-333.416 459.434 -12297.9"
+"soundName" "Wilds_Emit_Fire_Small_Metal_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-38.1934 2656.18 -12320.8"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "3303.71 -702.765 957.396"
+"soundName" "Wilds_Emit_Waterfall_Canyon_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "3230.71 -699.169 713.423"
+"soundName" "Wilds_Emit_Waterfall_Canyon_G"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "3235.88 -586.635 353.934"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "3077.18 -733.298 354.399"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "3158.83 -655.919 342.52"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "3092.61 -642.136 333.054"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2916.93 -604.779 331.703"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2735.75 -563.72 311.088"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2549.95 -409.77 281.267"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2449.23 -588.547 279.364"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2341.22 -392.851 267.692"
+"soundName" "Wilds_Emit_Brook_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2182.91 -291.939 263.124"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2259.38 -600.495 269.963"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2117.3 -649.663 264.022"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2044.18 -529.53 251.651"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1878.74 -653.943 245.5"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2029.51 -227.561 254.699"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1866.02 -295.429 244.315"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1583.87 -324.532 249.519"
+"soundName" "Wilds_Emit_Brook_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1678.78 -653.921 239.272"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1529.95 -758.11 240.634"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1425.5 -987.455 245.049"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1343 -575.129 240.885"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1404.98 -385.03 218.889"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1183.28 -444.132 201.482"
+"soundName" "Wilds_Emit_Brook_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1792.08 -1179.08 263.841"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1782.03 -933.026 246.872"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1742.52 -1391.3 269.2"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2001.34 -1674.75 299.785"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1781.24 -1873.2 304.829"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1799.96 -1571.39 289.099"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1912.26 -2013.47 878.784"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1898.13 -1950.45 629.104"
+"soundName" "Wilds_Emit_Waterfall_Canyon_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2039.27 -1896.88 300.681"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1945.18 -2064.55 294.395"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1537.05 -1467.07 258.34"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1455.46 -1291.84 249.387"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1279.65 -1355.61 203.222"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1137.07 -1526.9 158.08"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "994.06 -1271.71 161.079"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "815.384 -1381.57 137.334"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "548.44 -1379.51 84.5031"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "349.142 -1446.47 66.7801"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "145.848 -1444.72 51.5361"
+"soundName" "Wilds_Emit_Brook_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-53.9582 -1468.65 29.4767"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-184.643 -1493.74 17.6115"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-358.477 -1498.46 0.37519"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-556.258 -1505.54 -0.31054"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-741.07 -1629.61 -8.61424"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-924.911 -1721.43 -9.8384"
+"soundName" "Wilds_Emit_Brook_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-982.904 -1718.95 -10.7467"
+"soundName" "Wilds_Emit_Waterfall_Small_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-479.235 -1271.09 1.34703"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-401.652 -1042.68 16.8018"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-297.032 -886.322 13.7911"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-142.369 -735.282 22.4344"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "35.1656 -734.402 43.5354"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-14.7965 -610.641 35.3534"
+"soundName" "Wilds_Emit_Brook_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "96.049 -496.146 35.1274"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-134.317 -604.143 30.3539"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-170.034 -496.108 29.6619"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "12.6571 -383.862 26.385"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "120.155 -262.358 18.3309"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "302.251 -368.747 62.7779"
+"soundName" "Wilds_Emit_Brook_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "369.198 -554.374 81.3811"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "688.265 -510.285 110.233"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "926.279 -453.02 148.739"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-189.34 -274.238 8.72364"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-363.817 -130.702 -15.5198"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-603.135 77.051 -39.4638"
+"soundName" "Wilds_Emit_Brook_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-805.584 369.784 -70.8848"
+"soundName" "Wilds_Emit_Brook_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-955.578 621.877 -116.798"
+"soundName" "Wilds_Emit_Brook_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1119.04 821.363 -140.449"
+"soundName" "Wilds_Emit_Brook_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1292.81 1024.72 -153.44"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1511.78 1181.83 -167.607"
+"soundName" "Wilds_Emit_Brook_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "3367.44 -717.899 345.626"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1190.05 -1754.94 -119.151"
+"soundName" "Wilds_Emit_Brook_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1240.46 -1918.81 -127.649"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1327.94 -1673.08 -108.374"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1643.42 1228.85 -188.506"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1611.46 1126.52 -183.937"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2194.81 -1268.06 -326.696"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2103.26 -1436.58 -329"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2005.7 -1592.14 -339.74"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1967.11 -1522.1 -209.502"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1672.23 2075.77 -349.066"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1759.2 1638.71 -323.868"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1693.08 1852.64 -349.339"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1777.01 2194.95 -294.2"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1785.11 1921.2 -290.459"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1766.27 1509.78 -278.603"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2266.2 1100.88 -149.707"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2610.4 859.452 -72.271"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4638.35 6.1921 -207.196"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4519.28 321.377 -268.261"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4661.26 -255.162 -196.853"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4987.86 -192.647 -197.615"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4993.31 196.162 -238.964"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5394.95 690.234 -213.351"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5933.38 693.572 -185.808"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6051.33 437.167 -169.395"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6221.38 858.28 -207.666"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6062.11 1299.7 -227.113"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8121.2 3053.21 207.215"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8304.75 3153.57 268.367"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8645.53 3386.05 297.08"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8790.32 3555.36 234.82"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8989.03 3833.47 240.189"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9043.67 4252.32 287.443"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9898.29 5595.1 891.916"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9821.41 5555.88 698.727"
+"soundName" "Wilds_Emit_Waterfall_Canyon_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8711.39 7422.56 1370.77"
+"soundName" "Wilds_Emit_Waterfall_Canyon_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8502.05 7597 1367.28"
+"soundName" "Wilds_Emit_Waterfall_Canyon_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8747.96 7332.35 1088.39"
+"soundName" "Wilds_Emit_Waterfall_Canyon_F"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8427.24 7551.74 1075.63"
+"soundName" "Wilds_Emit_Waterfall_Canyon_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8576.98 7456.85 1076.28"
+"soundName" "Wilds_Emit_Waterfall_Canyon_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8766.94 7360.05 1151.11"
+"soundName" "Wilds_Emit_Waterfall_Canyon_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8446.22 7579.44 1138.35"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8595.96 7484.55 1139"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7964.59 8200.78 1089.34"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7971.28 8088.9 803.127"
+"soundName" "Wilds_Emit_Waterfall_Canyon_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7844.66 8081.55 790.062"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8101.81 8170.61 891.854"
+"soundName" "Wilds_Emit_Waterfall_Canyon_A_CloseSplats_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3550.36 -290.864 -201.274"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3550.31 53.384 -159.877"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9167.24 4535.62 251.384"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9269.12 4867.7 236.265"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9378.89 5132.39 243.435"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9476.5 5392.38 229.127"
+"soundName" "Wilds_Emit_WideRiver_CanyonVerb_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9551.31 5611.03 241.43"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9536.29 5902.02 237.769"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9419.58 6190.38 217.53"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9473.55 6440.02 205.997"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9352.79 6744.29 235.653"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9498.43 7114.45 217.734"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9067.24 7309.92 213.076"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9050.76 6537.94 269.596"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8744.37 6433.92 241.845"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8698.64 6703.18 221.238"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8631.04 7412.49 221.356"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8686.5 7011.36 272.515"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8154.54 7282.17 258.532"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7706.35 7315.11 224.243"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7967.11 7711.98 218.238"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7289.47 7024.3 225.483"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7005.02 6649.42 197.09"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6703.55 6403.69 197.109"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6662.26 5978.8 197.081"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6820.39 5635.08 222.544"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7416.94 6449.52 197.087"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7385.86 5775.1 197.098"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7395.8 5099.69 197.105"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7276.66 4798.47 197.078"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7054.7 5291.31 197.078"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7082.63 4381.57 22.0563"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6824.53 3998.66 -58.9464"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6959.01 4148.82 -58.943"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7169.64 4570.56 188.035"
+"soundName" "Wilds_Emit_Waterfall_Canyon_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6691.31 3821.83 -58.952"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6637.76 3487.92 -85.52"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6539.85 3166.12 -107.611"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2753.44 4160.99 -104.326"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2665.51 3778.73 -152.626"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2579.84 3344.3 -200.397"
+"soundName" "Wilds_Emit_WideRiver_Comp_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2465.31 2952.58 -215.269"
+"soundName" "Wilds_Emit_WideRiver_Comp_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2432.92 2608.06 -186.445"
+"soundName" "Wilds_Emit_WideRiver_Comp_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2326.54 2315.91 -213.517"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2121.81 2122.58 -284.315"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1993.62 1777.14 -193.998"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5681.18 -4413.57 1336.59"
+"soundName" "Wilds_Emit_Fire_Small_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4881.97 -3438.09 1522.04"
+"soundName" "Wilds_Emit_Fire_Medium_Wood_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4856.65 -2451.37 2012.1"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4816.21 -2159.98 2079.5"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4760.52 -2105.29 2075.31"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5166.36 -3259.13 2305.83"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4931.66 -3083.18 2292.91"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4826.28 -2960.06 2243.44"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4619.41 -3021.51 2291.57"
+"soundName" "Wilds_Emit_Fire_Medium_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4481.62 -2589.91 2148.88"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4458.22 -2483.07 2141.52"
+"soundName" "Wilds_Emit_Fire_Medium_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4343.25 -2870.5 2213.98"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5060.79 -3343.18 2246"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4632.7 -3401.83 2176.14"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4274.22 -3508.13 2022.67"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4796.26 -3339.84 1931.17"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4619.49 -3413.25 2167.45"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4204.11 -3465.04 2291.52"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5050.79 -3319.41 2251.11"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5147.79 -3273.48 2297.6"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4915.03 -2804.18 1660.96"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4771.29 -3053.68 2472.22"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3867.43 2572.43 1219.26"
+"soundName" "Wilds_Emit_Fire_Medium_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3781.81 2531.95 1327.78"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3703.4 2486.5 1401.39"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4060.31 2433.57 1616.08"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4467.88 2813.25 1655.06"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4218.24 2338.3 1798.74"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4192.02 2345.77 1805.98"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3719.51 2213.19 1550.21"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3643.63 2359.1 1532.36"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3698.7 2483.8 1406.83"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3624.55 2615.9 1559.37"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4231.39 2616.5 1889.04"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4062.6 2663.48 1758.33"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4032 2896.17 1778.81"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4066.18 3354.13 1846.99"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4232.58 3657.16 1913.52"
+"soundName" "Wilds_Emit_ConstantSparks"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3762.09 3539.16 1971.38"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3664.76 3215.19 1987.35"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3932.44 4101.06 1868.27"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4009.2 4083.78 1950.94"
+"soundName" "Wilds_Emit_Fire_Medium_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3803.29 4028.64 2019.63"
+"soundName" "Wilds_Emit_FireJet"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3850.21 3174.97 1779.04"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3656.81 2872.7 1702.18"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3618.23 2879.85 1683.56"
+"soundName" "Wilds_Emit_Fire_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3426.25 3332.67 1646.74"
+"soundName" "Wilds_Emit_Fire_Medium_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3483.28 3417.5 1651.26"
+"soundName" "Wilds_Emit_FireJet"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3463.24 3034.54 1638.27"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3442.33 3470.95 1742.86"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3300.05 3470.71 2103.01"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3388.18 3418.74 2314.55"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3431.37 4001.29 2244.73"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3352.73 3772.62 2147.05"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3857.5 4289.67 2411.19"
+"soundName" "Wilds_Emit_Fire_Medium_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4242.29 4557.85 2121.93"
+"soundName" "Wilds_Emit_Fire_Medium_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4161.65 4485.55 1990.59"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4193.4 -2608.89 2008.5"
+"soundName" "Wilds_Emit_Fire_Medium_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4239.93 2722.74 1915.49"
+"soundName" "Wilds_Emit_Firejet"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4408.41 2695.12 1906.91"
+"soundName" "Wilds_Emit_Firejet"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4342.65 2724.07 1928.99"
+"soundName" "Wilds_Emit_Steamleak_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4057.85 2711.69 1860.55"
+"soundName" "Wilds_Emit_ConstantSparks"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-948.423 -8946.82 1239.48"
+"soundName" "Wilds_Emit_Fire_Small_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-885.753 -8818.05 1208"
+"soundName" "Wilds_Emit_Fire_Small_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4143.72 -8715.17 912.578"
+"soundName" "Wilds_Emit_Fire_Small_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4821.12 -2802.51 1991.45"
+"soundName" "Wilds_Emit_Steamleak_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1347.21 -1846.74 -99.74"
+"soundName" "Wilds_Emit_Waterfall_Small_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-41.002 366.319 171.091"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-520.378 -2964.6 389.297"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "14.166 -3472.18 379.665"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "471.042 -4050.94 -98.934"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "811.849 -5759.83 379.173"
+"soundName" "Wilds_Emit_DropPodPings"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1079.1 -7760.13 841.882"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1749.85 -8575.93 774.202"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1514.64 -9178.77 932.999"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1485.55 -9940.45 899.02"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "987.15 -9762.54 888.982"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "654.678 -6012.31 328.169"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "540.596 -5473.06 290.358"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "177.508 -4705.84 225.694"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "433.527 -4647.09 -137.148"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "891.52 -4241.76 28.024"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "105.27 -7604.32 613.508"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-101.982 -9009.59 1056.34"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1350.37 -9790.12 738.037"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1040.71 -10114.1 755.396"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "199.182 -9761.14 806.922"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1159.46 -8356.2 1378"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1771.35 -9351.49 1176.58"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2634.82 -9294.05 1129.12"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5285.2 -8431.04 1050.97"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5778.85 -7837.83 1149.46"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5188.86 -5582.54 1234.83"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5747.29 -4729.27 937.118"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5819.29 -4703.27 1381.12"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5441.71 -5508.38 1219.48"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5751.99 -4535.42 1408.29"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4934.11 -5534.65 1196.07"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5467.01 -4920.26 1267.39"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9.5382 -4121.98 289"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1618.66 -8549.15 1281.43"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1830.83 -8839.61 1366.07"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6334.65 -8547.83 1025.5"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6119.13 -7667.3 1114.9"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8182.95 -7386.48 1151.15"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6215.08 -6572.71 1158.16"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5608.72 -6285.36 925.086"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3163.7 -1174.35 -2.901"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2275.87 1551.35 275.994"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2581.5 1271.16 208.747"
+"soundName" "Wilds_Emit_Bugswarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2871 -163.82 395.175"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3593.87 -127.125 303.041"
+"soundName" "Wilds_Emit_Bugswarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5444.14 260.091 504.041"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6051.34 252.422 438.39"
+"soundName" "Wilds_Emit_Bugswarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8399.3 2539.39 666.396"
+"soundName" "Wilds_Emit_Bugswarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8241.55 2840.53 761.432"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9007.8 3820.8 584.952"
+"soundName" "Wilds_Emit_Bugswarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9131.25 4546.94 739.713"
+"soundName" "Wilds_Emit_Bugswarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9131.25 4555.94 857.713"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-8170.55 2194.37 758.166"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9712.7 6954.74 1006.21"
+"soundName" "Wilds_Emit_Bugswarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-9107.54 7464.61 1086.18"
+"soundName" "Wilds_Emit_Bugswarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6961.71 6850.05 879.845"
+"soundName" "Wilds_Emit_Bugswarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5138.91 3009.27 1257.85"
+"soundName" "Wilds_Emit_Bugswarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4891.72 2264.39 1246.78"
+"soundName" "Wilds_Emit_Bugswarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3184.61 3381.94 605.981"
+"soundName" "Wilds_Emit_Bugswarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2980.6 3606.07 380.51"
+"soundName" "Wilds_Emit_Bugswarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3185.13 4433.28 938.768"
+"soundName" "Wilds_Emit_Leafshower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1126.59 -3644.29 -227.883"
+"soundName" "Wilds_Emit_WideRiver_VeryClose_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7007.89 1151.19 457.596"
+"soundName" "Wilds_Emit_Bugswarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7561.08 1513.25 382.486"
+"soundName" "Wilds_Emit_Bugswarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3108.15 161.243 897"
+"soundName" "Wilds_Emit_Fire_Large_Metal_NoOcclusion_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3876.19 97.3077 822.058"
+"soundName" "Wilds_Emit_Fire_Large_Metal_NoOcclusion_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-314.976 -1610.63 47.4544"
+"soundName" "Wilds_Emit_Bugswarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-455.097 -1711.98 63.3595"
+"soundName" "Wilds_Emit_Bugswarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-967.439 -2653.04 65.0001"
+"soundName" "Wilds_Emit_Bugswarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-918.124 -2909.68 80.808"
+"soundName" "Wilds_Emit_Bugswarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-664.775 -2829.19 90.6683"
+"soundName" "Wilds_Emit_Bugswarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "41.9135 -1015.98 85.4566"
+"soundName" "Wilds_Emit_Bugswarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "133.049 -1100.42 91.1822"
+"soundName" "Wilds_Emit_Bugswarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1258.99 -7968.29 721"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-869.623 80.9238 -38.2334"
+"soundName" "Wilds_Emit_BugSwarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-949.592 13.4363 -35.1916"
+"soundName" "Wilds_Emit_BugSwarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4454.45 -5773.1 665.292"
+"soundName" "Wilds_Emit_WideRiver_Comp_D"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4410.78 -5244.74 668.269"
+"soundName" "Wilds_Emit_WideRiver_Comp_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3960.86 -5432.89 542.627"
+"soundName" "Wilds_Emit_Waterfall_Canyon_E"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "460.049 -752.265 301.076"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1037.21 -748.456 496.029"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "327.66 -1242.42 303.299"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "2117.75 117.156 477.564"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "1666.99 149.811 458.889"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-2522.82 25.7449 308.779"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-343.731 -3095.5 351.182"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "772.48 -4798.79 325.034"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "760.883 -4383.44 137.521"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "236.93 -6157.77 708.992"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-603.986 -1150.27 150.41"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-488.048 -745.409 113.879"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1041.06 -422.034 102.306"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1222.48 -943.468 207.295"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-661.696 -9400.47 900.474"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "75.454 -9734.92 1472.71"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1248.74 -8084.71 1228.04"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3964.36 -9496.19 1167.94"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3803.91 -9097.35 1151.01"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5614.89 -10365 1318.48"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4649.19 -9751.87 1191.62"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4875.88 -9320.91 1273.54"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4182.91 -8288.79 1061.62"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5643.75 -8296.05 1035.27"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6270.39 -8347.65 863.293"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7116.28 -7926.89 1168.07"
+"soundName" "Wilds_Emit_BugSwarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7740.79 -7620.53 1091.11"
+"soundName" "Wilds_Emit_BugSwarm_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7959.37 -7405.97 1089.66"
+"soundName" "Wilds_Emit_BugSwarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7136.77 -6881.92 975.88"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-7258.8 -6363.87 1030.34"
+"soundName" "Wilds_Emit_BugSwarm_C"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6570.6 -6585 1010.63"
+"soundName" "Wilds_Emit_BugSwarm_A_LP"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-5937.79 -6456.39 1122.49"
+"soundName" "Wilds_Emit_BugSwarm_C"
+"classname" "ambient_generic"
+}
+{
+"origin" "-2176 -9408 1280"
+"triggerNearbyRadius" "0"
+"triggerFilterTeamOther" "0"
+"triggerFilterTeamNeutral" "0"
+"triggerFilterTeamMilitia" "1"
+"triggerFilterTeamIMC" "1"
+"triggerFilterTeamBeast" "0"
+"triggerFilterPlayer" "all"
+"triggerFilterPhaseShift" "any"
+"triggerFilterNpcOwnedByPlayer" "any"
+"triggerFilterNpcFlip" "0"
+"triggerFilterNpc" "none"
+"triggerFilterNonCharacter" "0"
+"StartDisabled" "0"
+"spawnflags" "4097"
+"link_guid" "5734053e"
+"triggerFilterUseNew" "1"
+"play_event" "Wilds_Amb_EXT_GenericOpen"
+"environment" "Base_Exterior"
+"classname" "trigger_soundscape"
+"*trigger_brush_0_plane_0" "-1 0 0 639.99921"
+"*trigger_brush_0_plane_1" "1 0 0 640"
+"*trigger_brush_0_plane_2" "0 -1 0 576"
+"*trigger_brush_0_plane_3" "0 1 0 576"
+"*trigger_brush_0_plane_4" "0 0 -1 448"
+"*trigger_brush_0_plane_5" "-0 0 1 448"
+"*trigger_brush_0_plane_6" "0.28216633 0.95936549 -0 426.18402"
+"*trigger_brush_0_plane_7" "-0.28734788 -0.95782626 -0 367.8053"
+"*trigger_brush_0_plane_8" "-0.97014248 0.24253562 0 574.32434"
+"*trigger_brush_0_plane_9" "-0.28734788 -0.95782632 -0 367.8053"
+"*trigger_brush_0_plane_10" "-0.9701426 0.24253565 0 574.3244"
+"*trigger_brush_0_plane_11" "0.59693056 -0.80229294 -0 844.15625"
+"*trigger_brush_0_plane_12" "0.8006767 0.59909666 -0 665.80188"
+"*trigger_brush_0_plane_13" "-0.49677867 0.86787724 0 722.4541"
+"*trigger_brush_0_plane_14" "-0.86921674 -0.49443132 0 651.22949"
+"*trigger_bounds_mins" "-640 -576 -448"
+"*trigger_bounds_maxs" "640 576 448"
+}
+{
+"radius" "0"
+"origin" "-5322 -144 672"
+"soundName" "Wilds_Emit_PodRadioStatic"
+"environment" "Base_Exterior"
+"enabled" "1"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "774.267 -5755.07 371.793"
+"soundName" "Wilds_Emit_PodRadioStatic_Quieter"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6475.7 1311.43 519.945"
+"soundName" "Wilds_Emit_LeafShower"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3405.89 84.739 500.29"
+"soundName" "Wilds_Emit_ShipCreaks_EXT_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3577.02 2441.65 1493.03"
+"soundName" "Wilds_Emit_ConstantSparks"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4016.21 2364.77 1586.89"
+"soundName" "Wilds_Emit_ConstantSparks"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4120.61 3172.86 1956.22"
+"soundName" "Wilds_Emit_ConstantSparks"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-911.076 -2926.86 84.0005"
+"soundName" "Wilds_Emit_CorpseRadioStatic"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-3565.69 4098.13 710.534"
+"soundName" "Wilds_Emit_CorpseRadioStatic"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-838.134 -6553.3 373.103"
+"soundName" "Wilds_Emit_RiverRoar_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-1806.09 -7491.18 1055.2"
+"soundName" "Wilds_Emit_RiverRoar_B"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-4508.86 -5760.39 967.55"
+"soundName" "Wilds_Emit_RiverRoar_A"
+"classname" "ambient_generic"
+}
+{
+"radius" "0"
+"enabled" "1"
+"origin" "-6948.07 6009.77 466.841"
+"soundName" "Wilds_Emit_RiverRoar_B"
+"classname" "ambient_generic"
+}
+ 

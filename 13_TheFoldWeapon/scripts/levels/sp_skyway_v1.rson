@@ -1,0 +1,23 @@
+IsTestMap: false
+When: "SERVER || CLIENT"
+Scripts:
+[
+	sp/sh_sp_credits.nut
+	sp/sh_sp_skyway_v1.nut
+	sp/autoprecache/sp_skyway_v1_autoprecache.nut
+]
+When: "CLIENT"
+Scripts:
+[
+	sp/sp_skyway_client.nut
+	client/cl_carrier.gnut
+]
+
+When: "SERVER"
+Scripts:
+[
+	sp/sh_bombardment_utility.nut
+	sp/sh_gunbattery_utility.nut
+	sp/sp_skyway_utility.nut
+	sp/sp_skyway_v1.nut
+]

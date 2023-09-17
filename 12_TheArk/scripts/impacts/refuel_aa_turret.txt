@@ -1,0 +1,167 @@
+ImpactTable
+{
+	Info
+	{
+		"whizby_sound_from_player"	"Bullets.DefaultNearmissBig"
+		"whizby_sound_from_AI"		"Bullets.DefaultNearmissBig"
+		"whizby_maxDistancePilot"	"150"
+		"whizby_maxDistanceTitan"	"400"
+	}
+
+	FX
+	{
+		"C" "P_impact_exp_aa_turret"		//Concrete, rock, porcelain, boulder, gravel, asphalt, brick, concrete_block, plaster
+		"D" "P_impact_exp_aa_turret"		//Dirt, slipperyslime, snow, carpet, cardboard, floatingstandable, ceiling_tile, papercup
+		"E" "P_impact_exp_aa_turret"		// metal_titan
+
+		"F" "P_impact_exp_aa_turret"		//flesh
+		"G" "P_impact_exp_aa_turret"		//metalgrate, chainlink, chain
+		"H" "P_impact_exp_aa_turret"		//alienflesh
+
+		"J" "P_impact_exp_aa_turret"		//grass
+		"K" "P_impact_exp_aa_turret" 	//Mud
+		"L" "P_impact_exp_aa_turret"		//plastic_barrel, plastic_box, item, rubber, rubbertire, jeeptire, slidingrubbertire, brakingrubbertire, slidingrubbertire_front, slidingrubbertire_rear
+		"M" "P_impact_exp_aa_turret"		//Default, metal, metal_box, solidmetal, armorflesh, metal_bouncy, slippery_metal, shellcasing_small, shellcasing_large, metal_barrel, floating_metal_barrel, weapon
+		"N" "P_impact_exp_aa_turret"
+		"O" "P_impact_exp_aa_turret"		//Foliage
+		"P" "P_impact_exp_aa_turret"		//Computer
+
+		"R" "P_impact_exp_aa_turret"		//metalpanel, grenade, canister
+		"S" "P_impact_exp_aa_turret"		//water, slime
+		"T" "P_impact_exp_aa_turret"		//tile
+		"U" "P_impact_exp_aa_turret"		//glass_breakble
+
+		"V" "P_impact_exp_aa_turret"		//Metal Vent
+		"W" "P_impact_exp_aa_turret"			//Wood, Wood_lowdensity, Wood_Box, Wood_Crate, Wood_Plank, Wood_Solid, Wood_Furniture, Wood_Panel watermelon
+
+		"Y" "P_impact_exp_aa_turret"				//glass, brokenglass, glassbottle, pottery
+    	"Z" "P_impact_exp_aa_turret"				//Sand
+
+		"0" "P_impact_exp_aa_turret"
+		"1" "P_impact_exp_aa_turret"
+		"2" "P_impact_exp_aa_turret"
+		"3" "P_impact_exp_aa_turret"
+		"4" "P_impact_exp_aa_turret"
+		"5" "P_impact_exp_aa_turret"
+		"6" "P_impact_exp_aa_turret"
+		"7" "P_impact_exp_aa_turret"
+		"8" "P_impact_exp_aa_turret"
+		"9" "P_impact_exp_aa_turret"					//puddle
+
+		"critical_hit" "P_impact_exp_aa_turret"
+	}
+
+	Sound
+	{
+		"C" "Concrete.Heavy.BulletImpact_3P_vs_3P"
+		"D" "Dirt.Heavy.BulletImpact_3P_vs_3P"
+		"E" "Titan.Heavy.BulletImpact_3P_vs_3P"
+
+		"F" "Flesh.Heavy.BulletImpact_3P_vs_3P"
+		"G" "MetalGrate.Heavy.BulletImpact_3P_vs_3P"
+		"H" "Flesh.Heavy.BulletImpact_3P_vs_3P"
+
+		"J" "Grass.Heavy.BulletImpact_3P_vs_3P"
+		"K" "Mud.Heavy.BulletImpact_3P_vs_3P"  // mud?
+		"L" "Default.Heavy.BulletImpact_3P_vs_3P"
+		"M" "SolidMetal.Heavy.BulletImpact_3P_vs_3P"
+		"N" "Sand.Heavy.BulletImpact_3P_vs_3P"	// sand?
+		"O" "Grass.Heavy.BulletImpact_3P_vs_3P"
+		"P" "Android.Heavy.BulletImpact_3P_vs_3P"
+
+		"R" "Concrete.Heavy.BulletImpact_3P_vs_3P"
+		"S" "Water.Heavy.BulletImpact_3P_vs_3P"
+		"T" "Tile.Heavy.BulletImpact_3P_vs_3P"
+		"U" "Glass.Heavy.BulletImpact_3P_vs_3P"
+
+		"V" "SolidMetal.Heavy.BulletImpact_3P_vs_3P"
+		"W" "Wood.Heavy.BulletImpact_3P_vs_3P"
+		"X" "TitanBubbleShield.Heavy.BulletImpact_3P_vs_3P"
+		"Y" "Glass.Heavy.BulletImpact_3P_vs_3P"
+		"Z" "Sand.Heavy.BulletImpact_3P_vs_3P"
+
+		//"splash" "Water.BulletImpact"
+		//"slime_splash" "Water.BulletImpact"
+
+		//"airburst" ""
+		"shieldhit" "TitanShield.Heavy.BulletImpact_3P_vs_3P"
+	}
+
+	Sound_attacker
+	{
+		"C" "Concrete.Heavy.BulletImpact_1P_vs_3P"
+		"D" "Dirt.Heavy.BulletImpact_1P_vs_3P"
+		"E" "Titan.Heavy.BulletImpact_1P_vs_3P"
+
+		"F" "Flesh.Heavy.BulletImpact_1P_vs_3P"
+		"G" "MetalGrate.Heavy.BulletImpact_1P_vs_3P"
+		"H" "Flesh.Heavy.BulletImpact_1P_vs_3P"
+
+		"J" "Grass.Heavy.BulletImpact_1P_vs_3P"
+		"K" "Mud.Heavy.BulletImpact_1P_vs_3P"  // mud?
+		"L" "Default.Heavy.BulletImpact_1P_vs_3P"
+		"M" "SolidMetal.Heavy.BulletImpact_1P_vs_3P"
+		"N" "Sand.Heavy.BulletImpact_1P_vs_3P"	// sand?
+		"O" "Grass.Heavy.BulletImpact_1P_vs_3P"
+		"P" "Android.Heavy.BulletImpact_1P_vs_3P"
+
+		"R" "Concrete.Heavy.BulletImpact_1P_vs_3P"
+		"S" "Water.Heavy.BulletImpact_1P_vs_3P"
+		"T" "Tile.Heavy.BulletImpact_1P_vs_3P"
+		"U" "Glass.Heavy.BulletImpact_1P_vs_3P"
+
+		"V" "SolidMetal.Heavy.BulletImpact_1P_vs_3P"
+		"W" "Wood.Heavy.BulletImpact_1P_vs_3P"
+		"X" "TitanBubbleShield.Heavy.BulletImpact_1P_vs_3P"
+		"Y" "Glass.Heavy.BulletImpact_1P_vs_3P"
+		"Z" "Sand.Heavy.BulletImpact_1P_vs_3P"
+		
+		//"splash" "Water.BulletImpact"
+		//"slime_splash" "Water.BulletImpact"
+
+		//"airburst" ""
+		"shieldhit" "TitanShield.Heavy.BulletImpact_1P_vs_3P"
+	}
+
+	Sound_victim
+	{
+		"C" "Concrete.Heavy.BulletImpact_3P_vs_1P"
+		"D" "Dirt.Heavy.BulletImpact_3P_vs_1P"
+		"E" "Titan.Heavy.BulletImpact_3P_vs_1P"
+
+		"F" "Flesh.Heavy.BulletImpact_3P_vs_1P"
+		"G" "MetalGrate.Heavy.BulletImpact_3P_vs_1P"
+		"H" "Flesh.Heavy.BulletImpact_3P_vs_1P"
+
+		"J" "Grass.Heavy.BulletImpact_3P_vs_1P"
+		"K" "Mud.Heavy.BulletImpact_3P_vs_1P"  // mud?
+		"L" "Default.Heavy.BulletImpact_3P_vs_1P"
+		"M" "SolidMetal.Heavy.BulletImpact_3P_vs_1P"
+		"N" "Sand.Heavy.BulletImpact_3P_vs_1P"	// sand?
+		"O" "Grass.Heavy.BulletImpact_3P_vs_1P"
+		"P" "Android.Heavy.BulletImpact_3P_vs_1P"
+
+		"R" "Concrete.Heavy.BulletImpact_3P_vs_1P"
+		"S" "Water.Heavy.BulletImpact_3P_vs_1P"
+		"T" "Tile.Heavy.BulletImpact_3P_vs_1P"
+		"U" "Glass.Heavy.BulletImpact_3P_vs_1P"
+
+		"V" "SolidMetal.Heavy.BulletImpact_3P_vs_1P"
+		"W" "Wood.Heavy.BulletImpact_3P_vs_1P"
+		"X" "TitanBubbleShield.Heavy.BulletImpact_3P_vs_3P"
+		"Y" "Glass.Heavy.BulletImpact_3P_vs_1P"
+		"Z" "Sand.Heavy.BulletImpact_3P_vs_1P"
+
+		//"splash" "Water.BulletImpact"
+		//"slime_splash" "Water.BulletImpact"
+
+		//"airburst" ""
+		"shieldhit" "TitanShield.Heavy.BulletImpact_3P_vs_1P"
+	}
+
+	Sound_victim
+	{
+		"E" "test.bigBulletVictimTitan"
+	}
+
+}

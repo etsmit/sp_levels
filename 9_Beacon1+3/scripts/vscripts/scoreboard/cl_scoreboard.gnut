@@ -1,0 +1,95 @@
+global function ClScoreboard_Init
+
+global function IsInScoreboard
+global function ClientCodeCallback_ScoreboardInput
+global function ClientCodeCallback_ToggleScoreboard
+global function AddScoreboardShowCallback
+global function AddScoreboardHideCallback
+global function HideScoreboard
+global function ShowScoreboard
+
+struct
+{
+	array<void functionref()> scoreboardShowCallbacks
+	array<void functionref()> scoreboardHideCallbacks
+} file
+
+void function ClScoreboard_Init()
+{
+	RegisterConCommandTriggeredCallback( "+showscores", ScoreboardButtonPressed )
+	RegisterMenuButtonPressedCallback( BUTTON_BACK, ScoreboardButtonPressed )
+
+	RegisterSignal( "OnHideScoreboard" )
+
+	clGlobal.showingScoreboard = false
+}
+
+void function AddScoreboardShowCallback( void functionref() func )
+{
+	file.scoreboardShowCallbacks.append( func )
+}
+
+void function AddScoreboardHideCallback( void functionref() func )
+{
+	file.scoreboardHideCallbacks.append( func )
+}
+
+void function ShowScoreboard()
+{
+	if ( clGlobal.showingScoreboard )
+		return
+
+	clGlobal.showingScoreboard = true
+
+	foreach ( func in file.scoreboardShowCallbacks )
+	{
+		func()
+	}
+
+	clGlobal.showScoreboardFunc()
+}
+
+void function HideScoreboard()
+{
+	if ( !clGlobal.showingScoreboard )
+		return
+
+	clGlobal.hideScoreboardFunc()
+
+	clGlobal.showingScoreboard = false
+
+	foreach ( func in file.scoreboardHideCallbacks )
+	{
+		func()
+	}
+}
+
+void function ClientCodeCallback_ToggleScoreboard()
+{
+	ScoreboardButtonPressed( null )
+}
+
+bool function IsInScoreboard( entity player )
+{
+	return clGlobal.showingScoreboard
+}
+
+void function ScoreboardButtonPressed( entity localPlayer )
+{
+	if ( GetGameState() == eGameState.Postmatch )
+		return
+
+	if ( clGlobal.lockScoreboard )
+		return
+
+	if ( clGlobal.showingScoreboard )
+		thread HideScoreboard()
+	else
+		thread ShowScoreboard()
+}
+
+void function ClientCodeCallback_ScoreboardInput( int input )
+{
+	if ( clGlobal.scoreboardInputFunc != null )
+		clGlobal.scoreboardInputFunc( input )
+}

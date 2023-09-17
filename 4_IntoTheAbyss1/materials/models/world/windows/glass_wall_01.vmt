@@ -1,0 +1,28 @@
+"Refract"
+{
+//	"$basetexture" "world\windows\window_glass_dirty_white_streaks01_col"
+//	"$surfaceprop"	"glass"
+//	"$bumpmap" "glass/reflectiveglass002_normal"
+//	"$normalmapalphaenvmapmask" 1
+//	"$envmap"	"env_cubemap"
+//	"$translucent"	1
+//	"%keywords" "portal2"
+
+
+//	"%tooltexture" "world/windows/window_glass_blue_col"
+ 	"$model" 1
+	"$refractamount" ".09"
+ 	"$bluramount" "0"
+	"$REFRACTTINT" "{160 160 160}"
+	"$scale" "[1 1]"
+//	"$dudvmap" "world\windows\glass_wall_01_nml"
+	"$normalmap" "world\windows\glass_wall_01_nml"
+	"$surfaceprop" "glass"
+
+	"$envmap" "env_cubemap"
+	"$normalmapalphaenvmapmask" 1
+	"$envmaptint" "[.3 .35 .4]"
+//	"$envmaptint" "[.5 .7 1]"
+	"$translucent"	1
+
+}

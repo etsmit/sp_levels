@@ -1,0 +1,7 @@
+"Basic"
+{
+	"$translucent" 1
+	"$basetexture" "tools/toolstrigger_quickdeath"
+	"%compiletrigger" 1
+	"%keywords" "tools"
+}

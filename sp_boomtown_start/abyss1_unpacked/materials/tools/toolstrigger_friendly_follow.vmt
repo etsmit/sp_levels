@@ -1,8 +1,0 @@
-"Basic"
-{
-	"$translucent" 1
-	"$basetexture" "tools/toolstrigger_friendly_follow"
-	"%compiletrigger" 1
-	"%keywords" "tools"
-	"$Size"		"512 512"
-}

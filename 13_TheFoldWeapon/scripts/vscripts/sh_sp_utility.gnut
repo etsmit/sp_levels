@@ -1,0 +1,52 @@
+globalize_all_functions
+
+int function GetScoreLimit_FromPlaylist()
+{
+	return 0
+}
+
+
+bool function GameMode_IsDefined( string gameModeName )
+{
+	return false
+}
+
+int function GameMode_GetTimeLimit( string gameModeName )
+{
+	return 0
+}
+
+float function GetTimeLimit_ForGameMode()
+{
+	return 0
+}
+
+bool function IsSuddenDeathGameMode()
+{
+	return false
+}
+
+float function GameMode_GetRoundTimeLimit( string gameModeName )
+{
+	return 0.0
+}
+
+void function SetActiveTitanLoadoutIndex( entity player, int loadoutIndex )
+{
+}
+
+float function GetTitanBuildTime( entity player )
+{
+	return 0
+}
+
+int function GetPersistentSpawnLoadoutIndex( entity player, string loadoutType )
+{
+	return 0
+}
+
+bool function SafeForTitanFall( vector dropPoint )
+{
+	return true
+}
+

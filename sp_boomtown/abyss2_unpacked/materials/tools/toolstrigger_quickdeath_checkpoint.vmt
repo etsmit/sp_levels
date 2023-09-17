@@ -1,7 +1,0 @@
-"Basic"
-{
-	"$translucent" 1
-	"$basetexture" "tools/toolstrigger_quickdeath_checkpoint"
-	"%compiletrigger" 1
-	"%keywords" "tools"
-}

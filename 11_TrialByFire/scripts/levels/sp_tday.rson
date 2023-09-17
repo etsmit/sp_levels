@@ -1,0 +1,22 @@
+IsTestMap: false
+
+When: "SERVER || CLIENT"
+Scripts:
+[
+	sp/sh_sp_tday.nut
+	sp/autoprecache/sp_tday_autoprecache.nut
+]
+
+When: "SERVER"
+Scripts:
+[
+	sp/sp_tday.nut
+]
+
+When: "CLIENT"
+Scripts:
+[
+    client/cl_carrier.gnut
+	sp/cl_sp_tday.nut
+]
+

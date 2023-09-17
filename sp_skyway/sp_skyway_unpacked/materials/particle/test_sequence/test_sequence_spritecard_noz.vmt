@@ -1,8 +1,0 @@
-"SpriteCard"
-{
-	"$basetexture" "particle/test_sequence/test_sequence"
-	//$vertexFogAmount 1
-	$ignorez 1
-	
-	$vertexFogAmount 1
-}

@@ -1,18 +1,4 @@
-sp_beacon/sp_beacon_blend/
-sp_beacon_spoke0/beacon_blend/
-sp_boomtown/abyss2_blend/
-sp_boomtown/abyss2_modvpk/
-sp_boomtown/abyss2_repack/
-sp_boomtown_end/abyss3_blend/
-sp_boomtown_start/abyss1_blend/
-sp_crashsite/bt_blend/
-sp_hub_timeshift/enc1_blend/
-sp_s2s/s2s_blend/
-sp_sewers/sewers_blend/
-sp_skyway/sp_skyway_blend/
-sp_tday/tday_blend/
-sp_timeshift_spoke02/enc2_blend/
-sp_training/sp_training_blend/
+
 
 **/*.bsp_lump
 **/*.bsp
